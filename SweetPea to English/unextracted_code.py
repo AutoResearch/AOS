@@ -7,14 +7,12 @@ from sweetpea import fully_cross_block, synthesize_trials_non_uniform, print_exp
 
 ### REGULAR FACTORS
 
-# DEFINE COLOR AND WORD FACTORS
-
 color      = Factor("color",  ["red", "blue", "green", "brown"])
 word       = Factor("motion", ["red", "blue", "green", "brown"])
 
 ### DERIVED FACTORS
 
-# DEFINE CONGRUENCY FACTOR
+## CONGRUENCY FACTOR
 
 def congruent(color, word):
     return color == word
@@ -31,7 +29,7 @@ congruency = Factor("congruency", [
     incLevel
 ])
 
-# DEFINE RESPONSE FACTOR
+## RESPONSE FACTOR
 
 def response_up(color):
     return color == "red"
@@ -49,7 +47,7 @@ response = Factor("response", [
     DerivedLevel("right", WithinTrial(response_right,   [color])),
 ])
 
-# DEFINE RESPONSE TRANSITION FACTOR
+## RESPONSE TRANSITION FACTOR
 
 def response_repeat(response):
     return response[0] == response[1]
@@ -62,21 +60,23 @@ resp_transition = Factor("response_transition", [
     DerivedLevel("switch", Transition(response_switch, [response]))
 ])
 
-### CONSTRAINTS
+### EXPERIMENT
 
-# DEFINE SEQUENCE CONSTRAINTS
+### CONSTRAINTS
 
 k = 7
 constraints = [at_most_k_in_a_row(k, resp_transition)]
 
-# DEFINE EXPERIMENT
+### DEFINE EXPERIMENT
 
 design       = [color, word, congruency, resp_transition, response]
 crossing     = [color, word, resp_transition]
 block        = fully_cross_block(design, crossing, constraints)
 
-# SOLVE
+### SOLVE
 
 experiments  = synthesize_trials_non_uniform(block, 5)
+
+### END OF EXPERIMENT DESIGN
 
 print_experiments(block, experiments)
