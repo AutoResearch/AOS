@@ -120,6 +120,6 @@ color      = factor("color",  ["red", Level("green",4)])
 word       = factor("word", ["red", "green", "blue", "brown"])
 
 Text:
-There are two regular factors: color and word. The color factor consists of two levels: "red" and green". However, in the color factor, there is a difference in frequency between the levels. The level "green" appears four times as often as the level "red". The word factor consists of the four levels: "red", "green, "blue" and "brown".
+There are two regular factors: color and word. The color factor consists of two levels: "red" and green". However, in the color factor, the levels occur with different frequencies: The level "green" appears four times as often as the level "red". The word factor consists of the four levels: "red", "green, "blue" and "brown".
 
 Code:
