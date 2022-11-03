@@ -106,7 +106,7 @@ word = factor("word",  all_letters)
 col = Factor("color", ["red", "green", Level("yellow", 2)]
 
 Text:
-There are two regular factor: word and color. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink". In the word factor, the word "pink" and "yellow" appeared four times as often as the word "red". The word "blue" and "green" appeared twice as often as "red". The color factor consists of three colors: "red", "green" and "yellow". In the color factor, the color "yellow" appeared twice as often as the colors "red" and "green".
+There are two regular factor: word and color. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink" with a ratio of 1 : 2 : 4 : 2 : 4, respectively. For instance, the level "green" appeared twice as often as the level "red".
 
 Code:
 object = Factor("object identity", [Level("H", 3), Level("S", 1)])
