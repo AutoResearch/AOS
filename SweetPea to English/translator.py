@@ -608,7 +608,7 @@ if __name__ == '__main__':
     # translation = "Translation: " + translate_counterbalancing(to_translate)
     # display_typed_text(translation)
 
-    to_translate = "code 1.py"
+    to_translate = "test\code_1.py"
     translation = "Translation: " + translate_sweetpea_code(to_translate, export_pdf=True)
     print(translation)
 
