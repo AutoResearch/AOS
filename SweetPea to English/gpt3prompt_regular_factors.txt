@@ -64,7 +64,7 @@ object = Factor("object identity", [Level("H", 2), Level("S", 1)])
 motion = Factor("motion", ["left", "right"])
 
 Text:
-There are two regular factors: object identity and motion. The object identity factor consists of two levels: "H" and "S". In the object identity factor, the ratio between the levels "H" and "S" is 2 to 1. The motion factor also consists of the two levels: "left" and "right".
+There are two regular factors: object identity and motion. The object identity factor consists of two levels: "H" and "S". For the object identity factor, the ratio between the levels "H" and "S" was 2 to 1. The motion factor also consists of the two levels: "left" and "right".
 
 Code:
 color      = Factor("color",  [Level("red",3), Level("green",2)])
