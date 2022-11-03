@@ -325,7 +325,7 @@ congr_factor = factor("congruency", [
 ])
 
 Text:
-The congruency factor depends on the regular factors color and word and has two levels: congruent and incongruent. A trial is considered congruent if the color matches the word, otherwise, it is considered incongruent. In our experiment the frequency between congruent and incongruent trials is different. There are four times as many congruent trials then incongruent trials.
+The congruency factor depends on the regular factors color and word and has two levels: congruent and incongruent. A trial is considered congruent if the color matches the word, otherwise, it is considered incongruent. The trial sequence included four times as many congruent trials as incongruent trials.
 
 Code:
 num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
