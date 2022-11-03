@@ -396,6 +396,6 @@ numtransfac = factor("number transition", [
 ])
 
 Text:
-The number transition factor depends on the transition of the number factor and has three levels: increase, decrease, or unchanged. If the number on the current trial is larger than the previous one, then the trial is considered an increase. If the number on the current trial is equal to the number on the previous trial, then the trial is considered unchanged. Otherwise, the trial is considered a decrease. In our experiment, the increase transition occurs three time as often as the decrease transition. The unchanged transition occurs twice as often.
+The number transition factor depends on the transition of the number factor and has three levels: increase, decrease, or unchanged. If the number on the current trial is larger than the previous one, then the trial is considered an increase. If the number on the current trial is equal to the number on the previous trial, then the trial is considered unchanged. Otherwise, the trial is considered a decrease. The increase transition occurs three times as often as the decrease transition, and the unchanged transition occurs twice as often as the decrease transition.
 
 Code:
