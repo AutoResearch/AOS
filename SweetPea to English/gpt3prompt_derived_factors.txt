@@ -347,7 +347,7 @@ par_factor = factor("parity", [
 ])
 
 Text:
-The parity factor depends on the regular factor digit has two levels: odd and even. A trial is considered even if the digit is divisible by 2, otherwise, it is considered odd. In our experiment in the factor parity the ratio between odd and even is 3 to 2.
+The parity factor depends on the regular factor digit has two levels: odd and even. A trial is considered even if the digit is divisible by 2, otherwise, it is considered odd. The experiment sequences were generated such that the ratio between odd and even trials was 3 to 2.
 
 Code:
 num      = factor("number",  range(0,20))
