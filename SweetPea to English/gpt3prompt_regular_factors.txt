@@ -77,7 +77,7 @@ color      = factor("color",  [Level("red",3), Level("green",2)])
 word       = factor("word", ["red", "green", "blue", "brown"])
 
 Text:
-There are two regular factors: color and word. The color factor consists of two levels: "red" and "green". The word factor consists of the four levels: "red", "green, "blue" and "brown". However, in the color factor, the ratio of the levels "red" and "green" is 3 to 2.
+There are two regular factors: color and word. The color factor consists of two levels: "red" and "green". The word factor consists of the four levels: "red", "green, "blue" and "brown". However, for the color factor, the ratio of the levels "red" and "green" was 3 to 2.
 
 Code:
 all_letters = [Level("A", 3), "B", "C", Level("D", 2), "E", "F"]
