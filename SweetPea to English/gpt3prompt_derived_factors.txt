@@ -115,6 +115,8 @@ task       = factor("Task", ["color naming", "word reading"])
 def is_response_left(color, word, task):
     return (task == "color naming" and color == "red") or \
            (task == "word reading" and word == "green")
+    return (task == "color naming" and color == "red") or
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       (task == "word reading" and word == "green")
 def is_response_right(color, word, task):
     return (task == "color naming" and color == "green") or \
            (task == "word reading" and word == "red")
@@ -280,5 +282,120 @@ colorResponse = factor("correct color response", [
 
 Text:
 The color response factor depends on the color factor and has two levels: -1 and 1. If the color is red or blue, then the corresponding color response is -1 or 1, respectively.
+
+Code:
+col      = factor("Color",  [Level("red",2), "green", "blue", "brown"])
+wrd       = factor("Word", ["red", "green", "blue", "brown"])
+
+def is_response_left(col_factor):
+    return col_factor == "red"
+def is_response_right(col_factor):
+    return col_factor == "green"
+def is_response_up(col_factor):
+    return col_factor == "blue"
+def is_response_down(col_factor):
+    return col_factor == "brown"
+
+resp = factor("response", [
+    derived_level("left", within_trial(is_response_left, [col]),2),
+    derived_level("right", within_trial(is_response_right, [col])),
+    derived_level("up", within_trial(is_response_up, [col])),
+    derived_level("down", within_trial(is_response_down, [col]))
+])
+
+Text:
+The response factor depends on the Color factor and has four levels: left, right, up, and down. If the Color is red, green, blue, or brown, then the corresponding response is left, right, up, and down, respectively. The response left occurs twice as often as the response right, up or down.
+
+Code:
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+
+def is_congruent(color, word):
+    return color == word
+
+def is_incongruent(color, word):
+    return not is_congruent(color, word)
+
+congr_level = derived_level("congruent", within_trial(is_congruent, [color, word]),weight=4)
+incongr_level = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+
+congr_factor = factor("congruency", [
+    congr_level,
+    incongr_level
+])
+
+Text:
+The congruency factor depends on the regular factors color and word and has two levels: congruent and incongruent. A trial is considered congruent if the color matches the word, otherwise, it is considered incongruent. The trial sequence included four times as many congruent trials as incongruent trials.
+
+Code:
+num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+
+def is_e(num):
+    return (int(num) % 2) == 0
+
+def is_o(num):
+    return not is_e(num)
+
+o_level = derived_level("odd", within_trial(is_e, [num]),3)
+e_level = derived_level("even", within_trial(is_o, [num]),2)
+
+par_factor = factor("parity", [
+    o_level,
+    e_level
+])
+
+Text:
+The parity factor depends on the regular factor digit has two levels: odd and even. A trial is considered even if the digit is divisible by 2, otherwise, it is considered odd. The experiment sequences were generated such that the ratio between odd and even trials was 3 to 2.
+
+Code:
+num      = factor("number",  range(0,20))
+mot      = factor("motion",  ["up", "down"])
+shp       = factor("shape", ["circle", "square", "triangle"])
+
+def is_larg_10(num):
+    return int(num) > 10
+
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+
+large_level = derived_level("large", within_trial(is_larg_10, [num]),1)
+small_level = derived_level("small", within_trial(is_small_eq_10, [num]),weight=5)
+
+mag_factor = factor("magnitude", [
+    large_level,
+    small_level
+])
+
+Text:
+The magnitude factor depends on the regular factor number has two levels: large and small. A trial is considered large if the number is larger than 10, otherwise, it is considered small. In the magnitude factor the level "small" appeared 5 times as often as the level "large".
+
+Code:
+target = factor("number", ['1', '2', '3', '4', '5'])
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+
+def is_lrg(num_factor):
+    return int(num_factor[0]) < int(num_factor[1])
+
+def is_eq(num_factor):
+    return int(num_factor[0]) == int(num_factor[1])
+
+def is_sml(num_factor):
+    return not is_lrg(num_factor) and not is_eq(num_factor)
+
+numtransfac = factor("number transition", [
+    derived_level("increase",
+                 transition(is_lrg, [target]), 3),
+    derived_level("unchanged",
+                  transition(is_eq, [target]), 2),
+    derived_level("decrease",
+                 transition(is_sml, [target]))
+])
+
+Text:
+The number transition factor depends on the transition of the number factor and has three levels: increase, decrease, or unchanged. If the number on the current trial is larger than the previous one, then the trial is considered an increase. If the number on the current trial is equal to the number on the previous trial, then the trial is considered unchanged. Otherwise, the trial is considered a decrease. The increase transition occurs three times as often as the decrease transition, and the unchanged transition occurs twice as often as the decrease transition.
 
 Code:
