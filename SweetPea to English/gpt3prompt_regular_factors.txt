@@ -91,7 +91,7 @@ all_letters = [Level("A", 3), Level("B", 1), Level("C", 1), Level("D", 2), Level
 letter = factor("letter",  all_letters)
 
 Text:
-There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F". In the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F". The letter "D" appeared twice as often as "B", "C", "E" and "F". The ratio between the letters "A" and "D" was 3:2.
+There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F". In the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F" and the letter "D" appeared twice as often as "B", "C", "E" and "F". 
 
 Code:
 word_list = ["red", Level("green", 1), "yellow", Level("blue", 2), Level("pink", 4)]
