@@ -19,7 +19,7 @@ resp = factor("response", [
 ])
 
 Text:
-The response factor depends on the Color factor and has four levels: left, right, up, and down. If the Color is red, green, blue, or brown, then the corresponding response is left, right, up, and down, respectively.
+The response factor depends on the Color factor and has four levels: "left", "right", "up" and "down". If the Color is "red", "green", "blue" or "brown", then the corresponding response is "left", "right", "up" and "down", respectively.
 
 Code:
 color      = factor("Color",  ["red", "green", "blue", "brown"])
@@ -40,7 +40,7 @@ congr_factor = factor("congruency", [
 ])
 
 Text:
-The congruency factor depends on the regular factors Color and Word and has two levels: congruent and incongruent. A trial is considered congruent if the Color matches the Word, otherwise, it is considered incongruent.
+The congruency factor depends on the regular factors Color and Word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color matches the Word, otherwise, it is considered "incongruent".
 
 Code:
 num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -62,7 +62,7 @@ par_factor = factor("parity", [
 ])
 
 Text:
-The parity factor depends on the regular factor digit has two levels: odd and even. A trial is considered even if the digit is divisible by 2, otherwise, it is considered odd.
+The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
 
 Code:
 num      = factor("number",  range(0,20))
@@ -84,7 +84,7 @@ mag_factor = factor("magnitude", [
 ])
 
 Text:
-The magnitude factor depends on the regular factor number has two levels: large and small. A trial is considered large if the number is larger than 10, otherwise, it is considered small.
+The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
 
 Code:
 color      = factor("Color",  ["red", "green"])
@@ -105,7 +105,7 @@ congr = factor("congruency", [
 ])
 
 Text:
-The congruency factor depends on the Color and Word factors and has two levels: congruent and incongruent. A trial is considered congruent if the Color factor matches the Word factor and otherwise it is considered incongruent.
+The congruency factor depends on the Color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color factor matches the Word factor and otherwise it is considered "incongruent".
 
 Code:
 color      = factor("Color",  ["red", "green"])
@@ -129,7 +129,7 @@ resp = factor("response", [
 ])
 
 Text:
-The response factor depends on the factors Color, Word, and Task, and has two levels: left and right. The response is left if the Task is color naming and the Color is red or if the Task is word reading and the Word is green. Conversely, the response is right if the Task is color naming and the Color is green or if the Task is word reading and the Word is red.
+The response factor depends on the factors Color, Word, and Task, and has two levels: "left" and "right". The response is "left" if the Task is color naming and the Color is red or if the Task is word reading and the Word is green. Conversely, the response is "right" if the Task is color naming and the Color is green or if the Task is word reading and the Word is red.
 
 Code:
 color      = factor("Color",  ["red", "green"])
@@ -150,7 +150,7 @@ task_transition = factor("Task Transition", [
 ])
 
 Text:
-The task transition factor depends on the transition of the Task factor and has two levels: task repetition and task switch. If the Task on the current trial is the same as on the previous trial, then the trial is considered a task repetition, otherwise, it is considered a task switch.
+The task transition factor depends on the transition of the Task factor and has two levels: "task repetition" and "task switch". If the Task on the current trial is the same as on the previous trial, then the trial is considered a "task repetition", otherwise, it is considered a task "switch".
 
 Code:
 target = factor("number", ['1', '2', '3', '4', '5'])
@@ -168,16 +168,16 @@ def is_sml(num_factor):
     return not is_lrg(num_factor) and not is_eq(num_factor)
 
 numtransfac = factor("number transition", [
-    derived_level("increment",
+    derived_level("increase",
                  transition(is_lrg, [target])),
     derived_level("unchanged",
                   transition(is_eq, [target])),
-    derived_level("decrement",
+    derived_level("decrease",
                  transition(is_sml, [target]))
 ])
 
 Text:
-The number transition factor depends on the transition of the number factor and has three levels: increase, decrease, or unchanged. If the number on the current trial is larger than the previous one, then the trial is considered an increment. If the number on the current trial is equal to the number on the previous trial, then the trial is considered unchanged. Otherwise, the trial is considered a decrement.
+The number transition factor depends on the transition of the number factor and has three levels: "increase", "decrease", or "unchanged". If the number on the current trial is larger than the previous one, then the trial is considered an "increase" trial. If the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". Otherwise, the trial is considered a "decrease".
 
 Code:
 color      = factor("Color",  ["red", "green"])
@@ -198,7 +198,7 @@ response_transition = factor("Response Transition", [
 ])
 
 Text:
-The response transition factor depends on the transition of the response factor and has two levels: response repetition and response switch. If the response on the current trial is the same as on the previous trial, then the trial is considered a response repetition, otherwise, it is considered a response switch.
+The response transition factor depends on the transition of the response factor and has two levels: "response repetition" and "response switch". If the response on the current trial is the same as on the previous trial, then the trial is considered a "response repetition", otherwise, it is considered a "response switch".
 
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
@@ -216,7 +216,7 @@ targ = factor("target", [
 ])
 
 Text:
-The target factor has two levels: it is a target and it is not a target. It depends on a moving trial window (for the last three trials) defined by the character factor. If the character on the current trial matches the character two trials back, then the trial is a target. Conversely, if the character on the current trial does not match the character two trials back, then the trial is not a target.
+The target factor has two levels: it "is target" and it "is not target". It depends on a moving trial window (for the last three trials) defined by the character factor. If the character on the current trial matches the character two trials back, then the trial is a "is target" trial. Conversely, if the character on the current trial does not match the character two trials back, then the trial is a "is not target" trial.
 
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
@@ -234,7 +234,7 @@ targ = factor("hit", [
 ])
 
 Text:
-The hit factor has two levels: correct and incorrect. It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is correct. Otherwise, the current trial is not incorrect.
+The hit factor has two levels: "correct" and "incorrect". It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is "correct". Otherwise, the current trial is "incorrect".
 
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
@@ -253,11 +253,11 @@ targ = factor("Target", [
 
 lure = factor("Lure", [
     derived_level("is lure", window(is_lure, [letter, targ], 2, 1)),
-    derived_level("is not a lure",  window(is_no_lure, [letter, targ], 2, 1))
+    derived_level("is not lure",  window(is_no_lure, [letter, targ], 2, 1))
 ])
 
 Text:
-The Lure factor has two levels: yes and no. It depends on a moving trial window (for the last two trials) defined by the character and Target factors. If the character on the current trial matches the character on the previous trial and the Target factor on the current trial is "no", then the current rial is a lure; otherwise, it is not a lure.
+The Lure factor has two levels: "is lure" and "is not lure". It depends on a moving trial window (for the last two trials) defined by the character and target factors. If the character on the current trial matches the character on the previous trial and the target factor on the current trial is "no", then the current trial is a "is lure" trial; otherwise, it is a "not is lure" trial.
 
 Code:
 colorCoherence      = factor("color coherence",  ["0.3", "0.53", "0.76", "1.0"])
@@ -304,7 +304,7 @@ resp = factor("response", [
 ])
 
 Text:
-The response factor depends on the Color factor and has four levels: left, right, up, and down. If the Color is red, green, blue, or brown, then the corresponding response is left, right, up, and down, respectively. The response left occurs twice as often as the response right, up or down.
+The response factor depends on the Color factor and has four levels: "left", "right", "up", and "down". If the Color is red, green, blue, or brown, then the corresponding response is "left", "right", "up" and "down", respectively. The response "left" occurs twice as often as the response "right", "up" or "down".
 
 Code:
 color      = factor("Color",  ["red", "green", "blue", "brown"])
@@ -325,7 +325,7 @@ congr_factor = factor("congruency", [
 ])
 
 Text:
-The congruency factor depends on the regular factors color and word and has two levels: congruent and incongruent. A trial is considered congruent if the color matches the word, otherwise, it is considered incongruent. The trial sequence included four times as many congruent trials as incongruent trials.
+The congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent". The trial sequence included four times as many "congruent" trials as "incongruent" trials.
 
 Code:
 num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -347,7 +347,7 @@ par_factor = factor("parity", [
 ])
 
 Text:
-The parity factor depends on the regular factor digit has two levels: odd and even. A trial is considered even if the digit is divisible by 2, otherwise, it is considered odd. The experiment sequences were generated such that the ratio between odd and even trials was 3 to 2.
+The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd". The experiment sequences were generated such that the ratio between "odd" and "even" trials was 3 to 2.
 
 Code:
 num      = factor("number",  range(0,20))
@@ -369,7 +369,7 @@ mag_factor = factor("magnitude", [
 ])
 
 Text:
-The magnitude factor depends on the regular factor number has two levels: large and small. A trial is considered large if the number is larger than 10, otherwise, it is considered small. In the magnitude factor the level "small" appeared 5 times as often as the level "large".
+The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small". In the magnitude factor the level "small" appeared five times as often as the level "large".
 
 Code:
 target = factor("number", ['1', '2', '3', '4', '5'])
@@ -396,6 +396,6 @@ numtransfac = factor("number transition", [
 ])
 
 Text:
-The number transition factor depends on the transition of the number factor and has three levels: increase, decrease, or unchanged. If the number on the current trial is larger than the previous one, then the trial is considered an increase. If the number on the current trial is equal to the number on the previous trial, then the trial is considered unchanged. Otherwise, the trial is considered a decrease. The increase transition occurs three times as often as the decrease transition, and the unchanged transition occurs twice as often as the decrease transition.
+The number transition factor depends on the transition of the number factor and has three levels: "increase", "decrease", or "unchanged". If the number on the current trial is larger than the previous one, then the trial is considered an "increase". If the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". Otherwise, the trial is considered a "decrease". The "increase" transition occurs three times as often as the "decrease" transition, and the "unchanged" transition occurs twice as often as the decrease transition.
 
 Code:

@@ -98,7 +98,7 @@ word_list = ["red", Level("green", 1), "yellow", Level("blue", 2), Level("pink",
 word = factor("word",  all_letters)
 
 Text:
-There is one regular factor: word. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink". In the word factor, word "pink" appeared four times as often as the letters "red", "green" and "yellow" and the word "blue" appeared twice as often as "red", "green" and "yellow".
+There is one regular factor: word. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink". In the word factor, the word "pink" appeared four times as often as the letters "red", "green" and "yellow" and the word "blue" appeared twice as often as "red", "green" and "yellow".
 
 Code:
 word_list = ["red", Level("green", 2), Level("yellow", 4), Level("blue", 2), Level("pink", 4)]
