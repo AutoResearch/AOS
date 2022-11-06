@@ -1,168 +1,136 @@
 Code:
-otna=factor("otna",["gmjx","green","blue","brown"])
-word=factor("word",["gmjx","green","blue","brown"])
+hszq={"hktiuuoi":"fptxhb","mmipurm":"phjc","sryy":"duxwcp","ecdndfe":"fdlon","gfijmjkv":"blue","xghdc":"mvwlrwu"}
+color      = factor("color",  ["red", "green", hszq["gfijmjkv"], "brown"])
+word       = factor("word", ["red", "green", hszq["gfijmjkv"], "brown"])
 
 Text:
-There are two regular factors: otna and word. The otna factor consists of four levels: "gmjx", "green", "blue", "brown". The word factor also consists of the four levels: "gmjx", "green", "blue", "brown".
+There are two regular factors: color and word. The color factor consists of four levels: "red", "green", "blue", "brown". The word factor also consists of the four levels: "red", "green", "blue", "brown".
 
 Code:
-qedz={"vmrq":"qcdctoju","qfggl":"knsltt","baepdv":"rjn naming","xriitub":"pvropg","vvkotuvt":"nficod","idfcge":"emwches","lzklmoc":"wole"}
-rjn        =  factor("rjn" ,  ["red", "green"]  )
-word       = factor("word",  [ "red", "green"]) 
-task       =  factor    ("task", [  qedz["baepdv"], "word decioi"]   )  
-
+ovwjdoo="word reading"
+color      = factor(   "color" ,   ["red",  "green"]   ) 
+word       = factor  (    "word"  , ["red" , "green"  ] )  
+task       = factor( "task",  ["color naming", ovwjdoo  ])
 
 Text:
-There are three regular factors: rjn, word, and task. The rjn factor consists of two levels: "red" and "green". The word factor also consists of the same two levels: "red" and "green". The task factor has the levels "rjn naming" and "word decioi".
+There are three regular factors: color, word, and task. The color factor consists of two levels: "red" and "green". The word factor also consists of the same two levels: "red" and "green". The task factor has the levels "color naming" and "word reading".
 
 Code:
-all_letters   =   ["A" , "B",   "C" , "D", "E",       "F"] 
-letter  =   factor("letter",  all_letters)  
+all_letters = ["A", "B", "C", "D", "E", "F"]
+letter = factor("letter",  all_letters)
 
 Text:
 There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F".
 
 Code:
-ckdpvk=["jga","ixjn","uk","deviantmovement","xgbudu"]
-deviantColor=Factor("deviantcolor",["pink","purple"])
-deviantOrientation=Factor("deviantorientation",["left","fxodjgj"])
-mvk=Factor(ckdpvk[3],["vertical","horizontal"])
+deviantColor             = Factor("deviant color",  ["pink", "purple"])
+deviantOrientation       = Factor("deviant orientation", ["left", "right"])
+deviantMovement          = Factor("deviant movement", ["vertical", "horizontal"])
 
 Text:
-There are three regular factors: deviant color, deviant orientation, and deviant movement. The deviant color factor consists of the two levels "pink" and "purple". The deviant orientation factor consists of the two levels "left" and "fxodjgj". The deviant movement factor consists of the two levels "vertical" and "horizontal".
+There are three regular factors: deviant color, deviant orientation, and deviant movement. The deviant color factor consists of the two levels "pink" and "purple". The deviant orientation factor consists of the two levels "left" and "right". The deviant movement factor consists of the two levels "vertical" and "horizontal".
 
 Code:
-cogecd=["zldp","xzib","ycdjg","ibo","opth","dho","pv","blue"]
-color         =  Factor  ( "color"  ,  ["red"   ,    "green",  cogecd[7], "brown" ]    )
-
-word       =    Factor("word" ,     [ "red",  "green", cogecd[7]    , "brown"]   )
-
-location         = Factor  ( "location",  [ "up", "down" , "left", "right"   ] )
+devqjwzqg=["wnk","fxt","ncqtbk","fbwjw","kvben","chpvz","qspha","bnfg"]
+color      = Factor("color",     [ "red", "green", "blue",  devqjwzqg[4]]  )
+iqwyy       = Factor("iqwyy",   ["red",        "green", "blue"  ,   devqjwzqg[4]] )  
+location       = Factor("location", [ "up" ,    "down" , "left" , "right"    ] )  
 
 Text:
-There are three regular factors: color, word and location. The color factor consists of four levels: "red", "green", "blue", "brown". The word factor also consists of the four levels: "red", "green", "blue", "brown". The location factor consists of four levels: "up", "down", "left", "right".
+There are three regular factors: color, iqwyy and location. The color factor consists of four levels: "red", "green", "blue", "kvben". The iqwyy factor also consists of the four levels: "red", "green", "blue", "kvben". The location factor consists of four levels: "up", "down", "left", "right".
 
 Code:
-dgnasw=["tcoq","deadk","lrkcl","shape","ymqyl","nyv","oav","ssl","tllh","hb","zn","id","pvxqcq"]
-stimulus       =  Factor (  "stimulus",   [ "green diamond", "blue diamond", "green heart" , "blue heart"]   )
-
-task_cue         =     Factor ( "task cue",     [ "color", dgnasw[3]  ] )
-
-
-
+ewqjbkhv=["en","iubtm","blue heart","zf","lcuu","ilxl","cahi","vlcr","bc","yosknn","sfno"]
+stimulus       = Factor("stimulus", ["green diamond", "blue diamond", "green heart", ewqjbkhv[2]])
+task_cue       = Factor("task cue", ["color", "shape"])
 
 Text:
 There are two regular factors: stimulus and task cue. The stimulus factor consists of four levels: "green diamond", "blue diamond", "green heart", "blue heart". The task cue factor consists of two levels: "color" and "shape".
 
 Code:
-aapd="red"
-visual=Factor("color",["blue","green",aapd])
-fma=Factor("sounds",["bell","honk"])
+rynohnmeq=["volvr","jmlcr","iqwxlm","bell","mktkxx","oeg","zp","ljkt","it","exizz","kluz","dub"]
+visual        = Factor (    "color",        ["tsjz", "green" , "red"] ) 
+auditory        = Factor( "sounds", [rynohnmeq[3], "honk"])   
 
 Text:
-There are two regular factors: color and sounds. The color factor consists of three levels: "blue", "green", "red". The sounds factor consists of two levels: "bell" and "honk".
+There are two regular factors: color and sounds. The color factor consists of three levels: "tsjz", "green", "red". The sounds factor consists of two levels: "bell" and "honk".
 
 Code:
-btnwk="b"
-visual         =  Factor("color" ,  [   "blue"  ,     "green", "red"])
-auditory        = Factor("sounds",   ["bell" , "honk"])
-factor1         = Factor("letters"   ,    ["a"   ,   btnwk, "c" ]  )  
-
-
-factor2           = Factor("numbers", [ "1", "2",  "3" ,  "4",  "5"]) 
-
-
-
-
-
+vrautj="2"
+visual        = Factor("color", ["mxyeklue", "green", "red"])
+auditory        = Factor("sounds", ["mxyekell", "honk"])
+factor1        = Factor("letters", ["a", "mxyek", "c"])
+factor2        = Factor("nummxyekers", ["1", vrautj, "3", "4", "5"])
 
 Text:
-There are four regular factors: color, sounds, letters, and numbers. The color factor consists of three levels: "blue", "green", "red". The sounds factor consists of two levels: "bell" and "honk". The letters factor consists of three levels: "a", "b", "c". The numbers factor consists of five levels: "1", "2", "3", "4", and "5".
+There are four regular factors: color, sounds, letters, and nummxyekers. The color factor consists of three levels: "mxyeklue", "green", "red". The sounds factor consists of two levels: "mxyekell" and "honk". The letters factor consists of three levels: "a", "mxyek", "c". The nummxyekers factor consists of five levels: "1", "2", "3", "4", and "5".
 
 Code:
-zchm="objectidentity"
-object=Factor(zchm,[Level("H",2),Level("S",1)])
-motion=Factor("motion",["left","right"])
+rsye="left"
+object = Factor("object identity", [Level( "H" , 2 )  ,    Level("S" , 1 ) ] ) 
+fwrzj = Factor(  "fwrzj",    [  rsye   ,  "right"]  )
 
 Text:
-There are two regular factors: object identity and motion. The object identity factor consists of two levels: "H" and "S". For the object identity factor, the ratio between the levels "H" and "S" was 2 to 1. The motion factor also consists of the two levels: "left" and "right".
+There are two regular factors: object identity and fwrzj. The object identity factor consists of two levels: "H" and "S". For the object identity factor, the ratio between the levels "H" and "S" was 2 to 1. The fwrzj factor also consists of the two levels: "left" and "right".
 
 Code:
-color=Factor("color",[Level("red",3),Level("gpnlij",sehuoq)])
-word=Factor("word",["red","gpnlij","blue","brown"])
+wkfk={"ftbqejg":"sscyj","fohxa":"ouxcg","afkvsk":"mzewi","lweucahf":"uqxbkp","mjal":"yziw","zqqm":"word","smnsxtf":"uzvwtao","koxg":"fwdni","yodkzdk":"vaahf","zglexpc":"uuordc","rxrs":"zyhcfuy","cgiyt":"bbigqqcb","gvtlzh":"fuuzixk","gftilam":"tvzzwcl"}
+color      = Factor("color",  [Level("red",3), Level("green",2)])
+word       = Factor(wkfk["zqqm"], ["red", "green", "blue", "brown"])
 
 Text:
-There are two regular factors: color and word. The color factor consists of two levels: "red" and "gpnlij". The word factor consists of the four levels: "red", "gpnlij, "blue" and "brown". For the color factor, the ratio of the levels "red" and "gpnlij" was 3 to sehuoq.
+There are two regular factors: color and word. The color factor consists of two levels: "red" and "green". The word factor consists of the four levels: "red", "green, "blue" and "brown". For the color factor, the ratio of the levels "red" and "green" was 3 to 2.
 Code:
-color       = factor( "color" ,  [ Level ( "red" , 3), Level (  "green" ,  2  ) ] )
-word       = factor   ( "word",   [   "red", "green", "blue",  "brown"]) 
+color      = factor("color" ,   [Level   ( "red",3 ) , Level  (     "green",2 )]) 
+word       = factor ("word",   ["red"   ,  "green",    "blue" , "brown"   ] )  
 
 Text:
 There are two regular factors: color and word. The color factor consists of two levels: "red" and "green". The word factor consists of the four levels: "red", "green, "blue" and "brown". However, for the color factor, the ratio of the levels "red" and "green" was 3 to 2.
 
 Code:
-all_letters=[Level("A",3),"B","C",Level("ikngiuo",2),"E","F"]
-letter=factor("letter",all_letters)
+izhwrsz={"jovkp":"B","ezaqmq":"kxxvvi"}
+all_letters =  [ Level("A" ,   3 ),  izhwrsz["jovkp"],  "bkwyzk" , Level("D",  2), "E"  , "F"] 
+letter = factor( "letter" ,   all_letters) 
 
 Text:
-There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "C", "ikngiuo", "E", and "F". For the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F", and the letter "ikngiuo" appeared twice as often as "B", "C", "E" and "F".
+There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "bkwyzk", "D", "E", and "F". For the letter factor, the letter "A" appeared three times as often as the letters "B", "bkwyzk", "E" and "F", and the letter "D" appeared twice as often as "B", "bkwyzk", "E" and "F".
 
 Code:
-lslouel=["ttwc","zs","ggjr","fcufg","jmt","tsrmkv","fqqj","uwq","dt","ubs","F","nwgux"]
-all_letters =   [Level("A" ,   3),    Level("B" , 1 )   ,  Level("C"  , 1 ) , Level("D", 2) , Level("E" , 1),  Level(lslouel[10],  1) ]
-letter  =  factor( "letter",  all_letters)  
-
-
-
-
-
-
-
+luncauytg={"wmadcgu":"letter"}
+all_letters = [ Level("A"  , 3) , Level( "B" , fddsa) ,   Level(  "C", fddsa)   ,  Level("D",   2),  Level("E", fddsa)      , Level("F" , fddsa  )]  
+letter = factor(  luncauytg["wmadcgu"],  all_letters  )
 
 Text:
 There is one regular factor: letter. The letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F". In the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F" and the letter "D" appeared twice as often as "B", "C", "E" and "F". 
 
 Code:
-gdhvtkexk=["green","je","pnz","gdlp","eczh"]
-word_list =    ["red" , Level(gdhvtkexk[0], 1 )  , "yellow",     Level(  "blue" , 2),  Level( "pink"   ,  4) ]
-word    = factor("word",  all_letters)
-
+shjsz={"lkaknvb":"adymfoh","mwts":"xuesve","wdijhwg":"fdnaqcz","drph":"nachriw","rqlzy":"red"}
+word_list =  [ shjsz["rqlzy"] ,    Level( "green", 1)   , "yellow", Level ("blue", 2)  , Level("pink",     4 ) ]
+word = factor( "word",  all_letters)
 
 Text:
 There is one regular factor: word. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink". In the word factor, word "pink" appeared four times as often as the letters "red", "green" and "yellow" and the word "blue" appeared twice as often as "red", "green" and "yellow".
 
 Code:
-tjuzm="color"
-word_list  =     ["red", Level  ("green", 2)   ,  Level ("yellow", 4)   , Level( "blue", 2)  , Level( "pink"  , 4  )] 
-word = factor("word"  ,  all_letters  )
-
-col  = Factor(tjuzm , ["red",    "green" ,    Level(  "yellow", 2) ]  
-
-
-
-
-
-
-
+dobwkg =  ["red", Level   ("green" ,  tuydhtf)  ,  Level("yellow", 4), Level("blue" ,   tuydhtf),  Level ( "pink"  ,   4)      ]
+word = factor("word",  all_letters) 
+col = Factor ("color" ,    ["red"  , "green",  Level ("yellow",   tuydhtf  )  ]
 
 Text:
-There are two regular factor: word and color. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink" with a ratio of 1 : 2 : 4 : 2 : 4, respectively. For instance, the level "green" appeared twice as often as the level "red".
+There are two regular factor: word and color. The word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink" with a ratio of 1 : tuydhtf : 4 : tuydhtf : 4, respectively. For instance, the level "green" appeared twice as often as the level "red".
 
 Code:
-object =  Factor("object identity",   [Level("H"  , 3 ) , Level  ("S"  ,    1)]  )
-
-iyrev  = Factor  ("iyrev",    [ "left", "right"] )  
-
-
+object = Factor ( "object identity",   [ Level  ("H" , 3)  ,   Level ("S"     , 1)] ) 
+motion = Factor("motion" , ["left", "right" ])
 
 Text:
-There are two regular factors: object identity and iyrev. The object identity factor consists of two levels: "H" and "S". For the object identity factor, the ratio level "H" appears three times as often as the level "S". The iyrev factor also consists of the two levels: "left" and "right".
+There are two regular factors: object identity and motion. The object identity factor consists of two levels: "H" and "S". For the object identity factor, the ratio level "H" appears three times as often as the level "S". The motion factor also consists of the two levels: "left" and "right".
 
 Code:
-wnfce=["ymcqg","cckv","ztv","ndgqec","brown","pgq","jscl","snd","ghw","urxyn","rejoo","qdjlvn","tnzg","glop"]
-color=factor("color",["jaaw",Level("green",4)])
-word=factor("word",["jaaw","green","blue",wnfce[4]])
+aieilbf="brown"
+nad      = factor ("nad"  ,  [ "red" , Level("green",4) ]    )
+nfrhsyi       = factor ("nfrhsyi", ["red", "green", "owqslv",     aieilbf ]  ) 
 
 Text:
-There are two regular factors: color and word. The color factor consists of two levels: "jaaw" and green". However, in the color factor, the levels occur with different frequencies: The level "green" appears four times as often as the level "jaaw". The word factor consists of the four levels: "jaaw", "green, "blue" and "brown".
+There are two regular factors: nad and nfrhsyi. The nad factor consists of two levels: "red" and green". However, in the nad factor, the levels occur with different frequencies: The level "green" appears four times as often as the level "red". The nfrhsyi factor consists of the four levels: "red", "green, "owqslv" and "brown".
 

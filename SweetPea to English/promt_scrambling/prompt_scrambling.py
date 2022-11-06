@@ -3,7 +3,8 @@ import re
 import string
 from quote import quote
 
-WHITESPACE_LIST = ['(', ')', '[', ']', ',', '=', '+', '-', '{', '}']
+
+WHITESPACE_LIST = ['(', ')', '[', ']', ',', '+', '-', '{', '}']
 QUOTATION_MARKS = ["'", '"']
 # TODO: update Blacklist whenever you see something weird!
 BLACKLIST = ['factor', 'Factor',
@@ -46,7 +47,7 @@ def scramble_prompt(code_segment, text_segment):
     """
 
     if random.random() < REMOVE_WHITESPACE_CHANCE:
-        scrambled_code = _delete_whitespace(code_segment)
+        scrambled_code = code_segment
     else:
         scrambled_code = _add_whitespace(code_segment)
 
@@ -156,6 +157,7 @@ def _replace_all(code_segment, prompt_segment):
     return c_s, p_s
 
 
+# Todo: don't delete whitespaces surrounding keyword def or return
 def _delete_whitespace(segment):
     return "".join(filter(lambda x: x != ' ', segment))
 
@@ -163,9 +165,6 @@ def _delete_whitespace(segment):
 def _add_whitespace(segment):
     res = ''
     for c in segment:
-        if c == '\n':
-            while random.random() < WHITESPACE_CHANCE:
-                res += '\n'
         if c in WHITESPACE_LIST:
             while random.random() < WHITESPACE_CHANCE:
                 res += ' '
