@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "AutoOS"
+version = "0.1.0"
+description = "Automated Open Science (AutoOS) provides tools for the automated documentation of (autonomously conducted) experiments for upload within the Open Science Framework. These methods build on community-supported and machine-readable standards for expressing quantitative models of brain function and behavior (e.g., the Model Description Format) and corresponding data sets (e.g., the Brain Imaging Data Structure)."
+authors = ["Sebastian Musslick <sebastian_musslick@brown.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+sweetpea = "^0.1.4"
+fpdf = "^1.7.2"
+inflect = "^6.0.0"
+openai = "^0.22.1"
+python-dotenv = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
