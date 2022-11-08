@@ -1,5 +1,6 @@
 from gpt3 import gpt3
 import sys
+import os
 from time import sleep
 import warnings
 import inflect
@@ -17,6 +18,12 @@ NON_CHARACTERS = (" ", ",", "(", ")", "[", "]", ":", ";")
 
 DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
 FACTOR_STRINGS = ("Factor", "factor")
+
+_dirname = os.path.dirname(__file__)
+PATH_TO_REGULAR_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors.txt')
+PATH_TO_DERIVED_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors.txt')
+PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
+
 
 def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     """
@@ -38,11 +45,11 @@ def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     if line == reg_fac_line:
         line = file.readline().strip()
         while "###" not in line:  # stops when next # is found
-            # print(line)
             extracted_code += line + "\n"
             line = file.readline().strip()
     file.close()
     return extracted_code
+
 
 def extract_rf(filename: str) -> str:
     """
@@ -56,6 +63,7 @@ def extract_rf(filename: str) -> str:
     """
     return extract_code_segment(filename, REGULAR_FACTORS)
 
+
 def extract_df(filename: str) -> str:
     """
     A function that extracts the derived factors code from a SweetPea code file
@@ -68,6 +76,7 @@ def extract_df(filename: str) -> str:
     """
 
     return extract_code_segment(filename, DERIVED_FACTORS)
+
 
 def extract_main_code(filename: str) -> str:
     """
@@ -89,7 +98,7 @@ def extract_main_code(filename: str) -> str:
             line = file.readline()
             while line.strip() != REGULAR_FACTORS \
                     and line.strip() != DERIVED_FACTORS \
-                    and line.strip() != BALANCING\
+                    and line.strip() != BALANCING \
                     and line.strip() != END_OF_SWEETPEA_CODE:  # stops when next code section is found
                 extracted_code += line.strip() + "\n"
                 line = file.readline()
@@ -112,6 +121,7 @@ def extract_main_code(filename: str) -> str:
 
     return extracted_code
 
+
 def store_prompt_rf(sp_filename: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
@@ -129,6 +139,7 @@ def store_prompt_rf(sp_filename: str, prompt_filename: str) -> str:
 
     return stored_string
 
+
 def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
@@ -145,6 +156,7 @@ def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     stored_string += extract_main_code(sp_filename) + "\nText:\n"
 
     return stored_string
+
 
 def store_prompt_df(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
     """
@@ -209,6 +221,7 @@ def store_prompt_df(sp_filename: str, prompt_filename: str, factor_id: int) -> s
     prompt = primer + helper_code + df_code + "\nText:\n"
     return prompt
 
+
 def get_variable_definition(variable: list, full_code: list, sub_code=""):
     """
     A function that returns the definition of a variable from the SweetPea code
@@ -246,7 +259,8 @@ def get_variable_definition(variable: list, full_code: list, sub_code=""):
                 break
 
     if relevant_line_number == -1:
-        warnings.warn("Warning: I was looking for variable " + variable + ". But it is not defined in the SweetPea code")
+        warnings.warn(
+            "Warning: I was looking for variable " + variable + ". But it is not defined in the SweetPea code")
         return variable_definition
 
     # extract the relevant line from the full code
@@ -318,6 +332,7 @@ def get_variables_from_derived_level_expression(expression: str):
 
     return variables
 
+
 def read_variable_from_expression(expression: str):
     """
     A function that returns a list of variable name from any single-line expression
@@ -340,6 +355,7 @@ def read_variable_from_expression(expression: str):
                 variable = ""
 
     return variables
+
 
 def get_derived_levels_from_str(code: str) -> list:
     """
@@ -381,6 +397,7 @@ def get_num_derived_factors(text: str):
 
     return num_derived_factors
 
+
 def translate_regular_factors(to_translate: str):
     """
     A function that translates the regular factors code into English using
@@ -392,7 +409,7 @@ def translate_regular_factors(to_translate: str):
     Returns:
         A string containing the English translation of the regular factors code
     """
-    prompt = store_prompt_rf(to_translate, "gpt3prompt_regular_factors.txt")
+    prompt = store_prompt_rf(to_translate, PATH_TO_REGULAR_PROMPTS)
     answer, prompt = gpt3(prompt,
                           temperature=0,
                           frequency_penalty=1,
@@ -402,6 +419,7 @@ def translate_regular_factors(to_translate: str):
                           stop_seq=['Code'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
+
 
 def translate_derived_factors_summary(to_translate: str):
     """
@@ -441,9 +459,8 @@ def translate_derived_factors_summary(to_translate: str):
 
                         if character == "(":
                             read = 1
-                        if (character == "\"" or character == "'")  and read == 1:
+                        if (character == "\"" or character == "'") and read == 1:
                             read = 2
-
 
     if len(variable_names) == 1:
         answer = "There is another derived factor referred to as " + variable_names[0] + "."
@@ -483,10 +500,11 @@ def translate_derived_factors(to_translate: str):
     """
     code = extract_df(to_translate)
     num_derived_factors = get_num_derived_factors(code)
-
+    prompt = store_prompt_rf(to_translate, PATH_TO_DERIVED_PROMPTS)
     full_answer = ""
+
     for i in range(num_derived_factors):
-        prompt = store_prompt_df(to_translate, "gpt3prompt_derived_factors.txt", i)
+        prompt = store_prompt_df(to_translate, prompt, i)
         answer, prompt = gpt3(prompt,
                               temperature=0,
                               frequency_penalty=1,
@@ -500,6 +518,7 @@ def translate_derived_factors(to_translate: str):
 
     return full_answer
 
+
 def translate_counterbalancing(to_translate: str):
     """
     A function that translates the counterbalancing scheme into English using
@@ -511,7 +530,7 @@ def translate_counterbalancing(to_translate: str):
     Returns:
         A string containing the English translation of the counterbalancing scheme
     """
-    prompt = store_prompt_balancing(to_translate, "gpt3prompt_counterbalancing.txt")
+    prompt = store_prompt_rf(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS)
     answer, prompt = gpt3(prompt,
                           temperature=0,
                           frequency_penalty=1,
@@ -521,6 +540,7 @@ def translate_counterbalancing(to_translate: str):
                           stop_seq=['Code'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
+
 
 def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_pdf: bool = False):
     '''
@@ -600,6 +620,7 @@ def display_typed_text(text: str):
         sys.stdout.write(char)
         sys.stdout.flush()
 
+
 if __name__ == '__main__':
     # to_translate = "unextracted_code.py"
     # translation = "Translation: " + translate_regular_factors(to_translate)
@@ -611,5 +632,3 @@ if __name__ == '__main__':
     to_translate = "test\code_1.py"
     translation = "Translation: " + translate_sweetpea_code(to_translate, export_pdf=True)
     print(translation)
-
-
