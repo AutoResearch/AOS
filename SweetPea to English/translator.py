@@ -4,6 +4,7 @@ from time import sleep
 import warnings
 import inflect
 from fpdf import FPDF
+import os
 
 REGULAR_FACTORS = "### REGULAR FACTORS"
 DERIVED_FACTORS = "### DERIVED FACTORS"
@@ -17,6 +18,7 @@ NON_CHARACTERS = (" ", ",", "(", ")", "[", "]", ":", ";")
 
 DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
 FACTOR_STRINGS = ("Factor", "factor")
+
 
 def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     """
@@ -44,6 +46,7 @@ def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     file.close()
     return extracted_code
 
+
 def extract_rf(filename: str) -> str:
     """
     A function that extracts the regular factors code from a SweetPea code file
@@ -55,6 +58,7 @@ def extract_rf(filename: str) -> str:
         A string containing the regular factors code
     """
     return extract_code_segment(filename, REGULAR_FACTORS)
+
 
 def extract_df(filename: str) -> str:
     """
@@ -68,6 +72,7 @@ def extract_df(filename: str) -> str:
     """
 
     return extract_code_segment(filename, DERIVED_FACTORS)
+
 
 def extract_main_code(filename: str) -> str:
     """
@@ -89,7 +94,7 @@ def extract_main_code(filename: str) -> str:
             line = file.readline()
             while line.strip() != REGULAR_FACTORS \
                     and line.strip() != DERIVED_FACTORS \
-                    and line.strip() != BALANCING\
+                    and line.strip() != BALANCING \
                     and line.strip() != END_OF_SWEETPEA_CODE:  # stops when next code section is found
                 extracted_code += line.strip() + "\n"
                 line = file.readline()
@@ -112,6 +117,7 @@ def extract_main_code(filename: str) -> str:
 
     return extracted_code
 
+
 def store_prompt_rf(sp_filename: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
@@ -129,6 +135,7 @@ def store_prompt_rf(sp_filename: str, prompt_filename: str) -> str:
 
     return stored_string
 
+
 def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
@@ -145,6 +152,7 @@ def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     stored_string += extract_main_code(sp_filename) + "\nText:\n"
 
     return stored_string
+
 
 def store_prompt_df(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
     """
@@ -209,6 +217,7 @@ def store_prompt_df(sp_filename: str, prompt_filename: str, factor_id: int) -> s
     prompt = primer + helper_code + df_code + "\nText:\n"
     return prompt
 
+
 def get_variable_definition(variable: list, full_code: list, sub_code=""):
     """
     A function that returns the definition of a variable from the SweetPea code
@@ -246,7 +255,8 @@ def get_variable_definition(variable: list, full_code: list, sub_code=""):
                 break
 
     if relevant_line_number == -1:
-        warnings.warn("Warning: I was looking for variable " + variable + ". But it is not defined in the SweetPea code")
+        warnings.warn(
+            "Warning: I was looking for variable " + variable + ". But it is not defined in the SweetPea code")
         return variable_definition
 
     # extract the relevant line from the full code
@@ -318,6 +328,7 @@ def get_variables_from_derived_level_expression(expression: str):
 
     return variables
 
+
 def read_variable_from_expression(expression: str):
     """
     A function that returns a list of variable name from any single-line expression
@@ -340,6 +351,7 @@ def read_variable_from_expression(expression: str):
                 variable = ""
 
     return variables
+
 
 def get_derived_levels_from_str(code: str) -> list:
     """
@@ -381,6 +393,7 @@ def get_num_derived_factors(text: str):
 
     return num_derived_factors
 
+
 def translate_regular_factors(to_translate: str):
     """
     A function that translates the regular factors code into English using
@@ -402,6 +415,7 @@ def translate_regular_factors(to_translate: str):
                           stop_seq=['Code'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
+
 
 def translate_derived_factors_summary(to_translate: str):
     """
@@ -441,9 +455,8 @@ def translate_derived_factors_summary(to_translate: str):
 
                         if character == "(":
                             read = 1
-                        if (character == "\"" or character == "'")  and read == 1:
+                        if (character == "\"" or character == "'") and read == 1:
                             read = 2
-
 
     if len(variable_names) == 1:
         answer = "There is another derived factor referred to as " + variable_names[0] + "."
@@ -500,6 +513,7 @@ def translate_derived_factors(to_translate: str):
 
     return full_answer
 
+
 def translate_counterbalancing(to_translate: str):
     """
     A function that translates the counterbalancing scheme into English using
@@ -522,8 +536,9 @@ def translate_counterbalancing(to_translate: str):
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
 
+
 def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_pdf: bool = False):
-    '''
+    """
     A function that translates the sweetpea code into English using
     the GPT-3 API
 
@@ -532,7 +547,15 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
 
     Returns:
         A string containing the English translation of the sweetpea code
-    '''
+    """
+    # create a temporary file if to_translate is not a path
+    if not os.path.exists(to_translate):
+        print('Creating a temporary file')
+        f = open('code_file_temp.py', 'w')
+        f.write(to_translate)
+        f.close()
+        to_translate = 'code_file_temp.py'
+
     print("Translating sweetpea code '" + to_translate + "'...")
     print("Translating regular factors...")
     translation = translate_regular_factors(to_translate)
@@ -541,6 +564,10 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
     translation += " " + translate_derived_factors(to_translate)
     print("Translating counterbalancing scheme...")
     translation += " " + translate_counterbalancing(to_translate)
+
+    # clean up the temp file
+    if os.path.exists("code_file_temp.py"):
+        os.remove("code_file_temp.py")
 
     print("Formatting translation...")
     # remove all line breaks from translation
@@ -600,6 +627,7 @@ def display_typed_text(text: str):
         sys.stdout.write(char)
         sys.stdout.flush()
 
+
 if __name__ == '__main__':
     # to_translate = "unextracted_code.py"
     # translation = "Translation: " + translate_regular_factors(to_translate)
@@ -607,9 +635,27 @@ if __name__ == '__main__':
     # translation = "Translation: " + translate_derived_factors(to_translate)
     # translation = "Translation: " + translate_counterbalancing(to_translate)
     # display_typed_text(translation)
+    test_string = '### REGULAR FACTORS\n' \
+                  'object = Factor("object identity", [Level("H", 2), Level("S", 1)])\n' \
+                  'motion = Factor("motion", [Level("left", 2), Level("right", 3)])\n' \
+                  '### DERIVED FACTORS\n' \
+                  'def response_left(object):\n' \
+                  '    return object == "H"\n' \
+                  'def response_right(object):\n' \
+                  '    return object == "S"\n' \
+                  'response = Factor("correct response", [' \
+                  'DerivedLevel("left", WithinTrial(response_left, [object])),' \
+                  'DerivedLevel("right", WithinTrial(response_right, [object])),])\n' \
+                  '### EXPERIMENT\n' \
+                  'constraints = [at_most_k_in_a_row(5, response),' \
+                  'minimum_trials(100)]\n' \
+                  'design = [object, motion, response]\n' \
+                  'crossing = [object, motion,]\n' \
+                  'block = fully_cross_block(design, crossing, constraints)\n' \
+                  'experiments = synthesize_trials_non_uniform(block, 1)\n' \
+                  '### END OF EXPERIMENT DESIGN\n' \
+                  'print_experiments(block, experiments)'
 
     to_translate = "test\code_1.py"
-    translation = "Translation: " + translate_sweetpea_code(to_translate, export_pdf=True)
+    translation = "Translation: " + translate_sweetpea_code(test_string, export_pdf=True)
     print(translation)
-
-
