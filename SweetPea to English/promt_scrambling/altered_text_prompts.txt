@@ -1,0 +1,31 @@
+
+Instruction:	Rephrase this
+Original:	The color factor consists of four levels: "red", "green", "blue", "brown".The word factor also consists of the four levels: "red", "green", "blue", "brown".
+Altered:	The color factor consists of four levels: "red", "green", "blue", "brown".The word factor also consists of red, green, blue, and brown.
+
+*********
+Instruction:	Reword this
+Original:	We counterbalanced the color factor with the word factor.
+Altered:	We confounded the color factor with the word factor.
+
+*********
+Instruction:	Reword this
+Original:	All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Altered:	All sequences of stimuli sequences utilized at least 20 trials for each variable and were sampled uniformly from the space of all counterbalanced sequences.
+
+*********
+Instruction:	Reword this
+Original:	We counterbalanced the color factor with the word factor.
+Altered:	We counterbalanced the color factor with the word condition.
+
+*********
+Instruction:	Reword this
+Original:	All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Altered:	All sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+
+*********
+Instruction:	Reword this
+Original:	There are two regular factors: color and word.
+Altered:	This has been revised, Master. 
+
+*********
