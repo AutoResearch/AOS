@@ -1,3 +1,4 @@
+quote
 appdirs==1.4.4
 ascii-graph==1.5.1
 attrs==22.1.0
