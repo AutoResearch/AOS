@@ -5,6 +5,7 @@ from time import sleep
 import warnings
 import inflect
 from fpdf import FPDF
+import os
 
 REGULAR_FACTORS = "### REGULAR FACTORS"
 DERIVED_FACTORS = "### DERIVED FACTORS"
@@ -23,7 +24,6 @@ _dirname = os.path.dirname(__file__)
 PATH_TO_REGULAR_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors.txt')
 PATH_TO_DERIVED_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
-
 
 def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     """
@@ -543,7 +543,7 @@ def translate_counterbalancing(to_translate: str):
 
 
 def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_pdf: bool = False):
-    '''
+    """
     A function that translates the sweetpea code into English using
     the GPT-3 API
 
@@ -552,7 +552,15 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
 
     Returns:
         A string containing the English translation of the sweetpea code
-    '''
+    """
+    # create a temporary file if to_translate is not a path
+    if not os.path.exists(to_translate):
+        print('Creating a temporary file')
+        f = open('code_file_temp.py', 'w')
+        f.write(to_translate)
+        f.close()
+        to_translate = 'code_file_temp.py'
+
     print("Translating sweetpea code '" + to_translate + "'...")
     print("Translating regular factors...")
     translation = translate_regular_factors(to_translate)
@@ -561,6 +569,10 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
     translation += " " + translate_derived_factors(to_translate)
     print("Translating counterbalancing scheme...")
     translation += " " + translate_counterbalancing(to_translate)
+
+    # clean up the temp file
+    if os.path.exists("code_file_temp.py"):
+        os.remove("code_file_temp.py")
 
     print("Formatting translation...")
     # remove all line breaks from translation
@@ -628,7 +640,27 @@ if __name__ == '__main__':
     # translation = "Translation: " + translate_derived_factors(to_translate)
     # translation = "Translation: " + translate_counterbalancing(to_translate)
     # display_typed_text(translation)
+    test_string = '### REGULAR FACTORS\n' \
+                  'object = Factor("object identity", [Level("H", 2), Level("S", 1)])\n' \
+                  'motion = Factor("motion", [Level("left", 2), Level("right", 3)])\n' \
+                  '### DERIVED FACTORS\n' \
+                  'def response_left(object):\n' \
+                  '    return object == "H"\n' \
+                  'def response_right(object):\n' \
+                  '    return object == "S"\n' \
+                  'response = Factor("correct response", [' \
+                  'DerivedLevel("left", WithinTrial(response_left, [object])),' \
+                  'DerivedLevel("right", WithinTrial(response_right, [object])),])\n' \
+                  '### EXPERIMENT\n' \
+                  'constraints = [at_most_k_in_a_row(5, response),' \
+                  'minimum_trials(100)]\n' \
+                  'design = [object, motion, response]\n' \
+                  'crossing = [object, motion,]\n' \
+                  'block = fully_cross_block(design, crossing, constraints)\n' \
+                  'experiments = synthesize_trials_non_uniform(block, 1)\n' \
+                  '### END OF EXPERIMENT DESIGN\n' \
+                  'print_experiments(block, experiments)'
 
     to_translate = "test\code_1.py"
-    translation = "Translation: " + translate_sweetpea_code(to_translate, export_pdf=True)
+    translation = "Translation: " + translate_sweetpea_code(test_string, export_pdf=True)
     print(translation)
