@@ -1,5 +1,6 @@
 from gpt3 import gpt3
 import sys
+import os
 from time import sleep
 import warnings
 import inflect
@@ -19,6 +20,10 @@ NON_CHARACTERS = (" ", ",", "(", ")", "[", "]", ":", ";")
 DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
 FACTOR_STRINGS = ("Factor", "factor")
 
+_dirname = os.path.dirname(__file__)
+PATH_TO_REGULAR_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors.txt')
+PATH_TO_DERIVED_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors.txt')
+PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
 
 def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     """
@@ -40,7 +45,6 @@ def extract_code_segment(filename: str, reg_fac_line: str) -> str:
     if line == reg_fac_line:
         line = file.readline().strip()
         while "###" not in line:  # stops when next # is found
-            # print(line)
             extracted_code += line + "\n"
             line = file.readline().strip()
     file.close()
@@ -405,7 +409,7 @@ def translate_regular_factors(to_translate: str):
     Returns:
         A string containing the English translation of the regular factors code
     """
-    prompt = store_prompt_rf(to_translate, "gpt3prompt_regular_factors.txt")
+    prompt = store_prompt_rf(to_translate, PATH_TO_REGULAR_PROMPTS)
     answer, prompt = gpt3(prompt,
                           temperature=0,
                           frequency_penalty=1,
@@ -496,10 +500,11 @@ def translate_derived_factors(to_translate: str):
     """
     code = extract_df(to_translate)
     num_derived_factors = get_num_derived_factors(code)
-
+    prompt = store_prompt_rf(to_translate, PATH_TO_DERIVED_PROMPTS)
     full_answer = ""
+
     for i in range(num_derived_factors):
-        prompt = store_prompt_df(to_translate, "gpt3prompt_derived_factors.txt", i)
+        prompt = store_prompt_df(to_translate, prompt, i)
         answer, prompt = gpt3(prompt,
                               temperature=0,
                               frequency_penalty=1,
@@ -525,7 +530,7 @@ def translate_counterbalancing(to_translate: str):
     Returns:
         A string containing the English translation of the counterbalancing scheme
     """
-    prompt = store_prompt_balancing(to_translate, "gpt3prompt_counterbalancing.txt")
+    prompt = store_prompt_rf(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS)
     answer, prompt = gpt3(prompt,
                           temperature=0,
                           frequency_penalty=1,
