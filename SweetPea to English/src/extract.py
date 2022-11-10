@@ -92,6 +92,15 @@ def extract_main(filename: str) -> str:
     return extracted_code
 
 
+def extract_main_text(filename: str) -> str:
+    """
+    Extract the counterbalance part of the text
+    :param filename: Path to the file with the text
+    :return: A string containing the counterbalance pert
+    """
+    return extract_segment(filename, BALANCING)
+
+
 def get_variable_definition(variable: list, full_code: list, sub_code=""):
     """
     A function that returns the definition of a variable from the SweetPea code
