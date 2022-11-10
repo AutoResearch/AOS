@@ -48,7 +48,7 @@ def extract_derived_factor(filename: str) -> str:
     return extract_segment(filename, DERIVED_FACTORS)
 
 
-def extract_main_code(filename: str) -> str:
+def extract_main(filename: str) -> str:
     """
     A function that extracts the SweetPea code from a SweetPea code file
 

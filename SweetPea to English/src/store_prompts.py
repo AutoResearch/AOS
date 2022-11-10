@@ -1,7 +1,7 @@
 import extract
 
 
-def store_prompt_regular_factors(sp_filename: str, prompt_filename: str) -> str:
+def store_prompt_regular_factors_code(sp_filename: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
     single string
@@ -15,7 +15,21 @@ def store_prompt_regular_factors(sp_filename: str, prompt_filename: str) -> str:
         for line in file:
             stored_string += line
     stored_string += extract.extract_regular_factor(sp_filename) + "\nText:\n"
+    return stored_string
 
+
+def store_prompt_regular_factors_text(sp_filename: str, prompt_filename: str) -> str:
+    """
+    Stores the GPT-3 prompt and the regular factors into a single string
+    :param sp_filename: Path to the file containing the text
+    :param prompt_filename: Path to the file containing the GPT-3 prompt
+    :return: String with prompt and regular factors
+    """
+    stored_string = ""
+    with open(prompt_filename) as file:
+        for line in file:
+            stored_string += line
+    stored_string += extract.extract_regular_factor(sp_filename) + "\nCode:\n"
     return stored_string
 
 
@@ -32,7 +46,7 @@ def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     with open(prompt_filename) as file:
         for line in file:
             stored_string += line
-    stored_string += extract.extract_main_code(sp_filename) + "\nText:\n"
+    stored_string += extract.extract_main(sp_filename) + "\nText:\n"
 
     return stored_string
 
