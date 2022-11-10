@@ -51,6 +51,25 @@ def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
     return stored_string
 
 
+def store_prompt_balancing_text(sp_filename: str, factors: str, prompt_filename: str) -> str:
+    """
+    A function that stores the GPT-3 prompt and the code into a
+    single string
+
+    Arguments:
+        sp_filename: the name of the file containing the SweetPea code
+        prompt_filename: the name of the file containing the GPT-3 prompt
+    """
+    stored_string = ""
+    with open(prompt_filename) as file:
+        for line in file:
+            stored_string += line
+    stored_string += factors
+    stored_string += extract.extract_main_text(sp_filename) + "\nCode:\n"
+
+    return stored_string
+
+
 def store_prompt_derived_factors(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
     """
     A function that stores the GPT-3 prompt and derived factors into a
@@ -113,6 +132,7 @@ def store_prompt_derived_factors(sp_filename: str, prompt_filename: str, factor_
 
     prompt = primer + helper_code + df_code + "\nText:\n"
     return prompt
+
 
 def store_prompt_derived_factors_text(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
     """

@@ -5,16 +5,18 @@ from gpt3 import gpt3
 import os
 import inflect
 from fpdf import FPDF
+from post_process import get_factors_from_code, get_factors_from_code_full
 
 _dirname = os.path.dirname(__file__)
 # prompts for code to text
 PATH_TO_REGULAR_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_code.txt')
 PATH_TO_DERIVED_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors_code.txt')
-PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
+PATH_TO_COUNTERBALANCING_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing_code.txt')
 
 # prompts for text to code
 PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_text.txt')
 PATH_TO_DERIVED_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors_text.txt')
+PATH_TO_COUNTERBALANCING_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing_text.txt')
 
 TRANSITION_STRINGS = ("Transition(", "transition(")
 WITHIN_TRIAL_STRINGS = ("WithinTrial(", "within_trial(")
@@ -182,7 +184,7 @@ def translate_derived_factors_text_to_code(to_translate: str) -> str:
     return full_answer
 
 
-def translate_counterbalancing(to_translate: str):
+def translate_counterbalancing_code_to_text(to_translate: str):
     """
     A function that translates the counterbalancing scheme into English using
     the GPT-3 API
@@ -193,14 +195,38 @@ def translate_counterbalancing(to_translate: str):
     Returns:
         A string containing the English translation of the counterbalancing scheme
     """
-    prompt = store_prompts.store_prompt_regular_factors(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS)
+    prompt = store_prompts.store_prompt_balancing(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS_CODE)
     answer, prompt = gpt3(prompt,
                           temperature=0,
-                          frequency_penalty=1,
-                          presence_penalty=1,
+                          frequency_penalty=0,
+                          presence_penalty=0,
                           start_text='',
                           restart_text='',
                           stop_seq=['Code'])
+    stripped_answer = answer.replace("\n\n", "")
+    return stripped_answer
+
+
+def translate_counterbalancing_text_to_code(to_translate: str, factors: str):
+    """
+    A function that translates the counterbalancing scheme into English using
+    the GPT-3 API
+
+    Arguments:
+        to_translate: the code to be translated
+
+    Returns:
+        A string containing the English translation of the counterbalancing scheme
+    """
+    prompt = store_prompts.store_prompt_balancing_text(to_translate, factors, PATH_TO_COUNTERBALANCING_PROMPTS_TEXT)
+    answer, prompt = gpt3(prompt,
+                          temperature=0,
+                          frequency_penalty=0,
+                          presence_penalty=0,
+                          start_text='',
+                          restart_text='',
+                          stop_seq=['Text'],
+                          response_length=256)
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
 
@@ -231,7 +257,7 @@ def code_to_text(to_translate: str, export_txt: bool = False, export_pdf: bool =
     translation += " " + translate_derived_factors_summary(to_translate)
     translation += " " + translate_derived_factors_code_to_text(to_translate)
     print("Translating counterbalancing scheme...")
-    translation += " " + translate_counterbalancing(to_translate)
+    translation += " " + translate_counterbalancing_code_to_text(to_translate)
 
     # clean up the temp file
     if os.path.exists("code_file_temp.py"):
@@ -299,11 +325,16 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
     translation = "### REGULAR FACTORS\n"
     translation += translate_regular_factors_text_to_code(to_translate)
 
-    print("Translating derived factors...")
+    log("Translating derived factors...")
     translation += "\n### DERIVED FACTORS\n"
     translation += translate_derived_factors_text_to_code(to_translate)
-    # print("Translating counterbalancing scheme...")
-    # translation += " " + translate_counterbalancing(to_translate)
+    log("Translating counterbalancing scheme...")
+    factors = get_factors_from_code_full(translation)
+    translation += translate_counterbalancing_text_to_code(to_translate, factors)
+    # TODO: add design (no gpt-3 needed)
+    translation += f'design = {get_factors_from_code(translation)}\n'
+    translation += "block = fully_cross_block(design, crossing, constraints, False)\n"
+    translation += "experiments = synthesize_trials_non_uniform(block, 1)\n"
 
     # clean up the temp file
     # if os.path.exists("code_file_temp.py"):

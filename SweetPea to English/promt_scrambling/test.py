@@ -11,8 +11,8 @@ text_segments_regular = util.extract_segments('../gpt3prompt_regular_factors_cod
 code_segments_derived = util.extract_segments('../gpt3prompt_derived_factors_code.txt', 'Code:', 'Text:')
 text_segments_derived = util.extract_segments('../gpt3prompt_derived_factors_code.txt', 'Text:', 'Code:')
 
-code_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing.txt', 'Code:', 'Text:')
-text_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing.txt', 'Text:', 'Code:')
+code_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing_code.txt', 'Code:', 'Text:')
+text_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing_code.txt', 'Text:', 'Code:')
 
 
 

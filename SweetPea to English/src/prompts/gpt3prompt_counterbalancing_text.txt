@@ -1,0 +1,67 @@
+Text:
+color = factor("color", ["red", "blue"])
+word = factor("word", ["green", "red"])
+iti = factor("iti", [200, 300, 500])
+congruency = factor("congruency", [congruent, incongruent])
+We counterbalanced the color factor with the word factor. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+constraints = [minimum_trials(20), exclude(congruency, "congruent")]
+crossing = [color, word]
+block = fully_cross_block(design, crossing, constraints)
+experiments = synthesize_trials_uniform(block, 1)
+Text:
+word = factor("word", ["hallo", "yellow", "neutral"])
+color = factor("color", ["abas", "ibas", "ubas", "lolo"])
+task_transition = factor("task transition", [s, r])
+response_transition = factor("response tansition", [s, r])
+We counterbalanced the factors color, word, task, task transition, and response transition. However, the experiment sequences were generated subject to two constraints. First, we allowed for no more than 4 of the same task transitions in a row. Second, we allowed for no more than 4 of the same response transitions in a row.
+Code:
+constraints = [no_more_than_k_in_a_row(4, task_transition),no_more_than_k_in_a_row(4, response_transition)]
+crossing = [color, word, task, task_transition, response transition]
+Text:
+color = factor("color", ["green", "blue"])
+letter = factor("letter", ["a", "b", "c", "z"])
+word = factor("word", ["green", "blue"])
+target = factor("target", ["yes"])
+We counterbalanced the letter factor with the target factor.
+Code:
+constraints = []
+crossing = [letter, target]
+Text:
+Word = factor("Word", ["yellow", "purple"])
+Color = factor("Color", ["yellow", "purple"])
+number = factor("number", [3, 7, 5])
+congruency = factor("congruency", [congruent, incongruent])
+number_transition = factor("number transition", [increase, decrease, unchanged])
+We counterbalanced the factors number, Color, and Word. However, the experiment sequences were generated subject to two constraints. First, we excluded all trials in which the number transition was unchanged. Second, we allowed for no more than three trials with the same number in a row. All experiment sequences contained at least twelve trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+constraints = [minimum_trials(12), exclude(number_transition, "unchanged"), no_more_than_k_in_a_row(3, number)]
+crossing = [number, Color, Word]
+Text:
+shape = factor("shape", [1,"oval", "r"])
+motion = factor("motion", [1, occre, abla, down])
+number = factor("number", [one, two, three])
+We counterbalanced the factors motion, shape, and number. However, we excluded all trials in which the motion was down. All experiment sequences contained at least 100 trials.
+Code:
+constraints = [exclude(motion, "down"), minimum_trials(100)]
+crossing = [motion, shape, number]
+Text:
+labi = factor("labi", ["dibi", "dubi", "dabi", "du"])
+lubi = factor("lubi", ["dibi", "dubi", "a", "b"])
+congruency = factor("congruency", ["c", "i"])
+response_transition = factor("response transition", [asr, zdsa])
+We counterbalanced the experiment sequence with respect to the factor congruency. The experiment sequences were generated subject to the constraint that no more than k=7 of the same response transitions could occur in a row.
+Code:
+constraints = [no_more_than_k_in_a_row(7, response_transition)]
+crossing = [congruency]
+Text:
+re = factor("re", ["color", "word", "location"])
+word = factor("word", ["word", "location"])
+color = factor("color", ["word", congruent])
+location = factor("location", [color, "word"])
+congruency = factor("congruency", ["olor, congruent])
+We counterbalanced the color factor with the word factor and the location factor. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+constraints = [minimum_trials(20), exclude(congruency, "congruent")]
+crossing = [color, word, location]
+Text:

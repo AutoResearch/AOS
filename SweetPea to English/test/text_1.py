@@ -1,7 +1,8 @@
 ### REGULAR FACTORS
-color   = factor("color", ["red", "green", "pink"])
-word    = factor("word", ["red", "neutral", "blue"])
-iti    = factor("iti", [300, 500])
+color = factor("color", ["red", "green", "pink"])
+word = factor("word", ["red", "neutral", "blue"])
+iti = factor("iti", [300, 500])
+
 ### DERIVED FACTORS
 ##
 def is_congruency_congruent(color, word):
@@ -25,3 +26,8 @@ congruency_transition = factor("congruency transition", [
          transition(is_congruency_transition_repetition, [congruency]))
 ])
 
+constraints = [minimum_trials(20), exclude(congruency, "congruent")]
+crossing = [color, word, iti]
+design = [color, word, iti, congruency, congruency_transition]
+block = fully_cross_block(design, crossing, constraints, False)
+experiments = synthesize_trials_non_uniform(block, 1)

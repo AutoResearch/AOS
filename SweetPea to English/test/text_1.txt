@@ -18,6 +18,6 @@ The congruency transition factor depends on the transition of the congruency fac
 
 ### EXPERIMENT
 
-To be done ...
+We counterbalanced the color, word and iti facter. However, the trial sequence was constructed in a way that no congruent trials were included.
 
 ### END OF EXPERIMENT DESIGN
