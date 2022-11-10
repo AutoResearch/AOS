@@ -6,7 +6,15 @@ There are three regular factors: color, word and iti. The color can be "red", "g
 
 ### DERIVED FACTORS
 
-To be done ...
+There are two derived factors: congruency and congruency transition.
+
+## congruency factor
+
+The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent".
+
+## congruency transittion factor
+
+The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch".
 
 ### EXPERIMENT
 

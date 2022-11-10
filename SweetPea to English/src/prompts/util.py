@@ -38,4 +38,4 @@ def switch_prompts(path):
 
 
 if __name__ == '__main__':
-    switch_prompts("gpt3prompt_regular_factors_text.txt")
+    switch_prompts("gpt3prompt_derived_factors_text.txt")

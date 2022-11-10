@@ -9,11 +9,12 @@ from fpdf import FPDF
 _dirname = os.path.dirname(__file__)
 # prompts for code to text
 PATH_TO_REGULAR_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_code.txt')
-PATH_TO_DERIVED_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors.txt')
+PATH_TO_DERIVED_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors_code.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
 
 # prompts for text to code
 PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_text.txt')
+PATH_TO_DERIVED_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors_text.txt')
 
 TRANSITION_STRINGS = ("Transition(", "transition(")
 WITHIN_TRIAL_STRINGS = ("WithinTrial(", "within_trial(")
@@ -33,8 +34,8 @@ def translate_regular_factors_code_to_text(to_translate: str) -> str:
     prompt = store_prompts.store_prompt_regular_factors_code(to_translate, PATH_TO_REGULAR_PROMPTS_CODE)
     answer, prompt = gpt3(prompt,
                           temperature=0,
-                          frequency_penalty=1,
-                          presence_penalty=1,
+                          frequency_penalty=0,
+                          presence_penalty=0,
                           start_text='',
                           restart_text='',
                           stop_seq=['Code'])
@@ -51,8 +52,8 @@ def translate_regular_factors_text_to_code(to_translate: str) -> str:
     prompt = store_prompts.store_prompt_regular_factors_text(to_translate, PATH_TO_REGULAR_PROMPTS_TEXT)
     answer, prompt = gpt3(prompt,
                           temperature=0,
-                          frequency_penalty=1,
-                          presence_penalty=1,
+                          frequency_penalty=0,
+                          presence_penalty=0,
                           start_text='',
                           restart_text='',
                           stop_seq=['Text'])
@@ -126,7 +127,7 @@ def translate_derived_factors_summary(to_translate: str):
     return answer
 
 
-def translate_derived_factors(to_translate: str):
+def translate_derived_factors_code_to_text(to_translate: str):
     """
     A function that translates the derived factors code into English using
     the GPT-3 API
@@ -142,17 +143,41 @@ def translate_derived_factors(to_translate: str):
     full_answer = ""
 
     for i in range(num_derived_factors):
-        prompt = store_prompts.store_prompt_derived_factors(to_translate, PATH_TO_DERIVED_PROMPTS, i)
+        prompt = store_prompts.store_prompt_derived_factors(to_translate, PATH_TO_DERIVED_PROMPTS_CODE, i)
         answer, prompt = gpt3(prompt,
                               temperature=0,
-                              frequency_penalty=1,
-                              presence_penalty=1,
+                              frequency_penalty=0,
+                              presence_penalty=0,
                               start_text='',
                               restart_text='',
                               stop_seq=['Code'])
         stripped_answer = answer.replace("\n\n", "")
         stripped_answer = stripped_answer.replace("\n", "")
         full_answer += " " + stripped_answer
+
+    return full_answer
+
+
+def translate_derived_factors_text_to_code(to_translate: str) -> str:
+    """
+    Translates the derived factor text to code using the GPT-3 API
+    :param to_translate: The text to be translated
+    :return: A string containing the code
+    """
+    text = extract.extract_derived_factor(to_translate)
+    num_derived_factors = extract.get_num_derived_factors(text)
+    full_answer = ""
+
+    for i in range(num_derived_factors):
+        prompt = store_prompts.store_prompt_derived_factors_text(to_translate, PATH_TO_DERIVED_PROMPTS_TEXT, i)
+        answer, prompt = gpt3(prompt,
+                              temperature=0,
+                              frequency_penalty=0,
+                              presence_penalty=0,
+                              start_text='',
+                              restart_text='',
+                              stop_seq=['Text'], response_length=256)
+        full_answer += "##\n" + answer + "\n"
 
     return full_answer
 
@@ -204,7 +229,7 @@ def code_to_text(to_translate: str, export_txt: bool = False, export_pdf: bool =
     translation = translate_regular_factors_code_to_text(to_translate)
     print("Translating derived factors...")
     translation += " " + translate_derived_factors_summary(to_translate)
-    translation += " " + translate_derived_factors(to_translate)
+    translation += " " + translate_derived_factors_code_to_text(to_translate)
     print("Translating counterbalancing scheme...")
     translation += " " + translate_counterbalancing(to_translate)
 
@@ -271,11 +296,12 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
 
     log("Translating text " + to_translate + "...")
     log("Translating regular factors...")
-    translation = translate_regular_factors_text_to_code(to_translate)
+    translation = "### REGULAR FACTORS\n"
+    translation += translate_regular_factors_text_to_code(to_translate)
 
-    # print("Translating derived factors...")
-    # translation += " " + translate_derived_factors_summary(to_translate)
-    # translation += " " + translate_derived_factors(to_translate)
+    print("Translating derived factors...")
+    translation += "\n### DERIVED FACTORS\n"
+    translation += translate_derived_factors_text_to_code(to_translate)
     # print("Translating counterbalancing scheme...")
     # translation += " " + translate_counterbalancing(to_translate)
 

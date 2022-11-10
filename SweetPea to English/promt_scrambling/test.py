@@ -8,8 +8,8 @@ prompt_segment_1 = 'There are two regular factors: color and word. The color fac
 code_segments_regular = util.extract_segments('../gpt3prompt_regular_factors_code.txt', 'Code:', 'Text:')
 text_segments_regular = util.extract_segments('../gpt3prompt_regular_factors_code.txt', 'Text:', 'Code:')
 
-code_segments_derived = util.extract_segments('../gpt3prompt_derived_factors.txt', 'Code:', 'Text:')
-text_segments_derived = util.extract_segments('../gpt3prompt_derived_factors.txt', 'Text:', 'Code:')
+code_segments_derived = util.extract_segments('../gpt3prompt_derived_factors_code.txt', 'Code:', 'Text:')
+text_segments_derived = util.extract_segments('../gpt3prompt_derived_factors_code.txt', 'Text:', 'Code:')
 
 code_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing.txt', 'Code:', 'Text:')
 text_segments_counterbalancing = util.extract_segments('../gpt3prompt_counterbalancing.txt', 'Text:', 'Code:')
