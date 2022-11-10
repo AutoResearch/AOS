@@ -1,3 +1,4 @@
+from __future__ import annotations
 import store_prompts
 import extract
 from gpt3 import gpt3
@@ -6,9 +7,13 @@ import inflect
 from fpdf import FPDF
 
 _dirname = os.path.dirname(__file__)
-PATH_TO_REGULAR_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors.txt')
+# prompts for code to text
+PATH_TO_REGULAR_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_code.txt')
 PATH_TO_DERIVED_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing.txt')
+
+# prompts for text to code
+PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_text.txt')
 
 TRANSITION_STRINGS = ("Transition(", "transition(")
 WITHIN_TRIAL_STRINGS = ("WithinTrial(", "within_trial(")
@@ -19,18 +24,13 @@ DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
 FACTOR_STRINGS = ("Factor", "factor")
 
 
-def translate_regular_factors(to_translate: str):
+def translate_regular_factors_code_to_text(to_translate: str) -> str:
     """
-    A function that translates the regular factors code into English using
-    the GPT-3 API
-
-    Arguments:
-        to_translate: the code to be translated
-
-    Returns:
-        A string containing the English translation of the regular factors code
+    Translates the regular factors code into English using the GPT-3 API
+    :param to_translate: The code to be translated
+    :return: A string containing the English translation
     """
-    prompt = store_prompts.store_prompt_regular_factors(to_translate, PATH_TO_REGULAR_PROMPTS)
+    prompt = store_prompts.store_prompt_regular_factors_code(to_translate, PATH_TO_REGULAR_PROMPTS_CODE)
     answer, prompt = gpt3(prompt,
                           temperature=0,
                           frequency_penalty=1,
@@ -38,6 +38,24 @@ def translate_regular_factors(to_translate: str):
                           start_text='',
                           restart_text='',
                           stop_seq=['Code'])
+    stripped_answer = answer.replace("\n\n", "")
+    return stripped_answer
+
+
+def translate_regular_factors_text_to_code(to_translate: str) -> str:
+    """
+    Translates the regular factors text into code using the GPT-3 API
+    :param to_translate: The text to be translated
+    :return: A string containing the code
+    """
+    prompt = store_prompts.store_prompt_regular_factors_text(to_translate, PATH_TO_REGULAR_PROMPTS_TEXT)
+    answer, prompt = gpt3(prompt,
+                          temperature=0,
+                          frequency_penalty=1,
+                          presence_penalty=1,
+                          start_text='',
+                          restart_text='',
+                          stop_seq=['Text'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
 
@@ -162,7 +180,7 @@ def translate_counterbalancing(to_translate: str):
     return stripped_answer
 
 
-def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_pdf: bool = False):
+def code_to_text(to_translate: str, export_txt: bool = False, export_pdf: bool = False) -> str:
     """
     A function that translates the sweetpea code into English using
     the GPT-3 API
@@ -183,7 +201,7 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
 
     print("Translating sweetpea code '" + to_translate + "'...")
     print("Translating regular factors...")
-    translation = translate_regular_factors(to_translate)
+    translation = translate_regular_factors_code_to_text(to_translate)
     print("Translating derived factors...")
     translation += " " + translate_derived_factors_summary(to_translate)
     translation += " " + translate_derived_factors(to_translate)
@@ -238,3 +256,77 @@ def translate_sweetpea_code(to_translate: str, export_txt: bool = False, export_
 
     print("Translation complete.")
     return translation
+
+
+def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = False) -> str:
+    """
+    Translates text to sweetPea code
+    :param to_translate: the string or file to translate
+    :param export_txt: should result be stored as *.txt
+    :param export_py: should result be stored as *.py
+    :return: code as string
+    """
+    # create a temporary file if to_translate is not a path
+    to_translate = _temp_if_string(to_translate, "text_temp.txt")
+
+    log("Translating text " + to_translate + "...")
+    log("Translating regular factors...")
+    translation = translate_regular_factors_text_to_code(to_translate)
+
+    # print("Translating derived factors...")
+    # translation += " " + translate_derived_factors_summary(to_translate)
+    # translation += " " + translate_derived_factors(to_translate)
+    # print("Translating counterbalancing scheme...")
+    # translation += " " + translate_counterbalancing(to_translate)
+
+    # clean up the temp file
+    # if os.path.exists("code_file_temp.py"):
+    #    os.remove("code_file_temp.py")
+
+    # print("Formatting translation...")
+    # remove all line breaks from translation
+
+    # remove double spaces from translation
+    translation = translation.replace("  ", " ")
+
+    if export_txt:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.english'
+
+        log("Writing translation to file '" + output_file + "'...")
+        # write translation to file
+        with open(output_file, "w") as f:
+            f.write(translation)
+
+    if export_py:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.py'
+
+        with open(output_file, "w") as f:
+            f.write(translation)
+
+    log("Translation complete.")
+    return translation
+
+
+def log(string: str):
+    """
+    log a string (should be replaced with a more elaborate system
+    """
+    print(string)
+
+
+def _temp_if_string(string: str, temp_path: str) -> str:
+    """
+    stores string in file if string is not already a path to a file
+    :param string: the string to test and store
+    :param temp_path: the path to the temporary file
+    :return: path to file
+    """
+    if not os.path.exists(string):
+        log("Creating temporary file")
+        f = open(temp_path, 'w')
+        f.write(string)
+        f.close()
+        return temp_path
+    return string

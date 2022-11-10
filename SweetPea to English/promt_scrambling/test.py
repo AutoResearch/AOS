@@ -5,8 +5,8 @@ codes_segment_1 = 'color      = factor("color", ["red", "green", "blue", "brown"
 
 prompt_segment_1 = 'There are two regular factors: color and word. The color factor consists of four levels: "red", "green", "blue", "brown". The word factor also consists of the four levels: "red", "green", "blue", "brown".'
 
-code_segments_regular = util.extract_segments('../gpt3prompt_regular_factors.txt', 'Code:', 'Text:')
-text_segments_regular = util.extract_segments('../gpt3prompt_regular_factors.txt', 'Text:', 'Code:')
+code_segments_regular = util.extract_segments('../gpt3prompt_regular_factors_code.txt', 'Code:', 'Text:')
+text_segments_regular = util.extract_segments('../gpt3prompt_regular_factors_code.txt', 'Text:', 'Code:')
 
 code_segments_derived = util.extract_segments('../gpt3prompt_derived_factors.txt', 'Code:', 'Text:')
 text_segments_derived = util.extract_segments('../gpt3prompt_derived_factors.txt', 'Text:', 'Code:')

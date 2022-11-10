@@ -1,0 +1,15 @@
+This should be a nice experiment. We are very proud of it and it is very importand.
+
+### REGULAR FACTORS
+
+There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500.
+
+### DERIVED FACTORS
+
+To be done ...
+
+### EXPERIMENT
+
+To be done ...
+
+### END OF EXPERIMENT DESIGN
