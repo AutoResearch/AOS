@@ -1,0 +1,22 @@
+### REGULAR FACTORS
+There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
+
+### DERIVED FACTORS
+There are four derived factors: target, 1-back lure, 2-back lure and n-back lure.
+
+## target factor
+The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
+
+## 1-back lure
+The 1-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back, then the trial is a 1-back lure. Otherwise, the current trial is not a 1-back lure.
+
+## 2-back lure
+The 2-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter two trials back, then the trial is a 2-back lure. Otherwise, the current trial is not a 2-back lure.
+
+## n-back lure
+The n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the current trial is either a 1-back lure or a 2-back lure, then the trial is considered an n-back lure. Otherwise, the current trial is not an n-back lure.
+
+### EXPERIMENT
+We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
+
+### END OF EXPERIMENT DESIGN
