@@ -18,6 +18,9 @@ PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_regula
 PATH_TO_DERIVED_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_derived_factors_text.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_counterbalancing_text.txt')
 
+# prompts for format
+PATH_TO_FORMAT_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_format_text.txt')
+
 TRANSITION_STRINGS = ("Transition(", "transition(")
 WITHIN_TRIAL_STRINGS = ("WithinTrial(", "within_trial(")
 WINDOW_STRINGS = ("Window(", "window(")
@@ -25,6 +28,17 @@ NON_CHARACTERS = (" ", ",", "(", ")", "[", "]", ":", ";")
 
 DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
 FACTOR_STRINGS = ("Factor", "factor")
+
+
+def translate_text_to_formatted(to_translate: str) -> str:
+    """
+    Add hashtags and reorganize text
+    :param to_translate: The text to be translated
+    :return: A string containing the formated text
+    """
+    prompt = store_prompts.store_prompt_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formated:')
+    answer, prompt = gpt3(prompt, stop_seq=['Unformated'])
+    return answer
 
 
 def translate_regular_factors_code_to_text(to_translate: str) -> str:
@@ -337,8 +351,8 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
     translation += "experiments = synthesize_trials_non_uniform(block, 1)\n"
 
     # clean up the temp file
-    # if os.path.exists("code_file_temp.py"):
-    #    os.remove("code_file_temp.py")
+    if os.path.exists("text_temp.py"):
+        os.remove("text_temp.py")
 
     # print("Formatting translation...")
     # remove all line breaks from translation
@@ -363,6 +377,73 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
             f.write(translation)
 
     log("Translation complete.")
+    return translation
+
+
+def text_to_formated(to_translate: str, export_txt: bool = False, export_pdf: bool = False) -> str:
+    """
+    A function that translates the sweetpea code into English using
+    the GPT-3 API
+
+    Arguments:
+        to_translate: the code to be translated
+
+    Returns:
+        A string containing the English translation of the sweetpea code
+    """
+    # create a temporary file if to_translate is not a path
+    to_translate = _temp_if_string(to_translate, 'text_unformated_temp.txt')
+
+    log("Translating unformated text '" + to_translate + "'...")
+    translation = translate_text_to_formatted(to_translate)
+
+    # clean up the temp file
+    if os.path.exists("text_unformated_temp.py"):
+        os.remove("text_unformated_temp.py")
+
+    print("Formatting translation...")
+    # remove all line breaks from translation
+    translation = translation.replace("\n\n", " ")
+
+    # remove double spaces from translation
+    translation = translation.replace("  ", " ")
+
+    if export_txt:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.english'
+
+        print("Writing translation to file '" + output_file + "'...")
+        # write translation to file
+        with open(output_file, "w") as f:
+            f.write(translation)
+
+    if export_pdf:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.pdf'
+
+        # write translation to pdf
+        # save FPDF() class into a variable pdf
+        pdf = FPDF(format='letter', unit='in')
+
+        # Add a page
+        pdf.add_page()
+
+        # set style and size of font
+        pdf.set_font("Times", size=12)
+        effective_page_width = pdf.w - 2 * pdf.l_margin
+
+        # create a cell
+        pdf.cell(1.0, 0.0, 'Experiment Design', align='C')
+        pdf.ln(0.25)
+
+        # add another cell
+        pdf.multi_cell(effective_page_width, 0.25, translation, align='L')
+        pdf.ln(0.5)
+
+        # save the pdf with name .pdf
+        pdf.output(output_file)
+
+    print("Translation complete.")
     return translation
 
 

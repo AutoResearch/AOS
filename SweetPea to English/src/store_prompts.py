@@ -1,5 +1,20 @@
 import extract
 
+def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
+    """
+    Stores a simple prompt into a string
+    :param sp_filename: The Path to the file with the prompt
+    :param prompt_filename: The Path to the training set
+    :param instruction: The instruction to put at the end
+    :return: A string with the prompt
+    """
+    with open(prompt_filename, 'r') as file:
+        stored_string = file.read()
+    with open(sp_filename, 'r') as file:
+        stored_string += '\n' + file.read() + '\n'
+    stored_string += instruction
+    return stored_string
+
 
 def store_prompt_regular_factors_code(sp_filename: str, prompt_filename: str) -> str:
     """

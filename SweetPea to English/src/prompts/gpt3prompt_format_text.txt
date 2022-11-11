@@ -5,9 +5,9 @@ Formated:
 There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500.
 ### DERIVED FACTORS
 There are two derived factors: congruency and congruency transition.
-##
+## congruency
 The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent".
-##
+## congruency transition
 The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch".
 ### EXPERIMENT
 Color, word and iti facter was counterbalanced. However, the trial sequence was constructed in a way that no congruent trials were included.
@@ -45,3 +45,18 @@ The n-back lure factor also depends on a moving trial window (for the last three
 We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
 ### END OF EXPERIMENT DESIGN
 Unformated:
+We have the regular factors: soa and size. The soa is either 200ms or 700ms. The size is either big or small. As a derived factor we had lubadoo that was large if soa was 200ms and size was small. It was small if soa was 200ms and size was large. Otherwize it was undefined. As sescond derived factor was libadii. This was large if lubadoo was small and 200ms otherwise. The size and the soa were counterbalanced. However there was no small trial in the lubadoo factor.
+Formated:
+### REGULAR FACTORS
+We have the regular factors: soa and size. The soa is either 200ms or 700ms. The size is either big or small.
+### DERIVED FACTORS
+As a derived factor we had lubadoo. As a sescond derived factor was libasii.
+## lubadoo
+lubadoo was large if soa was 200ms and size was small. It was small if soa was 200ms and size was large. Otherwize it was undefined.
+## libasii
+libasii was large if lubadoo was small and 200ms otherwise.
+### EXPERIMENT
+The size and the soa were counterbalanced. However there was no small trial in the lubadoo factor.
+### END OF EXPERIMENT DESIGN
+Unformated:
+
