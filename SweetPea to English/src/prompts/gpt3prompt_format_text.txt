@@ -1,0 +1,47 @@
+Unformanted:
+There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500. There are two derived factors: congruency and congruency transition. The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent". The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch". Color, word and iti facter was counterbalanced. However, the trial sequence was constructed in a way that no congruent trials were included.
+Formated:
+### REGULAR FACTORS
+There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500.
+### DERIVED FACTORS
+There are two derived factors: congruency and congruency transition.
+##
+The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent".
+##
+The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch".
+### EXPERIMENT
+Color, word and iti facter was counterbalanced. However, the trial sequence was constructed in a way that no congruent trials were included.
+### END OF EXPERIMENT DESIGN
+Unformated:
+There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". There are two derived factors: target and lure. The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. Otherwise, the current trial is not a lure. We counterbalanced the target and lure factors.
+Formated:
+### REGULAR FACTORS
+There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
+### DERIVED FACTORS
+There are two derived factors: target and lure.
+## target factor
+The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
+## lure factor
+The lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. Otherwise, the current trial is not a lure.
+### EXPERIMENT
+We counterbalanced the target and lure factors.
+### END OF EXPERIMENT DESIGN
+Unformated:
+There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". There are four derived factors: target, one-back lure, two-back lure and n-back lure. The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The one-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back, then the trial is a one-back lure. Otherwise, the current trial is not a one-back lure. The two-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter two trials back, then the trial is a two-back lure. Otherwise, the current trial is not a two-back lure. The n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the current trial is either a one-back lure or a two-back lure, then the trial is considered an n-back lure. Otherwise, the current trial is not an n-back lure. We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
+Formated:
+### REGULAR FACTORS
+There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
+### DERIVED FACTORS
+There are four derived factors: target, one-back lure, two-back lure and n-back lure.
+## target factor
+The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
+## one-back lure
+The one-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back, then the trial is a one-back lure. Otherwise, the current trial is not a one-back lure.
+## two-back lure
+The two-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter two trials back, then the trial is a two-back lure. Otherwise, the current trial is not a two-back lure.
+## n-back lure
+The n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the current trial is either a one-back lure or a two-back lure, then the trial is considered an n-back lure. Otherwise, the current trial is not an n-back lure.
+### EXPERIMENT
+We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
+### END OF EXPERIMENT DESIGN
+Unformated:
