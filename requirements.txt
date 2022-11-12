@@ -2,7 +2,6 @@ quote
 appdirs==1.4.4
 ascii-graph==1.5.1
 attrs==22.1.0
-certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
 charset-normalizer==2.1.1
 colorama==0.4.6
 et-xmlfile==1.1.0

@@ -1,17 +1,7 @@
 import sys
 from time import sleep
 import warnings
-
-REGULAR_FACTORS = "### REGULAR FACTORS"
-DERIVED_FACTORS = "### DERIVED FACTORS"
-BALANCING = "### EXPERIMENT"
-END_OF_SWEETPEA_CODE = "### END OF EXPERIMENT DESIGN"
-TRANSITION_STRINGS = ("Transition(", "transition(")
-WITHIN_TRIAL_STRINGS = ("WithinTrial(", "within_trial(")
-WINDOW_STRINGS = ("Window(", "window(")
-NON_CHARACTERS = (" ", ",", "(", ")", "[", "]", ":", ";")
-DERIVED_LEVEL_STRINGS = ("DerivedLevel", "derived_level")
-FACTOR_STRINGS = ("Factor", "factor")
+from sweetPeaEnglishTranslator.translator.constants import *
 
 
 def extract_segment(filename: str, reg_fac_line: str) -> str:

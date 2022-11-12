@@ -1,6 +1,6 @@
-Unformanted:
+Unformatted:
 There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500. There are two derived factors: congruency and congruency transition. The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent". The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch". Color, word and iti facter was counterbalanced. However, the trial sequence was constructed in a way that no congruent trials were included.
-Formated:
+Formatted:
 ### REGULAR FACTORS
 There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500.
 ### DERIVED FACTORS
@@ -12,9 +12,9 @@ The congruency transition factor depends on the transition of the congruency fac
 ### EXPERIMENT
 Color, word and iti facter was counterbalanced. However, the trial sequence was constructed in a way that no congruent trials were included.
 ### END OF EXPERIMENT DESIGN
-Unformated:
+Unformatted:
 There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". There are two derived factors: target and lure. The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. Otherwise, the current trial is not a lure. We counterbalanced the target and lure factors.
-Formated:
+Formatted:
 ### REGULAR FACTORS
 There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
 ### DERIVED FACTORS
@@ -26,9 +26,9 @@ The lure factor also depends on a moving trial window (for the last three trials
 ### EXPERIMENT
 We counterbalanced the target and lure factors.
 ### END OF EXPERIMENT DESIGN
-Unformated:
+Unformatted:
 There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". There are four derived factors: target, one-back lure, two-back lure and n-back lure. The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The one-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back, then the trial is a one-back lure. Otherwise, the current trial is not a one-back lure. The two-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter two trials back, then the trial is a two-back lure. Otherwise, the current trial is not a two-back lure. The n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the current trial is either a one-back lure or a two-back lure, then the trial is considered an n-back lure. Otherwise, the current trial is not an n-back lure. We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
-Formated:
+Formatted:
 ### REGULAR FACTORS
 There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
 ### DERIVED FACTORS
@@ -44,9 +44,9 @@ The n-back lure factor also depends on a moving trial window (for the last three
 ### EXPERIMENT
 We counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
 ### END OF EXPERIMENT DESIGN
-Unformated:
+Unformatted:
 We have the regular factors: soa and size. The soa is either 200ms or 700ms. The size is either big or small. As a derived factor we had lubadoo that was large if soa was 200ms and size was small. It was small if soa was 200ms and size was large. Otherwize it was undefined. As sescond derived factor was libadii. This was large if lubadoo was small and 200ms otherwise. The size and the soa were counterbalanced. However there was no small trial in the lubadoo factor.
-Formated:
+Formatted:
 ### REGULAR FACTORS
 We have the regular factors: soa and size. The soa is either 200ms or 700ms. The size is either big or small.
 ### DERIVED FACTORS
@@ -58,5 +58,4 @@ libasii was large if lubadoo was small and 200ms otherwise.
 ### EXPERIMENT
 The size and the soa were counterbalanced. However there was no small trial in the lubadoo factor.
 ### END OF EXPERIMENT DESIGN
-Unformated:
-
+Unformatted:
