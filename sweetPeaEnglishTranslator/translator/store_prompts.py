@@ -1,7 +1,21 @@
 from sweetPeaEnglishTranslator.translator import extract
 
 
-def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
+def store_prompt_simple(to_translate: str, prompt_filename: str, instruction: str) -> str:
+    """
+    Stores a simple prompt (transformed to lower case) into a string
+    :param to_translate: The string to be processed
+    :param prompt_filename: The Path to the training set
+    :param instruction: The instruction to put at the end
+    :return: A string with the prompt
+    """
+    with open(prompt_filename, 'r') as file:
+        stored_string = file.read()
+    stored_string += f'\n{to_translate}\n{instruction}'
+    return stored_string
+
+
+def store_prompt_lower_simple(to_translate: str, prompt_filename: str, instruction: str) -> str:
     """
     Stores a simple prompt (transformed to lower case) into a string
     :param sp_filename: The Path to the file with the prompt
@@ -11,29 +25,11 @@ def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str
     """
     with open(prompt_filename, 'r') as file:
         stored_string = file.read()
-    with open(sp_filename, 'r') as file:
-        stored_string += '\n' + file.read() + '\n'
-    stored_string += instruction
+    stored_string += f'\n{to_translate.lower()}\n{instruction}'
     return stored_string
 
 
-def store_prompt_lower_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
-    """
-    Stores a simple prompt (transformed to lower case) into a string
-    :param sp_filename: The Path to the file with the prompt
-    :param prompt_filename: The Path to the training set
-    :param instruction: The instruction to put at the end
-    :return: A string with the prompt
-    """
-    with open(prompt_filename, 'r') as file:
-        stored_string = file.read()
-    with open(sp_filename, 'r') as file:
-        stored_string += '\n' + file.read().lower() + '\n'
-    stored_string += instruction
-    return stored_string
-
-
-def store_prompt_regular_factors_code(sp_filename: str, prompt_filename: str) -> str:
+def store_prompt_regular_factors_code(to_translate: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and regular factors into a
     single string
@@ -42,30 +38,26 @@ def store_prompt_regular_factors_code(sp_filename: str, prompt_filename: str) ->
         sp_filename: the name of the file containing the SweetPea code
         prompt_filename: the name of the file containing the GPT-3 prompt
     """
-    stored_string = ""
     with open(prompt_filename) as file:
-        for line in file:
-            stored_string += line
-    stored_string += extract.extract_regular_factor(sp_filename) + "\nText:\n"
+        stored_string = file.read()
+    stored_string += extract.extract_regular_factor(to_translate) + "\nText:\n"
     return stored_string
 
 
-def store_prompt_regular_factors_text(sp_filename: str, prompt_filename: str) -> str:
+def store_prompt_regular_factors_text(to_translate: str, prompt_filename: str) -> str:
     """
     Stores the GPT-3 prompt and the regular factors into a single string
     :param sp_filename: Path to the file containing the text
     :param prompt_filename: Path to the file containing the GPT-3 prompt
     :return: String with prompt and regular factors
     """
-    stored_string = ""
     with open(prompt_filename) as file:
-        for line in file:
-            stored_string += line
-    stored_string += extract.extract_regular_factor(sp_filename) + "\nCode:\n"
+        stored_string = file.read()
+    stored_string += extract.extract_regular_factor(to_translate) + "\nCode:\n"
     return stored_string
 
 
-def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
+def store_prompt_balancing(to_translate: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and the code into a
     single string
@@ -74,16 +66,13 @@ def store_prompt_balancing(sp_filename: str, prompt_filename: str) -> str:
         sp_filename: the name of the file containing the SweetPea code
         prompt_filename: the name of the file containing the GPT-3 prompt
     """
-    stored_string = ""
     with open(prompt_filename) as file:
-        for line in file:
-            stored_string += line
-    stored_string += extract.extract_main(sp_filename) + "\nText:\n"
-
+        stored_string = file.read()
+    stored_string += extract.extract_main(to_translate) + "\nText:\n"
     return stored_string
 
 
-def store_prompt_balancing_text(sp_filename: str, factors: str, prompt_filename: str) -> str:
+def store_prompt_balancing_text(to_translate: str, factors: str, prompt_filename: str) -> str:
     """
     A function that stores the GPT-3 prompt and the code into a
     single string
@@ -92,17 +81,15 @@ def store_prompt_balancing_text(sp_filename: str, factors: str, prompt_filename:
         sp_filename: the name of the file containing the SweetPea code
         prompt_filename: the name of the file containing the GPT-3 prompt
     """
-    stored_string = ""
     with open(prompt_filename) as file:
-        for line in file:
-            stored_string += line
+        stored_string = file.read()
     stored_string += factors
-    stored_string += extract.extract_main_text(sp_filename) + "\nCode:\n"
+    stored_string += extract.extract_main_text(to_translate) + "\nCode:\n"
 
     return stored_string
 
 
-def store_prompt_derived_factors(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
+def store_prompt_derived_factors(to_translate: str, prompt_filename: str, factor_id: int) -> str:
     """
     A function that stores the GPT-3 prompt and derived factors into a
     single string
@@ -113,19 +100,14 @@ def store_prompt_derived_factors(sp_filename: str, prompt_filename: str, factor_
         factor_id: the id of the derived factor to be translated
     """
     # first read in the primer prompt for derived factors
-    primer = ""
     with open(prompt_filename) as file:
-        for line in file:
-            primer += line
+        primer = file.read()
 
     # now read in the full SweetPea code
-    full_code = ""
-    with open(sp_filename) as file:
-        for line in file:
-            full_code += line
+    full_code = to_translate
 
     # finally read in the code for all derived factors
-    df_code_all = extract.extract_derived_factor(sp_filename)
+    df_code_all = extract.extract_derived_factor(to_translate)
 
     # break code into list of strings by line break
     code_list = df_code_all.split("\n")
@@ -166,7 +148,7 @@ def store_prompt_derived_factors(sp_filename: str, prompt_filename: str, factor_
     return prompt
 
 
-def store_prompt_derived_factors_text(sp_filename: str, prompt_filename: str, factor_id: int) -> str:
+def store_prompt_derived_factors_text(to_translate: str, prompt_filename: str, factor_id: int) -> str:
     """
     A function that stores the GPT-3 prompt and derived factors into a
     single string
@@ -177,19 +159,14 @@ def store_prompt_derived_factors_text(sp_filename: str, prompt_filename: str, fa
         factor_id: the id of the derived factor to be translated
     """
     # first read in the primer prompt for derived factors
-    primer = ""
     with open(prompt_filename) as file:
-        for line in file:
-            primer += line
+        primer = file.read()
 
     # now read in the full SweetPea code
-    full_code = ""
-    with open(sp_filename) as file:
-        for line in file:
-            full_code += line
+    full_code = to_translate
 
     # finally read in the code for all derived factors
-    df_code_all = extract.extract_derived_factor(sp_filename)
+    df_code_all = extract.extract_derived_factor(to_translate)
 
     # break code into list of strings by line break
     code_list = df_code_all.split("\n")
