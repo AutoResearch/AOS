@@ -40,13 +40,12 @@ def sweet():
                 text = text_ = request.form['gpt3Text']
                 if spet.check_line_comments(text):
                     text_ = spet.uncomment_text(text)
-                code = spet.text_to_code(text_, 'sweetPeaEnglishTranslator/temp/exp_tmp.py',
-                                         'sweetPeaEnglishTranslator/temp/seq_tmp')
+                code = spet.text_to_code(text_, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
             elif 'gpt3Code' in request.form:
                 code = request.form['gpt3Code']
         elif 'runPython' in request.form:
-            file = open(r'sweetPeaEnglishTranslator/temp/exp_tmp.py', 'r').read()
+            file = open(r'sweetPeaEnglishTranslator/translator/output/py_tmp.py', 'r').read()
             print(file)
             exec(file, globals())
-            return send_file('sweetPeaEnglishTranslator/temp/seq_tmp_0.csv')
+            return send_file('sweetPeaEnglishTranslator/translator/output/seq_tmp_0.csv')
     return render_template('sweetPea.html', title='sweetPea', form=form, text=text, code=code)

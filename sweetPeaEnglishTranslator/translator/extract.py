@@ -4,7 +4,7 @@ import warnings
 from sweetPeaEnglishTranslator.translator.constants import *
 
 
-def extract_segment(filename: str, reg_fac_line: str) -> str:
+def extract_segment(text: str, reg_fac_line: str) -> str:
     """
     A function that extracts text segments
     Arguments:
@@ -15,16 +15,15 @@ def extract_segment(filename: str, reg_fac_line: str) -> str:
         A string containing the SweetPea code for a given section
     """
     extracted_code = ""
-    file = open(filename)
-    line = file.readline().strip()  # initially holds first line of file
-    while line != reg_fac_line:
-        line = file.readline().strip()  # next line
-    if line == reg_fac_line:
-        line = file.readline().strip()
-        while "###" not in line:  # stops when next # is found
-            extracted_code += line + "\n"
-            line = file.readline().strip()
-    file.close()
+    lines = text.splitlines()
+    i = 0  # initially holds first line of file
+    while i < len(lines) and not lines[i].startswith(reg_fac_line):
+        i += 1
+    if i < len(lines) and lines[i].startswith(reg_fac_line):
+        i += 1
+        while i < len(lines) and not lines[i].startswith('###'):  # stops when next # is found
+            extracted_code += f'{lines[i]}\n'
+            i += 1
     if not extracted_code:
         raise Exception("Error in extract_segment: No segment found")
     return extracted_code
@@ -38,7 +37,7 @@ def extract_derived_factor(filename: str) -> str:
     return extract_segment(filename, DERIVED_FACTORS)
 
 
-def extract_main(filename: str) -> str:
+def extract_main(text: str) -> str:
     """
     A function that extracts the SweetPea code from a SweetPea code file
 
@@ -49,25 +48,27 @@ def extract_main(filename: str) -> str:
         A string containing the regular factors code
     """
     extracted_code = ""
-    file = open(filename)
-    line = file.readline()
+    lines = text.splitlines()
+    i = 0
 
     # reads in only relevant parts of the code
-    while line:
-        if line.strip() == REGULAR_FACTORS or line.strip() == DERIVED_FACTORS or line.strip() == BALANCING:
-            line = file.readline()
-            while line.strip() != REGULAR_FACTORS \
-                    and line.strip() != DERIVED_FACTORS \
-                    and line.strip() != BALANCING \
-                    and line.strip() != END_OF_SWEETPEA_CODE:  # stops when next code section is found
-                extracted_code += line.strip() + "\n"
-                line = file.readline()
+    while i < len(lines):
+        if lines[i].strip() == REGULAR_FACTORS or lines[i].strip() == DERIVED_FACTORS or lines[i].strip() == BALANCING:
+            i += 1
+            while i < len(lines) \
+                    and lines[i].strip() != REGULAR_FACTORS \
+                    and lines[i].strip() != DERIVED_FACTORS \
+                    and lines[i].strip() != BALANCING \
+                    and lines[i].strip() != END_OF_SWEETPEA_CODE:  # stops when next code section is found
+                extracted_code += f'{lines[i].strip()}\n'
+                i += 1
 
-        if line.strip == END_OF_SWEETPEA_CODE:
+        if i < len(lines) and lines[i].strip == END_OF_SWEETPEA_CODE:
             break
 
-        if line.strip() != REGULAR_FACTORS and line.strip() != DERIVED_FACTORS and line.strip() != BALANCING:
-            line = file.readline()
+        if i < len(lines) and lines[i].strip() != REGULAR_FACTORS and lines[i].strip() != DERIVED_FACTORS and lines[
+            i].strip() != BALANCING:
+            i += 1
 
     # convert code to lines
     extracted_code = extracted_code.split("\n")

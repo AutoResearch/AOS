@@ -1,4 +1,3 @@
-from sweetPeaEnglishTranslator.translator.translate import code_to_text, text_to_code, _temp_if_string
 from sweetPeaEnglishTranslator.translator import pre_process
 from sweetPeaEnglishTranslator.translator import translate
 import os
@@ -11,37 +10,20 @@ PATH_TMP_TEXT_TO_CODE = os.path.join(_dirname, 'temp/text_to_code.py')
 
 
 def text_to_code(text, out_path, store_file) -> str:
-    path = _temp_if_string(text, PATH_TMP_TEXT_TO_CODE)
-    _res = translate.text_to_formatted(path)
-    res = translate.text_to_code(_res, add_imports=True, export_py=True, out_path=out_path,
-                                 store_sequence_path=store_file)
-    if os.path.exists(PATH_TMP_TEXT_TO_CODE):
-        os.remove(PATH_TMP_TEXT_TO_CODE)
-    return res
+    _res = translate.text_to_formatted(text)
+    return translate.text_to_code(_res, py_file_name=out_path, store_sequence_path=store_file)
 
 
 def code_to_text(text) -> str:
-    path = _temp_if_string(text, PATH_TMP_CODE_TO_TEXT)
-    res = translate.code_to_text(path)
-    if os.path.exists(PATH_TMP_CODE_TO_TEXT):
-        os.remove(PATH_TMP_CODE_TO_TEXT)
-    return res
+    return translate.code_to_text(text)
 
 
 def check_line_comments(text) -> bool:
-    path = _temp_if_string(text, PATH_TMP_CHECK_LINE_COMMENTS)
-    res = pre_process.check_for_line_comments(path)
-    if os.path.exists(PATH_TMP_CHECK_LINE_COMMENTS):
-        os.remove(PATH_TMP_CHECK_LINE_COMMENTS)
-    return res
+    return pre_process.check_for_line_comments(text)
 
 
 def uncomment_text(text) -> str:
-    path = _temp_if_string(text, PATH_TMP_UNCOMMENT_TEXT)
-    res = pre_process.preprocess_text(path)
-    if os.path.exists(PATH_TMP_UNCOMMENT_TEXT):
-        os.remove(PATH_TMP_UNCOMMENT_TEXT)
-    return res
+    return pre_process.preprocess_text(text)
 
 
 def comment_text(text) -> str:
@@ -51,13 +33,16 @@ def comment_text(text) -> str:
 if __name__ == '__main__':
     # to_translate = "test\code_1.py"
     # to_translate = "test/text_4.txt"
-    to_translate = "test/text_unformatted_1.txt"
+    with open("test/code_1.py") as f:
+        to_translate = f.read()
     # pre_process.preprocess_text(to_translate, "test/text_1_unformatted.txt")
     # code_f = translate.code_to_formatted(to_translate, export_py=True)
     # print(code_f)
     # translation = "Translation: " + code_to_text(to_translate, export_pdf=True)
-    text_formatted = translate.text_to_formatted(to_translate)
-    code = translate.text_to_code(text_formatted, export_py=True)
+    #text_formatted = translate.text_to_formatted(to_translate)
+    #code = translate.text_to_code(text_formatted, py_file_name='unformatted_1.py')
+    text = translate.code_to_text(to_translate, 'code_1_text.txt')
+
 
     # print(text_formatted)
     # code = text_to_code(text_formatted, export_py=True)

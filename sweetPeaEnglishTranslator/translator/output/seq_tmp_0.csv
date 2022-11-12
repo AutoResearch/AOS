@@ -1,0 +1,6 @@
+iti,length,alignment,alignment transition
+short,long,unaligned,
+long,long,aligned,aligned
+long,short,unaligned,aligned
+short,short,aligned,aligned
+short,long,unaligned,aligned
