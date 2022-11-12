@@ -1,33 +1,33 @@
 Text:
-The response factor depends on the Color factor and has four levels: "left", "right", "up", and "down". If the Color is "red", "green", "blue", or "brown", then the corresponding response is "left", "right", "up", and "down", respectively.
+the response factor depends on the color factor and has four levels: "left", "right", "up", and "down". if the color is "red", "green", "blue", or "brown", then the corresponding response is "left", "right", "up", and "down", respectively.
 Code:
-def is_response_left(Color):
-    return Color == "red"
-def is_response_right(Color):
-    return Color == "green"
-def is_response_up(Color):
-    return Color == "blue"
-def is_response_down(Color):
-    return Color == "brown"
+def is_response_left(color):
+    return color == "red"
+def is_response_right(color):
+    return color == "green"
+def is_response_up(color):
+    return color == "blue"
+def is_response_down(color):
+    return color == "brown"
 response = factor("response", [
-    derived_level("left", within_trial(is_response_left, [Color])),
-    derived_level("right", within_trial(is_response_right, [Color])),
-    derived_level("up", within_trial(is_response_up, [Color])),
-    derived_level("down", within_trial(is_response_down, [Color]))
+    derived_level("left", within_trial(is_response_left, [color])),
+    derived_level("right", within_trial(is_response_right, [color])),
+    derived_level("up", within_trial(is_response_up, [color])),
+    derived_level("down", within_trial(is_response_down, [color]))
 ])
 Text:
-The congruency factor depends on the regular factors Color and Word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color matches the Word, otherwise, it is considered "incongruent".
+the congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent".
 Code:
-def is_congruency_congruent(Color, Word):
-    return Color == Word
-def is_congruency_incongruent(Color, Word):
-    return not is_congruency_congruent(Color, Word)
+def is_congruency_congruent(color, word):
+    return color == word
+def is_congruency_incongruent(color, word):
+    return not is_congruency_congruent(color, word)
 congruency = factor("congruency", [
-    derived_level("congruent", within_trial(is_congruency_congruent, [Color, Word])),
-    derived_level("incongruent", within_trial(is_congruency_incongruent, [Color, Word]))
+    derived_level("congruent", within_trial(is_congruency_congruent, [color, word])),
+    derived_level("incongruent", within_trial(is_congruency_incongruent, [color, word]))
 ])
 Text:
-The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
+the parity factor depends on the regular factor digit has two levels: "odd" and "even". a trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
 Code:
 def is_parity_even(digit):
     return (int(digit) % 2) == 0
@@ -38,7 +38,7 @@ parity = factor("parity", [
     derived_level("even", within_trial(is_parity_odd, [digit]))
 ])
 Text:
-The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
+the magnitude factor depends on the regular factor number has two levels: "large" and "small". a trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
 Code:
 def is_magnitude_large(number):
     return int(number) > 10
@@ -49,33 +49,33 @@ magnitude = factor("magnitude", [
     derived_level("small", within_trial(is_magnitude_small, [number]))
 ])
 Text:
-The congruency factor depends on the Color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color factor is equal to the Word factor and otherwise it is considered "incongruent".
+the congruency factor depends on the color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the color factor is equal to the word factor and otherwise it is considered "incongruent".
 Code:
-def is_congruency_congruent(Color, Word):
+def is_congruency_congruent(color, word):
     return Color == word
-def is_congruency_incongruent(Color, Word):
-    return not is_congruency_congruent(Color, Word)
+def is_congruency_incongruent(color, word):
+    return not is_congruency_congruent(color, word)
 congruency = factor("congruency", [
     derived_level("congruent",
-                 within_trial(is_congruent, [Color, Word])),
+                 within_trial(is_congruent, [color, word])),
     derived_level("incongruent",
-                 within_trial(is_incongruent, [Color, Word]))
+                 within_trial(is_incongruent, [color, word]))
 ])
 Text:
-The response factor depends on the factors Color, Word, and Task, and has two levels: "left" and "right". The response is "left" if the Task is "color naming" and the Color is "red" or if the Task is "word reading" and the Word is "green". Conversely, the response is "right" if the Task is "color naming" and the Color is "green" or if the Task is "word reading" and the Word is "red".
+the response factor depends on the factors color, word, and task, and has two levels: "left" and "right". the response is "left" if the task is "color naming" and the color is "red" or if the task is "word reading" and the Word is "green". conversely, the response is "right" if the task is "color naming" and the color is "green" or if the task is "word reading" and the word is "red".
 Code:
-def is_response_left(Color, Word, Task):
-    return (Task == "color naming" and Color == "red") or (Task == "word reading" and Word == "green")
-def is_response_right(Color, Word, Task):
-    return (Task == "color naming" and Color == "green") or (Task == "word reading" and Word == "red")
+def is_response_left(color, word, task):
+    return (task == "color naming" and color == "red") or (task == "word reading" and word == "green")
+def is_response_right(color, word, task):
+    return (task == "color naming" and color == "green") or (task == "word reading" and word == "red")
 response = factor("response", [
     derived_level("left",
-                 within_trial(is_response_left, [Color, Word, Task])),
+                 within_trial(is_response_left, [color, word, task])),
     derived_level("right",
-                 within_trial(is_response_right, [Color, Word, Task]))
+                 within_trial(is_response_right, [color, word, task]))
 ])
 Text:
-The number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". If the number on the current trial is larger than the previous one, then the trial is considered an "increment". If the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". Otherwise, the trial is considered a "decrement".
+the number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". if the number on the current trial is larger than the previous one, then the trial is considered an "increment". if the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". otherwise, the trial is considered a "decrement".
 Code:
 def is_number_transition_increment(number):
     return int(number[0]) < int(number[1])
@@ -92,29 +92,29 @@ number_transition = factor("number transition", [
                  transition(is_number_transition_decrement, [number]))
 ])
 Text:
-The hit factor has two levels: "correct" and "incorrect". It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is "correct". Otherwise, the current trial is "incorrect".
+the hit factor has two levels: "correct" and "incorrect". it depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back and the letter on the current trial matches the letter one trial back, then the trial is "correct". otherwise, the current trial is "incorrect".
 Code:
 def is_hit_correct(Letter):
-    return Letter[0] == Letter[3] and Letter[2] == Letter[3]
+    return letter[0] == letter[3] and letter[2] == letter[3]
 def is_hit_incorrect(Letter):
-    return not is_hit_correct(Letter)
+    return not is_hit_correct(letter)
 hit = factor("hit", [
-    derived_level("correct", window(is_hit_correct, [Letter], 4, 1)),
-    derived_level("incorrect",  window(is_hit_incorrect, [Letter], 3, 1))
+    derived_level("correct", window(is_hit_correct, [letter], 4, 1)),
+    derived_level("incorrect",  window(is_hit_incorrect, [letter], 3, 1))
 ])
 Text:
-The Lure factor has two levels: "yes" and "no". It depends on a moving trial window (for the last two trials) defined by the character and Target factors. If the character on the current trial matches the character on the previous trial and the Target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
+the lure factor has two levels: "yes" and "no". it depends on a moving trial window (for the last two trials) defined by the character and target factors. if the character on the current trial matches the character on the previous trial and the target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
 Code:
-def is_lure_yes(character, Target):
-    return Target[1] == "no" and Letter[0] == Letter[1]
-def is_lure_no(character, Target):
-    return not is_lure_yes(character, Target)
-Lure = factor("Lure", [
+def is_lure_yes(character, target):
+    return target[1] == "no" and letter[0] == letter[1]
+def is_lure_no(character, target):
+    return not is_lure_yes(character, target)
+lure = factor("lure", [
     derived_level("yes", window(is_lure_yes, [character], 3, 1)),
     derived_level("no",  window(is_lure_no, [character], 3, 1))
 ])
 Text:
-The color response factor depends on the color factor and has two levels: -1 and 1. If the color is red or blue, then the corresponding color response is -1 or 1, respectively.
+the color response factor depends on the color factor and has two levels: -1 and 1. if the color is red or blue, then the corresponding color response is -1 or 1, respectively.
 Code:
 def is_color_response_minus_one(color):
     return (color == "red" or color == "blue")

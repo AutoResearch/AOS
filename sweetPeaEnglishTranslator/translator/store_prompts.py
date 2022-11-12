@@ -11,7 +11,7 @@ def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str
     with open(prompt_filename, 'r') as file:
         stored_string = file.read()
     with open(sp_filename, 'r') as file:
-        stored_string += '\n' + file.read() + '\n'
+        stored_string += '\n' + file.read().lower() + '\n'
     stored_string += instruction
     return stored_string
 
