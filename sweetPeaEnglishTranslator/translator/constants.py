@@ -13,6 +13,7 @@ PATH_TO_COUNTERBALANCING_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prom
 
 # prompts for format
 PATH_TO_FORMAT_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_format_text.txt')
+PATH_TO_FORMAT_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_format_code.txt')
 
 # key words in code
 TRANSITION_STRINGS = ("Transition(", "transition(")

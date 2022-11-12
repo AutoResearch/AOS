@@ -1,23 +1,11 @@
-This should be a nice experiment. We are very proud of it and it is very importand.
-
 ### REGULAR FACTORS
-
 There are three regular factors: color, word and iti. The color can be "red", "green" or "pink". The word can be "red", "neutral" or "blue". The iti is either 300 or 500.
-
 ### DERIVED FACTORS
-
 There are two derived factors: congruency and congruency transition.
-
 ## congruency factor
-
 The congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". A task is considered "congruent" if word and color are the same. Otherwise it is considered "incongruent".
-
 ## congruency transittion factor
-
 The congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". A task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. Otherwise it is considered a "switch".
-
 ### EXPERIMENT
-
 We counterbalanced the color, word and iti facter. However, the trial sequence was constructed in a way that no congruent trials were included.
-
 ### END OF EXPERIMENT DESIGN

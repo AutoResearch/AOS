@@ -18,3 +18,8 @@ finally
 ```
 flask run
 ```
+
+## Usage of the flask app:
+you can translate text to code and download a sequence.<br>
+To get sweetPea code click on `to code`.<br>
+As soon as there is sweetPea code (can take a while) you can execute the code and download a sequence via `Get Sequence`

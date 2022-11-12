@@ -19,6 +19,17 @@ def translate_text_to_formatted(to_translate: str) -> str:
     return answer
 
 
+def translate_code_to_formatted(to_translate: str) -> str:
+    """
+    Add hashtags and reorganize code
+    :param to_translate: The code to be translated
+    :return: A string containing the formated code
+    """
+    prompt = store_prompts.store_prompt_simple(to_translate, PATH_TO_FORMAT_CODE, 'Formatted:')
+    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted'])
+    return answer
+
+
 def translate_regular_factors_code_to_text(to_translate: str) -> str:
     """
     Translates the regular factors code into English using the GPT-3 API
@@ -171,7 +182,7 @@ def translate_derived_factors_text_to_code(to_translate: str) -> str:
                               start_text='',
                               restart_text='',
                               stop_seq=['Text'], response_length=256)
-        full_answer += "##\n" + answer + "\n"
+        full_answer += "##\n" + answer
 
     return full_answer
 
@@ -296,41 +307,48 @@ def code_to_text(to_translate: str, export_txt: bool = False, export_pdf: bool =
     return translation
 
 
-def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = False) -> str:
+def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = False, add_imports: bool = False,
+                 out_path: str = None, store_sequence_path: str = None) -> str:
     """
     Translates text to sweetPea code
     :param to_translate: the string or file to translate
     :param export_txt: should result be stored as *.txt
     :param export_py: should result be stored as *.py
+    :param add_imports: should imports be added to code
+    :param out_path: the path to store the file to
+    :param store_sequence_path: the path where sequence should be stored
     :return: code as string
     """
     # create a temporary file if to_translate is not a path
     to_translate = _temp_if_string(to_translate, "text_temp.txt")
 
     log(f"Translating text '{to_translate}'...")
+    translation = ''
+    if add_imports:
+        translation += 'from sweetpea.primitives import *\n'
+        translation += 'from sweetpea.constraints import *\n'
+        translation += 'from sweetpea import *\n'
     log("Translating regular factors...")
-    translation = "### REGULAR FACTORS\n"
+    translation += "### REGULAR FACTORS\n"
     translation += translate_regular_factors_text_to_code(to_translate)
 
     log("Translating derived factors...")
-    translation += "\n### DERIVED FACTORS\n"
+    translation += "### DERIVED FACTORS\n"
     translation += translate_derived_factors_text_to_code(to_translate)
     log("Translating counterbalancing scheme...")
     factors = post_process.get_factors_from_code_full(translation)
     translation += translate_counterbalancing_text_to_code(to_translate, factors)
+    translation += '### EXPERIMENT\n'
     translation += f'design = {post_process.get_factors_from_code(translation)}\n'
     translation += "block = fully_cross_block(design, crossing, constraints, False)\n"
     translation += "experiments = synthesize_trials_non_uniform(block, 1)\n"
+    translation += '### END OF EXPERIMENT DESIGN'
 
+    if store_sequence_path:
+        translation += f'\nsave_experiments_csv(block, experiments,"{store_sequence_path}")'
     # clean up the temp file
     if os.path.exists("text_temp.txt"):
         os.remove("text_temp.txt")
-
-    # print("Formatting translation...")
-    # remove all line breaks from translation
-
-    # remove double spaces from translation
-    translation = translation.replace("  ", " ")
 
     if export_txt:
         # remove file suffix from string
@@ -343,8 +361,10 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
 
     if export_py:
         # remove file suffix from string
-        output_file = to_translate.split(".")[0] + '.py'
-
+        if not out_path:
+            output_file = to_translate.split(".")[0] + '.py'
+        else:
+            output_file = out_path
         log(f"Writing translation to file '{output_file}...")
         with open(output_file, "w") as f:
             f.write(translation)
@@ -355,7 +375,7 @@ def text_to_code(to_translate: str, export_txt: bool = False, export_py: bool = 
 
 def text_to_formatted(to_translate: str, export_txt: bool = False, export_pdf: bool = False) -> str:
     """
-    A function that translates the sweetpea code into English using
+    A function that translates text to formatted rext
     the GPT-3 API
 
     Arguments:
@@ -374,9 +394,9 @@ def text_to_formatted(to_translate: str, export_txt: bool = False, export_pdf: b
     if os.path.exists("text_unformatted_temp.txt"):
         os.remove("text_unformatted_temp.txt")
 
-    print("Formatting translation...")
+    log("Formatting translation...")
     # remove all line breaks from translation
-    translation = translation.replace("\n\n", " ")
+    translation = translation.replace("\n\n", "\n")
 
     # remove double spaces from translation
     translation = translation.replace("  ", " ")
@@ -415,6 +435,53 @@ def text_to_formatted(to_translate: str, export_txt: bool = False, export_pdf: b
 
         # save the pdf with name .pdf
         pdf.output(output_file)
+
+    log("Translation complete.")
+
+    return translation
+
+
+def code_to_formatted(to_translate: str, export_txt: bool = False, export_py: bool = False) -> str:
+    """
+    A function that translates code into formatted code
+    the GPT-3 API
+
+    Arguments:
+        to_translate: the code to be translated
+
+    Returns:
+        A string containing the English translation of the sweetpea code
+    """
+    # create a temporary file if to_translate is not a path
+    to_translate = _temp_if_string(to_translate, 'code_unformatted_temp.txt')
+
+    log("Translating unformated code '" + to_translate + "'...")
+    translation = translate_code_to_formatted(to_translate)
+
+    # clean up the temp file
+    if os.path.exists("code_unformatted_temp.txt"):
+        os.remove("code_unformatted_temp.txt")
+
+    print("Formatting translation...")
+    # remove all line breaks from translation
+    translation = translation.replace("\n\n", "\n")
+
+    if export_txt:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.english'
+
+        print("Writing translation to file '" + output_file + "'...")
+        # write translation to file
+        with open(output_file, "w") as f:
+            f.write(translation)
+
+    if export_py:
+        # remove file suffix from string
+        output_file = to_translate.split(".")[0] + '.py'
+
+        log(f"Writing translation to file '{output_file}...")
+        with open(output_file, "w") as f:
+            f.write(translation)
 
     print("Translation complete.")
     return translation
