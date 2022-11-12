@@ -1,8 +1,8 @@
 from sweetPeaEnglishTranslator.translator import extract
 
-def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
+def store_prompt_lower_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
     """
-    Stores a simple prompt into a string
+    Stores a simple prompt (transformed to lower case) into a string
     :param sp_filename: The Path to the file with the prompt
     :param prompt_filename: The Path to the training set
     :param instruction: The instruction to put at the end

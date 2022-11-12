@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="" method="post" novalidate>
+        <div class="gpt3 TextContainer">
+            <textarea name="gpt3Text" rows="50">{{ text }}</textarea>
+        </div>
+        <div class="gpt3 Between">
+            <input type="submit" name="toCode" value="to Code">
+            <input type="submit" name="toText" value="to Text">
+        </div>
+        <div class="gpt3 CodeContainer">
+            <textarea name="gpt3Code" rows="50">{{ code }}</textarea>
+        </div>
+        <div class="gpt3 Footer">
+        </div>
+    </form>
+{% endblock %}

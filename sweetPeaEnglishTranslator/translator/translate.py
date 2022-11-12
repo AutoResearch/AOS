@@ -2,7 +2,6 @@ from __future__ import annotations
 from sweetPeaEnglishTranslator.translator import store_prompts
 from sweetPeaEnglishTranslator.translator import extract
 from sweetPeaEnglishTranslator.gpt3 import gpt3
-import os
 import inflect
 from fpdf import FPDF
 from sweetPeaEnglishTranslator.translator import post_process
@@ -15,7 +14,7 @@ def translate_text_to_formatted(to_translate: str) -> str:
     :param to_translate: The text to be translated
     :return: A string containing the formated text
     """
-    prompt = store_prompts.store_prompt_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formatted:')
+    prompt = store_prompts.store_prompt_lower_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formatted:')
     answer, prompt = gpt3(prompt, stop_seq=['Unformatted'])
     return answer
 

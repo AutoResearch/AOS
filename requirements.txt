@@ -1,3 +1,6 @@
+wtforms
+Flask
+flask_wtf
 quote
 appdirs==1.4.4
 ascii-graph==1.5.1
