@@ -36,6 +36,12 @@ def switch_prompts(path):
     f.write(res)
     f.close()
 
+def to_lower(path):
+    text_lower = ''
+    with open(path) as f:
+        text_lower += f.read().lower()
+    with open(path, 'w') as f:
+        f.write(text_lower)
 
 if __name__ == '__main__':
-    switch_prompts("gpt3prompt_counterbalancing_text.txt")
+    to_lower("gpt3prompt_format_text.txt")
