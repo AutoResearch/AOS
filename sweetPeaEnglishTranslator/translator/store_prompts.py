@@ -1,4 +1,4 @@
-import extract
+from sweetPeaEnglishTranslator.translator import extract
 
 def store_prompt_simple(sp_filename: str, prompt_filename: str, instruction: str) -> str:
     """
