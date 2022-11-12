@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }} - Autoperimenter</title>
+    {% else %}
+        <title>Autoperimenter</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<div>
+    <a href="/index">Home</a>
+    <a href="/sweetPea">Sweet</a>
+</div>
+{% block content %}{% endblock %}
+</body>
+</html>
