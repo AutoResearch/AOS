@@ -2,7 +2,7 @@
 {% block content %}
 <form action="" method="post" novalidate>
     <div class="gpt3 TextContainer">
-        <textarea name="gpt3Text" rows="50">{{ text }}</textarea>
+        <textarea name="gpt3Text" rows="25">{{ text }}</textarea>
     </div>
     <div class="gpt3 Between">
         <div class="gpt3 buttonContainer">
@@ -13,12 +13,15 @@
             <input type="submit" name="formatText" value="comment/ uncomment text">
             <input type="submit" name="formatCode" value="comment/ uncomment code">
         </div>
+        <div class="gpt3 buttonContainer getSequence">
+            <input type="submit" name="runPython" value="Get Sequence">
+        </div>
     </div>
     <div class="gpt3 CodeContainer">
-        <textarea name="gpt3Code" rows="50">{{ code }}</textarea>
+        <textarea name="gpt3Code" rows="25">{{ code }}</textarea>
     </div>
     <div class="gpt3 Footer">
-        <input type="submit" name="runPython" value="Get Sequence">
+
     </div>
 </form>
 {% endblock %}
