@@ -1,16 +1,11 @@
 ### REGULAR FACTORS
 There is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
-
 ### DERIVED FACTORS
 There are two derived factors: target and lure.
-
 ## target factor
 The target factor depends on a moving trial window (for the last four trials) defined by the letter factor. If the letter on the current trial matches the letter three trials back, then the trial is a target. Conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
-
 ## lure factor
 The lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. If the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. Otherwise, the current trial is not a lure.
-
 ### EXPERIMENT
 We counterbalanced the target and lure factors.
-
 ### END OF EXPERIMENT DESIGN

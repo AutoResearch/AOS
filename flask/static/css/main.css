@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 .Main {
@@ -16,12 +17,10 @@
     float: left;
     width: 45vw;
     min-height: 50vh;
-    background: red;
 }
 
 .Between {
-    display: inline-flex;
-    justify-content: space-around;
+    display: inline-block;
     width: 10vw;
     background: green;
 }
@@ -30,22 +29,32 @@
     display: inline-block;
     float: right;
     width: 45vw;
-    background: green;
+}
+
+.buttonContainer {
+    position: relative;
+    display: inline-flex;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 textarea {
-    padding: 2vw;
+    padding: 2vw 4vw;
+    line-height: 22pt;
+    font-size: 14pt;
     outline: none;
     height: 100%;
     width: 100%;
     resize: none;
-   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box;
 }
 
 input {
     outline: none;
-    padding: 1vw;
-    margin: 2vw;
+    white-space: normal;
+    padding: .5vw;
+    margin: 1vw;
+    width: 6.5vw;
 }

@@ -1,3 +1,6 @@
+from sweetpea.primitives import *
+from sweetpea.constraints import *
+from sweetpea import *
 ### REGULAR FACTORS
 iti = factor("iti", ["long", "short"])
 length = factor("length", ["long", "short"])
@@ -27,3 +30,4 @@ design = [iti, length, alignment, alignment_transition]
 block = fully_cross_block(design, crossing, constraints, False)
 experiments = synthesize_trials_non_uniform(block, 1)
 ### END OF EXPERIMENT DESIGN
+save_experiments_csv(block, experiments,"sweetPeaEnglishTranslator/temp/seq_tmp")
