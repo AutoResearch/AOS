@@ -83,12 +83,12 @@ def sweet():
             print(request.form['my_function'])
             if request.form['my_function'] == 'text_to_code':
                 text = urllib.parse.unquote(request.form['text'])
-                #code = spet.text_to_code(text, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
+                code = spet.text_to_code(text, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
                 return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
             elif request.form['my_function'] == 'code_to_text':
                 code = urllib.parse.unquote(request.form['code'])
-                #text = spet.code_to_text(code, 'pdf_tmp.pdf')
-                #text = spet.uncomment_text(text)
+                text = spet.code_to_text(code, 'pdf_tmp.pdf')
+                text = spet.uncomment_text(text)
                 return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
 
     return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
