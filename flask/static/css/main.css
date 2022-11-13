@@ -128,6 +128,7 @@ body {
 .CodeContainer textarea {
     background: #000d;
     color: #fffaf9;
+    font-size: 11pt;
 }
 
 .buttonContainer {
@@ -139,7 +140,7 @@ body {
 
 textarea {
     line-height: 22pt;
-    padding: 4vh 2vw;
+    padding: 4vh 2.5vw;
     font-size: 14pt;
     border: 2px solid #999;
     border-radius: 4px;

@@ -235,7 +235,7 @@ def code_to_text(to_translate: str, txt_file_name: str = None, pdf_file_name: st
         util.write_to_text(translation, txt_file_name)
 
     if pdf_file_name:
-        util.write_to_text(translation, txt_file_name)
+        util.write_to_pdf(translation, pdf_file_name)
 
     util.log("Translation complete.")
     return translation
@@ -266,17 +266,13 @@ def text_to_code(to_translate: str, txt_file_name: str = None, py_file_name: str
     translation += "### DERIVED FACTORS\n"
     translation += translate_derived_factors_text_to_code(to_translate)
     util.log("Translating counterbalancing scheme...")
+    translation += '### EXPERIMENT\n'
     factors = post_process.get_factors_from_code_full(translation)
     translation += translate_counterbalancing_text_to_code(to_translate, factors)
-    translation += '### EXPERIMENT\n'
     translation += f'design = {post_process.get_factors_from_code(translation)}\n'
     translation += "block = fully_cross_block(design, crossing, constraints, False)\n"
     translation += "experiments = synthesize_trials_non_uniform(block, 1)\n"
     translation += '### END OF EXPERIMENT DESIGN'
-
-    # clean up the temp file
-    if os.path.exists("text_temp.txt"):
-        os.remove("text_temp.txt")
 
     if txt_file_name:
         util.write_to_text(translation, txt_file_name)
@@ -340,7 +336,7 @@ def code_to_formatted(to_translate: str, txt_file_name: str = None, py_file_name
     Returns:
         A string containing the English translation of the sweetpea code
     """
-    util.log("Translating unformated code...")
+    util.log("Translating unformatted code...")
     translation = translate_code_to_formatted(to_translate)
 
     print("Formatting translation...")
