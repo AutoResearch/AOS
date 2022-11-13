@@ -1,3 +1,9 @@
+:root {
+    --pink: #d6a;
+    --black: #111;
+    --white: #fff;
+}
+
 
 * {
     margin: 0;
@@ -6,26 +12,86 @@
 }
 
 body {
-    background: #747a8f;
+    background: #646a7f;
+}
+
+.mainWrapper {
+    padding: 1vh 3vw;
+    color: var(--white);
+    text-shadow: 0 0 2px #0009;
+    letter-spacing: 1pt;
+}
+
+.mainWrapper h1 {
+    font-size: 28pt;
+    line-height: 56pt;
+}
+
+.mainWrapper h2 {
+    font-size: 24pt;
+    line-height: 48pt;
+}
+
+.mainWrapper p {
+    border-bottom: 1px solid #0006;
+    line-height: 24pt;
+    padding-bottom: 2vw;
+
 }
 
 .header {
     position: relative;
     background: #0004;
     display: flex;
-    padding: 1vw;
-    justify-content: space-between;
-
+    padding: 1.5vw 3vw;
+    margin-bottom: 1vw;
+}
+.navBar {
+    width: 100%;
+    position: relative;
+    display: inline-block;
 }
 
+.navBar .float_left {
+    display: inline-block;
+    float: left;
+}
+
+.navBar .float_right {
+    display: inline-block;
+    float: right;
+}
+
+.navBar .float_right a {
+    margin: 0 0 0 1.2vw;
+}
+.navBar .float_left a {
+    margin: 0 1.2vw 0 0;
+}
+
+
 .navBar a {
-    color: #fff;
+    color: var(--white);
+    outline: 1px solid var(--white);
     text-decoration: none;
+    background: var(--pink);
+    padding: .6vw 1.5vw;
+    border-radius: 10px;
+    text-shadow: 0 0 2pt #000f;
 }
 
 .navBar a:hover {
-    text-decoration: underline;
+    color: var(--pink);
+    outline: 1px solid var(--pink);
+    background: var(--black);
 }
+
+.navBar .current {
+    color: var(--pink);
+    outline: 1px solid var(--pink);
+    background: var(--black);
+}
+
 
 .Main {
     position: absolute;
@@ -36,7 +102,7 @@ body {
 .TextContainer {
     display: inline-block;
     float: left;
-    width: 42vw;
+    width: 42%;
     min-height: 50vh;
 
 }
@@ -44,17 +110,19 @@ body {
 .TextContainer textarea {
     background: #fffd;
     color: #000307;
+
+    text-align: justify;
 }
 
 .Between {
     display: inline-block;
-    width: 16vw;
+    width: 16%;
 }
 
 .CodeContainer {
     display: inline-block;
     float: right;
-    width: 42vw;
+    width: 42%;
 }
 
 .CodeContainer textarea {
@@ -70,15 +138,14 @@ body {
 }
 
 textarea {
-    padding: 2vw 3vw;
     line-height: 22pt;
+    padding: 4vh 2vw;
     font-size: 14pt;
     border: 2px solid #999;
     border-radius: 4px;
     outline: none;
-    height: 98%;
-    width: 98%;
-    margin: 1%;
+    height: 100%;
+    width: 100%;
     resize: none;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
@@ -90,11 +157,11 @@ textarea {
     border: none;
     border-radius: 16pt;
     white-space: normal;
-    margin: .5vw;
-    padding: .6vw;
-    width: 10vw;
+    margin: .4vw;
+    padding: .5vw;
+    width: 8.5vw;
     background: #d6a;
-    font-size: 16pt;
+    font-size: 14pt;
     color: #fffe;
     text-shadow: 0 0 2pt #000f;
 }
@@ -105,4 +172,4 @@ textarea {
     color: #d6a;
     text-shadow: 0 0 2pt #fff2;
 }
-}
+
