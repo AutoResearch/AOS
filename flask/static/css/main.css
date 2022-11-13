@@ -46,6 +46,7 @@ body {
     padding: 1.5vw 3vw;
     margin-bottom: 1vw;
 }
+
 .navBar {
     width: 100%;
     position: relative;
@@ -65,6 +66,7 @@ body {
 .navBar .float_right a {
     margin: 0 0 0 1.2vw;
 }
+
 .navBar .float_left a {
     margin: 0 1.2vw 0 0;
 }
@@ -152,6 +154,7 @@ body {
     color: #000307;
     font-size: 12pt;
 }
+
 .buttonContainer {
     position: relative;
     display: inline-flex;
@@ -194,4 +197,6 @@ textarea {
     color: #d6a;
     text-shadow: 0 0 2pt #fff2;
 }
+
+
 
