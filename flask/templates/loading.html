@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+LOADING
+
+</body>
+<script>
+    var f = document.createElement('form');
+    f.action = '{{my_endpoint}}';
+    f.method = 'POST';
+    f.target = '';
+
+    var i_1 = document.createElement('input');
+    i_1.type = 'hidden';
+    i_1.name = 'loading';
+    i_1.value = 'true';
+
+    var i_2 = document.createElement('input');
+    i_2.type = 'hidden';
+    i_2.name = 'my_function';
+    i_2.value = '{{my_function}}';
+
+    var i_3 = document.createElement('input');
+    i_3.type = 'hidden';
+    i_3.name = 'text';
+    i_3.value = '{{text}}';
+
+    var i_4 = document.createElement('input');
+    i_4.type = 'hidden';
+    i_4.name = 'code';
+    i_4.value = '{{code}}';
+
+
+    f.appendChild(i_1);
+    f.appendChild(i_2);
+    f.appendChild(i_3);
+    f.appendChild(i_4);
+
+    document.body.appendChild(f);
+    f.submit();
+</script>
+</html>

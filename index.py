@@ -3,6 +3,7 @@ from sweetPeaEnglishTranslator.myConfig import MyConfig
 from flask_wtf import FlaskForm
 from sweetPeaEnglishTranslator import spet
 import os
+import urllib.parse
 
 _dir = os.path.dirname(__file__)
 template_dir = os.path.join(_dir, 'flask/templates')
@@ -10,6 +11,18 @@ static_dir = os.path.join(_dir, 'flask/static')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 app.config.from_object(MyConfig)
+
+
+def convert(input):
+    # Converts unicode to string
+    if isinstance(input, dict):
+        return {convert(key): convert(value) for key, value in input.iteritems()}
+    elif isinstance(input, list):
+        return [convert(element) for element in input]
+    elif isinstance(input, str):
+        return input.encode('utf-8')
+    else:
+        return input
 
 
 @app.route('/')
@@ -48,20 +61,34 @@ def sweet():
                 text = text_ = request.form['gpt3Text']
                 if spet.check_line_comments(text):
                     text_ = spet.uncomment_text(text)
-                code = spet.text_to_code(text_, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
+                text_ = urllib.parse.quote(convert(text_))
+                return render_template('loading.html', my_endpoint='/sweetPea', my_function='text_to_code', text=text_,
+                                       code=None)
         elif 'toText' in request.form:
             if 'gpt3Code' in request.form:
                 code = code_ = request.form['gpt3Code']
                 if spet.check_line_comments(code):
                     code_ = spet.uncomment_code(code)
-                text = spet.code_to_text(code_, 'pdf_tmp.pdf')
-                text = spet.uncomment_text(text)
+                code_ = urllib.parse.quote(convert(code_))
+                return render_template('loading.html', my_endpoint='/sweetPea', my_function='code_to_text', text=None,
+                                       code=code_)
         elif 'runPython' in request.form:
             file = open(r'sweetPeaEnglishTranslator/translator/output/py_tmp.py', 'r').read()
             exec(file, globals())
             return send_file('sweetPeaEnglishTranslator/translator/output/seq_tmp_0.csv')
         elif 'getPdf' in request.form:
             return send_file('sweetPeaEnglishTranslator/translator/output/pdf_tmp.pdf')
+        elif 'loading' in request.form:
+            if request.form['my_function'] == 'text_to_code':
+                text = urllib.parse.unquote(request.form['text'])
+                code = spet.text_to_code(text, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
+                return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
+            elif request.form['my_function'] == 'code_to_text':
+                code = urllib.parse.unquote(request.form['code'])
+                text = spet.code_to_text(code, 'pdf_tmp.pdf')
+                text = spet.uncomment_text(text)
+                return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
+
     return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
 
 
