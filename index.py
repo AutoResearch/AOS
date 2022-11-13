@@ -16,7 +16,7 @@ app.config.from_object(MyConfig)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', titel='Home')
+    return render_template('index.html', title='About')
 
 
 @app.route('/sweetPea', methods=['GET', 'POST'])
@@ -48,4 +48,19 @@ def sweet():
             print(file)
             exec(file, globals())
             return send_file('sweetPeaEnglishTranslator/translator/output/seq_tmp_0.csv')
-    return render_template('sweetPea.html', title='sweetPea', form=form, text=text, code=code)
+    return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
+
+
+@app.route('/jsPsych', methods=['GET', 'POST'])
+def psych():
+    return render_template('jsPsych.html', title='Psych')
+
+
+@app.route('/resources')
+def resources():
+    return render_template('resources.html', title='Resources')
+
+
+@app.route('/team')
+def team():
+    return render_template('team.html', title='Team')

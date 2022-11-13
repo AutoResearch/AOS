@@ -12,10 +12,21 @@
 <body>
 <div class="header">
     <div class="navBar">
-        <a href="/index">Home</a>
-        <a href="/sweetPea">Sweet</a>
+        <div class="float_left">
+            <a href="/sweetPea" class="{% if title == 'Sweet' %}current{% else %}notcurrent{% endif %}">Sweet</a>
+            <a href="/jsPsych" class="{% if tile == 'Psych' %}current{% else %}notcurrent{% endif %}">Psych</a>
+        </div>
+        <div class="float_right">
+            <a href="/index" class="{% if title == 'About' %}current{% else %}notcurrent{% endif %}">About</a>
+            <a href="/resources"
+               class="{% if title == 'Resources' %}current{% else %}notcurrent{% endif %}">Resources</a>
+            <a href="/team" class="{% if title == 'Team' %}current{% else %}notcurrent{% endif %}">Team</a>
+        </div>
     </div>
+
 </div>
-{% block content %}{% endblock %}
+<div class="mainWrapper">
+    {% block content %}{% endblock %}
+</div>
 </body>
 </html>
