@@ -23,9 +23,9 @@ alignment_transition = factor("alignment transition", [
     derived_level("aligned", transition(is_alignment_transition_aligned, [length, iti])),
     derived_level("unaligned", transition(is_alignment_transition_unaligned, [length, iti]))
 ])
+### EXPERIMENT
 constraints = [exclude(alignment_transition, "unaligned")]
 crossing = [iti, length, alignment, alignment_transition]
-### EXPERIMENT
 design = [iti, length, alignment, alignment_transition]
 block = fully_cross_block(design, crossing, constraints, False)
 experiments = synthesize_trials_non_uniform(block, 1)

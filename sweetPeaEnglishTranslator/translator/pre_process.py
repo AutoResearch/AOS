@@ -57,3 +57,8 @@ def preprocess_text(to_process: str) -> str:
     res = _remove_line_comments(to_process)
     res = _remove_empty_lines(res)
     return _remove_line_breaks(res)
+
+
+def preprocess_code(to_process: str) -> str:
+    res = _remove_line_comments(to_process)
+    return _remove_empty_lines(res)

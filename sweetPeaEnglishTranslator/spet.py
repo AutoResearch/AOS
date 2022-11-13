@@ -14,8 +14,9 @@ def text_to_code(text, out_path, store_file) -> str:
     return translate.text_to_code(_res, py_file_name=out_path, store_sequence_path=store_file)
 
 
-def code_to_text(text) -> str:
-    return translate.code_to_text(text)
+def code_to_text(code, out_path) -> str:
+    _res = translate.code_to_formatted(code)
+    return translate.code_to_text(_res, pdf_file_name=out_path)
 
 
 def check_line_comments(text) -> bool:
@@ -26,23 +27,30 @@ def uncomment_text(text) -> str:
     return pre_process.preprocess_text(text)
 
 
+def uncomment_code(code) -> str:
+    return pre_process.preprocess_code(code)
+
+
 def comment_text(text) -> str:
     return translate.text_to_formatted(text)
+
+
+def comment_code(code) -> str:
+    return translate.code_to_formatted(code)
 
 
 if __name__ == '__main__':
     # to_translate = "test\code_1.py"
     # to_translate = "test/text_4.txt"
-    with open("test/code_1.py") as f:
+    with open("test/code_3.py") as f:
         to_translate = f.read()
     # pre_process.preprocess_text(to_translate, "test/text_1_unformatted.txt")
     # code_f = translate.code_to_formatted(to_translate, export_py=True)
     # print(code_f)
     # translation = "Translation: " + code_to_text(to_translate, export_pdf=True)
-    #text_formatted = translate.text_to_formatted(to_translate)
-    #code = translate.text_to_code(text_formatted, py_file_name='unformatted_1.py')
-    text = translate.code_to_text(to_translate, 'code_1_text.txt')
-
+    # text_formatted = translate.text_to_formatted(to_translate)
+    # code = translate.text_to_code(text_formatted, py_file_name='unformatted_1.py')
+    out = translate.code_to_text(to_translate, 'code_3_text.txt')
 
     # print(text_formatted)
     # code = text_to_code(text_formatted, export_py=True)
