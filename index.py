@@ -79,8 +79,6 @@ def sweet():
         elif 'getPdf' in request.form:
             return send_file('sweetPeaEnglishTranslator/translator/output/pdf_tmp.pdf')
         elif 'loading' in request.form:
-            print(request.form)
-            print(request.form['my_function'])
             if request.form['my_function'] == 'text_to_code':
                 text = urllib.parse.unquote(request.form['text'])
                 code = spet.text_to_code(text, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
