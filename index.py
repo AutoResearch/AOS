@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, send_file
 from sweetPeaEnglishTranslator.myConfig import MyConfig
 from flask_wtf import FlaskForm
-from sweetPeaEnglishTranslator.translator import translate
 from sweetPeaEnglishTranslator import spet
 import os
 
@@ -64,6 +63,24 @@ def sweet():
         elif 'getPdf' in request.form:
             return send_file('sweetPeaEnglishTranslator/translator/output/pdf_tmp.pdf')
     return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
+
+
+@app.route('/sourPea', methods=['GET', 'POST'])
+def sour():
+    with open('sweetPeaEnglishTranslator/test/text_unformatted_1.txt') as f:
+        original = f.read()
+    translation = ''
+    form = FlaskForm()
+    if request.method == 'POST':
+        if 'textToText' in request.form:
+            if 'gpt3Original' in request.form:
+                original = request.form['gpt3Original']
+                original, translation = spet.text_to_text(original)
+        elif 'codeToCode' in request.form:
+            if 'gpt3Original' in request.form:
+                original = request.form['gpt3Original']
+                original, translation = spet.code_to_code(original)
+    return render_template('sourPea.html', title='Sour', form=form, original=original, translation=translation)
 
 
 @app.route('/jsPsych', methods=['GET', 'POST'])

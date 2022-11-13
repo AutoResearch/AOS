@@ -1,5 +1,6 @@
 from sweetPeaEnglishTranslator.translator import pre_process
 from sweetPeaEnglishTranslator.translator import translate
+from sweetPeaEnglishTranslator.translator import validate
 import os
 
 _dirname = os.path.dirname(__file__)
@@ -37,6 +38,14 @@ def comment_text(text) -> str:
 
 def comment_code(code) -> str:
     return translate.code_to_formatted(code)
+
+
+def text_to_text(text) -> str:
+    return validate.text_to_text(text)
+
+
+def code_to_code(code) -> str:
+    return validate.code_to_code(code)
 
 
 if __name__ == '__main__':

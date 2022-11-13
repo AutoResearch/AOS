@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" novalidate>
+    <div class="gpt3 OriginalContainer">
+        <textarea name="gpt3Original" rows="25">{{ original }}</textarea>
+    </div>
+    <div class="gpt3 Between">
+        <div class="gpt3 buttonContainer ctc">
+            <input type="submit" name="codeToCode" value="code to code">
+        </div>
+        <div class="gpt3 buttonContainer ttt">
+            <input type="submit" name="textToText" value="text to text">
+        </div>
+    </div>
+    <div class="gpt3 TranslationContainer">
+        <textarea name="gpt3Translation" rows="25">{{ translation }}</textarea>
+    </div>
+    <div class="gpt3 Footer">
+
+    </div>
+</form>
+{% endblock %}

@@ -104,14 +104,24 @@ body {
     float: left;
     width: 42%;
     min-height: 50vh;
-
 }
 
 .TextContainer textarea {
-    background: #fffd;
+    background: #fff;
     color: #000307;
-
     text-align: justify;
+}
+
+.OriginalContainer {
+    display: inline-block;
+    float: left;
+    width: 42%;
+}
+
+.OriginalContainer textarea {
+    background: #fff;
+    color: #000307;
+    font-size: 12pt;
 }
 
 .Between {
@@ -131,6 +141,17 @@ body {
     font-size: 11pt;
 }
 
+.TranslationContainer {
+    display: inline-block;
+    float: right;
+    width: 42%;
+}
+
+.TranslationContainer textarea {
+    background: #fff;
+    color: #000307;
+    font-size: 12pt;
+}
 .buttonContainer {
     position: relative;
     display: inline-flex;
