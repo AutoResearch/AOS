@@ -1,0 +1,14 @@
+
+### REGULAR FACTORS
+there are three regular factors: color, word, and task. the color factor consists of two levels: red and green. similarly, the word factor consists of the levels "red" and "green". the task corresponds either to color naming or word reading.
+### DERIVED FACTORS
+there are three derived factors: response, congruency, and task transition.
+## response
+the response factor depends on the factors task, color, and word. it has two levels: left and right. if the task is color naming and the color is red or if the task is word reading and the word is "red", then the correct response is left; otherwise, it is right.
+## congruency
+the congruency factor depends on the factors color and word. a trial is considered congruent if the color and word match; otherwise, it is considered incongruent.
+## task transition
+the task transition factor depends on the task factor in the current and previous trials. if the task factor in the current trial is the same as the task factor in the previous trial, then a task transition is considered a task repetition; otherwise, it is considered a task switch.
+### EXPERIMENT
+we counterbalanced the factors color, word, task, and task transition. however, we allowed for no more than four of the same task transitions in a row. all experiment sequences were sampled uniformly from the space of all counterbalanced sequences.
+### END OF EXPERIMENT DESIGN

@@ -51,7 +51,7 @@ def code_to_code(code) -> str:
 if __name__ == '__main__':
     # to_translate = "test\code_1.py"
     # to_translate = "test/text_4.txt"
-    with open("test/code_3.py") as f:
+    with open("test/text_5.txt") as f:
         to_translate = f.read()
     # pre_process.preprocess_text(to_translate, "test/text_1_unformatted.txt")
     # code_f = translate.code_to_formatted(to_translate, export_py=True)
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     # translation = "Translation: " + code_to_text(to_translate, export_pdf=True)
     # text_formatted = translate.text_to_formatted(to_translate)
     # code = translate.text_to_code(text_formatted, py_file_name='unformatted_1.py')
-    out = translate.code_to_text(to_translate, 'code_3_text.txt')
+    out = translate.text_to_formatted(to_translate, 'text_5_formatted.txt')
 
     # print(text_formatted)
     # code = text_to_code(text_formatted, export_py=True)

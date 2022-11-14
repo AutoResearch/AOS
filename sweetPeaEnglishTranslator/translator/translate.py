@@ -15,7 +15,7 @@ def translate_text_to_formatted(to_translate: str) -> str:
     :return: A string containing the formated text
     """
     prompt = store_prompts.store_prompt_lower_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formatted:')
-    answer, prompt = gpt3(prompt, stop_seq=['Unformatted'])
+    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted'])
     return answer
 
 
