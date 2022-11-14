@@ -1,5 +1,6 @@
 :root {
     --pink: #d6a;
+    --highlightpink: #e6b;
     --black: #111;
     --white: #fff;
 }
@@ -18,7 +19,7 @@ body {
 .mainWrapper {
     padding: 1vh 3vw;
     color: var(--white);
-    text-shadow: 0 0 2px #0009;
+    text-shadow: 0 0 3px #0009;
     letter-spacing: 1pt;
 }
 
@@ -28,16 +29,39 @@ body {
 }
 
 .mainWrapper h2 {
+    margin: 2.5vw 0 1vw 0;
     font-size: 24pt;
     line-height: 48pt;
+    letter-spacing: 2pt;
+    text-space: 4pt;
+    text-shadow: 0 0 3px #000c;
 }
 
 .mainWrapper p {
-    border-bottom: 1px solid #0006;
-    line-height: 24pt;
+    border-bottom: 1px solid #0001;
+    line-height: 28pt;
+    font-size: 14pt;
+    letter-spacing: 1.5pt;
+    text-space: 3pt;
+    text-align: justify;
     padding-bottom: 2vw;
-
+    margin-bottom: 1vw;
 }
+
+.mainWrapper p b {
+    text-shadow: 0 0 3px #000b;
+}
+
+.mainWrapper a {
+    color: var(--pink);
+    text-shadow: 0 0 2px var(--black);
+    text-decoration: none;
+}
+
+.mainWrapper a:hover {
+    color: var(--black)
+}
+
 
 .header {
     position: relative;
@@ -51,6 +75,12 @@ body {
     width: 100%;
     position: relative;
     display: inline-block;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 .navBar .float_left {
@@ -178,6 +208,7 @@ textarea {
 }
 
 .gpt3 input {
+    cursor: pointer;
     outline: 2px solid #fffe;
     border: none;
     border-radius: 16pt;
