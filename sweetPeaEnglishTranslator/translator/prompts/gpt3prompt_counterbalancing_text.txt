@@ -16,7 +16,7 @@ task_transition = factor("task transition", [s, r])
 response_transition = factor("response tansition", [s, r])
 we counterbalanced the factors color, word, task, task transition, and response transition. however, the experiment sequences were generated subject to two constraints. first, we allowed for no more than 4 of the same task transitions in a row. second, we allowed for no more than 4 of the same response transitions in a row.
 Code:
-constraints = [no_more_than_k_in_a_row(4, task_transition),no_more_than_k_in_a_row(4, response_transition)]
+constraints = [at_most_k_in_a_row (4, task_transition),at_most_k_in_a_row (4, response_transition)]
 crossing = [color, word, task, task_transition, response transition]
 Text:
 color = factor("color", ["green", "blue"])
@@ -35,7 +35,7 @@ congruency = factor("congruency", [congruent, incongruent])
 number_transition = factor("number transition", [increase, decrease, unchanged])
 we counterbalanced the factors number, color, and word. however, the experiment sequences were generated subject to two constraints. first, we excluded all trials in which the number transition was unchanged. second, we allowed for no more than three trials with the same number in a row. all experiment sequences contained at least twelve trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-constraints = [minimum_trials(12), exclude(number_transition, "unchanged"), no_more_than_k_in_a_row(3, number)]
+constraints = [minimum_trials(12), exclude(number_transition, "unchanged"), at_most_k_in_a_row (3, number)]
 crossing = [number, Color, Word]
 Text:
 shape = factor("shape", [1,"oval", "r"])
@@ -52,7 +52,7 @@ congruency = factor("congruency", ["c", "i"])
 response_transition = factor("response transition", [asr, zdsa])
 we counterbalanced the experiment sequence with respect to the factor congruency. the experiment sequences were generated subject to the constraint that no more than k=7 of the same response transitions could occur in a row.
 Code:
-constraints = [no_more_than_k_in_a_row(7, response_transition)]
+constraints = [at_most_k_in_a_row (7, response_transition)]
 crossing = [congruency]
 Text:
 re = factor("re", ["color", "word", "location"])
