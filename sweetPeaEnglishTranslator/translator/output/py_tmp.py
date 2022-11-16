@@ -2,31 +2,48 @@ from sweetpea.primitives import *
 from sweetpea.constraints import *
 from sweetpea import *
 ### REGULAR FACTORS
-iti = factor("iti", ["long", "short"])
-length = factor("length", ["long", "short"])
+letter = factor("letter", ["a", "b", "c", "d", "e", "f"])
 ### DERIVED FACTORS
 ##
-def is_alignment_aligned(length, iti):
-    return length == iti
-def is_alignment_unaligned(length, iti):
-    return not is_alignment_aligned(length, iti)
-alignment = factor("alignment", [
-    derived_level("aligned", within_trial(is_alignment_aligned, [length, iti])),
-    derived_level("unaligned", within_trial(is_alignment_unaligned, [length, iti]))
+def is_target_yes(letter):
+    return letter[0] == letter[3]
+def is_target_no(letter):
+    return not is_target_yes(letter)
+target = factor("target", [
+    derived_level("yes", window(is_target_yes, [letter], 4, 1)),
+    derived_level("no",  window(is_target_no, [letter], 4, 1))
 ])
 ##
-def is_alignment_transition_aligned(length, iti):
-    return length[0] == iti[1]
-def is_alignment_transition_unaligned(length, iti):
-    return not is_alignment_transition_aligned(length, iti)
-alignment_transition = factor("alignment transition", [
-    derived_level("aligned", transition(is_alignment_transition_aligned, [length, iti])),
-    derived_level("unaligned", transition(is_alignment_transition_unaligned, [length, iti]))
+def is_one_back_lure_yes(letter):
+    return letter[1] == letter[2]
+def is_one_back_lure_no(letter):
+    return not is_one_back_lure_yes(letter)
+one_back_lure = factor("one-back lure", [
+    derived_level("yes", window(is_one_back_lure_yes, [letter], 3, 1)),
+    derived_level("no",  window(is_one_back_lure_no, [letter], 3, 1))
+])
+##
+def is_two_back_lure_yes(letter):
+    return letter[0] == letter[2]
+def is_two_back_lure_no(letter):
+    return not is_two_back_lure_yes(letter)
+two_back_lure = factor("two-back lure", [
+    derived_level("yes", window(is_two_back_lure_yes, [letter], 3, 1)),
+    derived_level("no",  window(is_two_back_lure_no, [letter], 3, 1))
+])
+##
+def is_n_back_lure_yes(letter):
+    return is_one_back_lure_yes(letter) or is_two_back_lure_yes(letter)
+def is_n_back_lure_no(letter):
+    return not is_n_back_lure_yes(letter)
+n_back_lure = factor("n-back lure", [
+    derived_level("yes", window(is_n_back_lure_yes, [letter], 3, 1)),
+    derived_level("no",  window(is_n_back_lure_no, [letter], 3, 1))
 ])
 ### EXPERIMENT
-constraints = [exclude(alignment_transition, "unaligned")]
-crossing = [iti, length, alignment, alignment_transition]
-design = [iti, length, alignment, alignment_transition]
+constraints = [minimum_trials(103)]
+crossing = [target, n_back_lure]
+design = [letter, target, one_back_lure, two_back_lure, n_back_lure]
 block = fully_cross_block(design, crossing, constraints, False)
 experiments = synthesize_trials_non_uniform(block, 1)
 ### END OF EXPERIMENT DESIGN
