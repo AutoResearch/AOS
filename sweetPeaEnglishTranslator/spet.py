@@ -12,7 +12,14 @@ PATH_TMP_TEXT_TO_CODE = os.path.join(_dirname, 'temp/text_to_code.py')
 
 def text_to_code(text, out_path, store_file) -> str:
     _res = translate.text_to_formatted(text)
-    return translate.text_to_code(_res, py_file_name=out_path, store_sequence_path=store_file)
+    res = translate.text_to_code(_res, py_file_name=out_path, store_sequence_path=store_file)
+    _translation = 'from sweetpea.primitives import *\n'
+    _translation += 'from sweetpea.constraints import *\n'
+    _translation += 'from sweetpea import *\n'
+
+    res = _translation + res
+    res += f'\nsave_experiments_csv(block, experiments,"trial_sequence")'
+    return res
 
 
 def code_to_text(code, out_path) -> str:
