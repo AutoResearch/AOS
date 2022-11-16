@@ -100,7 +100,7 @@ def is_hit_incorrect(Letter):
     return not is_hit_correct(letter)
 hit = factor("hit", [
     derived_level("correct", window(is_hit_correct, [letter], 4, 1)),
-    derived_level("incorrect",  window(is_hit_incorrect, [letter], 3, 1))
+    derived_level("incorrect",  window(is_hit_incorrect, [letter], 4, 1))
 ])
 Text:
 the lure factor has two levels: "yes" and "no". it depends on a moving trial window (for the last two trials) defined by the character and target factors. if the character on the current trial matches the character on the previous trial and the target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
@@ -110,8 +110,19 @@ def is_lure_yes(character, target):
 def is_lure_no(character, target):
     return not is_lure_yes(character, target)
 lure = factor("lure", [
-    derived_level("yes", window(is_lure_yes, [character], 3, 1)),
-    derived_level("no",  window(is_lure_no, [character], 3, 1))
+    derived_level("yes", window(is_lure_yes, [character], 2, 1)),
+    derived_level("no",  window(is_lure_no, [character], 2, 1))
+])
+Text:
+the lure factor has two levels: "yes" and "no". it depends on a moving trial window (for the last three trials) defined by the character factor. if the character on the current trial matches the character on the previous trial it is a lure; otherwise, it is not a lure.
+Code:
+def is_one_back_lure_yes(character):
+    return letter[1] == letter[2]
+def is_one_back_lure_no(letter):
+    return not is_one_back_lure_yes(letter)
+one_back_lure = factor("one-back lure", [
+    derived_level("yes", window(is_one_back_lure_yes, [letter], 3, 1)),
+    derived_level("no",  window(is_one_back_lure_no, [letter], 3, 1))
 ])
 Text:
 the color response factor depends on the color factor and has two levels: -1 and 1. if the color is red or blue, then the corresponding color response is -1 or 1, respectively.
