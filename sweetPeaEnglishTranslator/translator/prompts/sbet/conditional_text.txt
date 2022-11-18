@@ -1,0 +1,15 @@
+Text:
+direction_of_arrow = Factor('direction of arrow', ['left', 'right']
+distractor_direction = Factor('distractor direction', ['left', 'right']
+congruency = Factor('congruency', [congruent, incongruent]
+flanker task. In the flanker task, participants were to indicate the direction of the target arrow by pressing one of the previous assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000 or until a response was registered.
+Code:
+def is_correct_a(arrow_pointing):
+    return arrow_pointing == 'left'
+def is_correct_l(arrow_pointing):
+    return arrow_pointing == 'right'
+correct_a = DerivedLevel('a', is_correct_a, [TimelineVariable('direction of arrow')]
+correct_l = DerivedLevel('l', is_correct_l, [TimelineVariable('direction of arrow')]
+correct = DerivedLevel('correct', [correct_a, correct_l]
+flanker = FlankerStimulus(duration=1000, direction=TimelineVariable('direction of arrow'), correct=correct,distractor=TimelineVariable('distractor direction'), choices=['a', 'l'])
+Code:

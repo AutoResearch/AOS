@@ -1,0 +1,11 @@
+Unformatted:
+Each trial started with a fixation cross, presented for 1000ms at the centre of the screen, followed by a Eriksen flanker task. In the flanker task, participants were to indicate the direction of the target arrow by pressing one of two previously assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000ms or until a response was registered.
+Formatted:
+### REGULAR STIMULI:
+a fixation cross, presented for 1000,
+### CONDITIONAL STIMULI:
+flanker task. In the flanker task, participants were to indicate the direction of the target arrow by pressing one of the previous assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000 or until a response was registered.
+### TRIAL BLOCK
+Each trial started with a fixation cross, presented for 1000 at the centre of the screen, followed by a Eriksen flanker task.
+Unformatted:
+

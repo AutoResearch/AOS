@@ -1,0 +1,7 @@
+Text:
+direction_of_arrow = Factor('direction of arrow', ['left', 'right']
+distractor_direction = Factor('distractor direction', ['left', 'right']
+congruency = Factor('congruency', [congruent, incongruent]
+a fixation cross, presented for 1000,
+Code:
+fixation = Fixation(1000)

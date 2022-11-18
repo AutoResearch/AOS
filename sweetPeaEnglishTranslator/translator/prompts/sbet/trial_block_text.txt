@@ -1,0 +1,8 @@
+Text:
+flanker = FlankerStimulus(duration=1000, direction=TimelineVariable('direction of arrow'), correct=correct,distractor=TimelineVariable('distractor direction'), choices=['a', 'l'])
+fixation = Fixation(1000)
+Each trial started with a fixation cross, presented for 1000 at the centre of the screen, followed by a Eriksen flanker task.
+Code:
+trial_block = TrialBlock([fixation, flanker], trial_sequence)
+experiment = Experiment([trial_block])
+Text:
