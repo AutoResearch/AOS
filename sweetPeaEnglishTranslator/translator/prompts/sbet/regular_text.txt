@@ -4,4 +4,14 @@ distractor_direction = Factor('distractor direction', ['left', 'right']
 congruency = Factor('congruency', [congruent, incongruent]
 a fixation cross, presented for 1000,
 Code:
-fixation = Fixation(1000)
+fixation = FixationStimulus(duration=1000)
+Text:
+size = Factor('size', [300, 500])
+iti = Factor('iti', [300, 400, 500, 600])
+color = Factor('color', ['red', 'green'])
+number = Factor('number', [100, 200, 300, 400, 500, 600])
+A variable response-stimulus interval (RSI) of 300-600 ms was used for all blocks. Wen errors were made, a 400ms, red screen appeared.
+Code:
+response_stimulus_interval = BlankStimulus(duration=TimelineVariable("iti"))
+feedback = FeedbackStimulus(duration=400, kind='screen', on_correct=False)
+Text:

@@ -8,4 +8,15 @@ flanker task. In the flanker task, participants were to indicate the direction o
 ### TRIAL BLOCK
 Each trial started with a fixation cross, presented for 1000 at the centre of the screen, followed by a Eriksen flanker task.
 Unformatted:
+Stimuli were presented at fixation. The four possible stimuli were either a single digit (1 or 3) or three digits (111 or 333). In other words, either one or three numeric 1s or 3s were presented. Before each stimulus, either the words, “What number?” or the words “How many?” appeared for 800ms, depending on which task was being performed on that trial. Responses were made using the 1 and 3 keys. Trials were subject-paced, in which a response on one trial initiated the next trial. A variable response–stimulus interval  (RSI)  of  300-600  ms  was  used  for  all  blocks. When errors were made, a 400ms, red screen appeared.
+Formatted:
+### REGULAR STIMULI:
+A variable response-stimulus interval (RSI) of 300-600 ms was used for all blocks. Wen errors were made, a 400ms, red screen appeared.
+### CONDITIONAL STIMULI:
+##
+The four possible stimuli were either a single digit (1 or 3) or three digits (111 or 333). In other words, either one or three numeric 1s or 3s were presented. Responses were made using the 1 ad 3 keys. Trials were subject-paced, in which a response on one trial initiated the next trial.
+##
+Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was beeing performed on that trial.
+### TRIAL BLOCK
+Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was being performed on that trial. A variable reponse-stimulus interval (RSI) of 300-600 ms was used for all blocks. When errors were made, a 400ms, red screen appeared
 
