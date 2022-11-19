@@ -1,0 +1,43 @@
+*Human:
+Each trial started with a fixation cross, presented for 1000ms at the centre of the screen, followed by a Eriksen flanker task. In the flanker task, participants were to indicate the direction of the target arrow by pressing one of two previously assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000ms or until a response was registered.
+*GPT-3:
+### REGULAR STIMULI
+Each trial started with a fixation cross, presented for 1000ms at the centre of the screen,
+### CONDITIONAL STIMULI
+##
+followed by a Eriksen flanker task. In the flanker task, participants were to indicate the direction of the target arrow by pressing one of the previous assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000 or until a response was registered.
+### TRIAL BLOCK
+Each trial started with a fixation cross, presented for 1000 at the centre of the screen, followed by a Eriksen flanker task.
+*Human:
+Stimuli were presented at fixation. The four possible stimuli were either a single digit (1 or 3) or three digits (111 or 333). In other words, either one or three numeric 1s or 3s were presented. Before each stimulus, either the words, “What number?” or the words “How many?” appeared for 800ms, depending on which task was being performed on that trial. Responses were made using the 1 and 3 keys. Trials were subject-paced, in which a response on one trial initiated the next trial. A variable response–stimulus interval  (RSI)  of  300-600  ms  was  used  for  all  blocks. When errors were made, a 400ms, red screen appeared.
+*GPT-3:
+### REGULAR STIMULI
+A variable response-stimulus interval (RSI) of 300-600 ms was used for all blocks. Wen errors were made, a 400ms, red screen appeared.
+### CONDITIONAL STIMULI
+##
+The four possible stimuli were either a single digit (1 or 3) or three digits (111 or 333). In other words, either one or three numeric 1s or 3s were presented. Responses were made using the 1 ad 3 keys. Trials were subject-paced, in which a response on one trial initiated the next trial.
+##
+Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was beeing performed on that trial.
+### TRIAL BLOCK
+Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was being performed on that trial. A variable reponse-stimulus interval (RSI) of 300-600 ms was used for all blocks. When errors were made, a 400ms, red screen appeared.
+*Human:
+We collected RTs and errors rates while participants performed a manual Color-Stroop task. Participants had to indicate one out of four print colors (yellow, blue, green, red) of color words with a left or right keypress. To manipulate self-reference, a prime word (printed in white) was presented before the color word which could be either the possessive pronoun “MEIN” (german for “my”) or the indefinite article “EIN” (german for “a”). German color words for blue, red, green and yellow (“BLAU”, “ROT”, GRÜN”,” GELB”) were presented on a black background. The carrier word was printed in either blue, red, green or yellow color. Primes consisted of the possessive pronoun “MEIN” (German for  ́my ́) and the indefinite article “EIN” (German for  ́a ́) and were printed in white. Participants responded on a QWERTZ keyboard with the keys “D” and “L”. A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms, followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
+*GPT-3:
+### REGULAR STIMULI
+We collected RTs and errors rates while participants performed a manual Color-Stroop task. Participants had to indicate one out of four print colors (yellow, blue, green, red) of color words with a left or right keypress. To manipulate self-reference, a prime word (printed in white) was presented before the color word which could be either the possessive pronoun “MEIN” (german for “my”) or the indefinite article “EIN” (german for “a”). German color words for blue, red, green and yellow (“BLAU”, “ROT”, GRÜN”,” GELB”) were presented on a black background. The carrier word was printed in either blue, red, green or yellow color. Primes consisted of the possessive pronoun “MEIN” (German for  ́my ́) and the indefinite article “EIN” (German for  ́a ́) and were printed in white. A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
+### CONDITIONAL STIMULI
+##
+Participants responded on a QWERTZ keyboard with the keys “D” and “L”. followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms.
+### TRIAL BLOCK
+A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms, followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
+*Human:
+ Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green. An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+*GPT-3:
+### REGULAR STIMULI
+Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+### CONDITIONAL STIMULI
+##
+followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green
+### TRIAL BLOCK
+Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green. An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+*Human:

@@ -1,6 +1,20 @@
 from sweetPeaEnglishTranslator.translator import extract
 
 
+def store_prompt(to_translate: str, prompt_filename: str, preamble:str='') -> str:
+    """
+    Args:
+        to_translate:
+        prompt_filename:
+        keyword_start:
+
+    Returns:
+    """
+    with open(prompt_filename, 'r') as file:
+        stored_string = file.read()
+    return stored_string + f'\n{preamble}\n{to_translate}\n*GPT-3\n'
+
+
 def store_prompt_simple(to_translate: str, prompt_filename: str, instruction: str) -> str:
     """
     Stores a simple prompt (transformed to lower case) into a string

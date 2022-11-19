@@ -33,7 +33,7 @@ def index():
 
 @app.route('/sweetPea', methods=['GET', 'POST'])
 def sweet():
-    with open('sweetPeaEnglishTranslator/test/text_unformatted_1.txt') as f:
+    with open('sweetPeaEnglishTranslator/test/text_unformatted_2.txt') as f:
         text = f.read()
     code = ''
     form = FlaskForm()
@@ -73,15 +73,15 @@ def sweet():
                 return render_template('loading.html', my_endpoint='/sweetPea', my_function='code_to_text', text=None,
                                        code=code_)
         elif 'runPython' in request.form:
-            file = open(r'sweetPeaEnglishTranslator/translator/output/py_tmp.py', 'r').read()
+            file = open(r'sweetPeaEnglishTranslator/translator/output/spet/py_tmp.py', 'r').read()
             exec(file, globals())
-            return send_file('sweetPeaEnglishTranslator/translator/output/seq_tmp_0.csv')
+            return send_file('sweetPeaEnglishTranslator/translator/output/spet/seq_tmp_0.csv')
         elif 'getPdf' in request.form:
-            return send_file('sweetPeaEnglishTranslator/translator/output/pdf_tmp.pdf')
+            return send_file('sweetPeaEnglishTranslator/translator/output/spet/pdf_tmp.pdf')
         elif 'loading' in request.form:
             if request.form['my_function'] == 'text_to_code':
                 text = urllib.parse.unquote(request.form['text'])
-                code = spet.text_to_code(text, 'py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/seq_tmp')
+                code = spet.text_to_code(text, 'spet/py_tmp.py', 'sweetPeaEnglishTranslator/translator/output/spet/seq_tmp')
                 return render_template('sweetPea.html', title='Sweet', form=form, text=text, code=code)
             elif request.form['my_function'] == 'code_to_text':
                 code = urllib.parse.unquote(request.form['code'])

@@ -1,0 +1,74 @@
+*Human:
+direction_of_arrow = Factor('direction of arrow', ['left', 'right']
+distractor_direction = Factor('distractor direction', ['left', 'right']
+congruency = Factor('congruency', [congruent, incongruent]
+In the flanker task, participants were to indicate the direction of the target arrow by pressing one of the previous assigned keys (i.e. a-key for the target arrow pointing to the left and l-key for the target arrow pointing to the right). The arrows remained on the screen for 1000 or until a response was registered.
+*GPT-3:
+def is_correct_a(arrow_pointing):
+    return arrow_pointing == 'left'
+def is_correct_l(arrow_pointing):
+    return arrow_pointing == 'right'
+correct_a = DerivedLevel('a', is_correct_a, [TimelineVariable('direction of arrow')])
+correct_l = DerivedLevel('l', is_correct_l, [TimelineVariable('direction of arrow')])
+correct = DerivedParameter('correct', [correct_a, correct_l])
+flanker = FlankerStimulus(duration=1000, direction=TimelineVariable('direction of arrow'), correct=correct,distractor=TimelineVariable('distractor direction'), choices=['a', 'l'])
+*Human:
+between_counterbalancing_stimulus_to_key_mapping = 0
+color = Factor('color', ['blue', 'green'])
+In the colour-discrimination task, participants were to indicate by keypress whether a square, presented at the centre of the screen for 1200ms was blue (RGB=0; 0; 254) or green (RGB=0; 128; 0). Stimulus-to-key-mapping for the colour-discrimination task (i.e. n-key or v-key) was counterbalanced across participants.
+*GPT-3:
+def is_correct_n(color):
+    return color == 'blue'
+def is_correct_v(color):
+    return color == 'green'
+correct_n = DerivedLevel('n', is_correct_n, [TimelineVariable('color')])
+correct_v = DerivedLevel('v', is_correct_v, [TimelineVariable('color')])
+correct = DerivedParameter('correct', [correct_n, correct_v])
+colour_discrimination = SymbolStimulus(duration=1200, symbol='square', color=TimelineVariable('color'), correct=correct, choices=['n', 'v'])
+*Human:
+stimuli = Factor('stimuli', [one, three, one_one_one, three_three_three])
+task = Factor('task', ['counting', 'reading'])
+iti = Factor('iti', [100, 120, 140, 160, 180, 200])
+color = Factor('color', ['red', 'green'])
+The four possible stimuli were either a single digit (1 or 3) or three digits (111 or 333). In other words, either one or three numeric 1s or 3s were presented. Responses were made using the 1 ad 3 keys. Trials were subject-paced, in which a response on one trial initiated the next trial.
+*GPT-3:
+def is_correct_one(stimuli, task):
+    return (stimuli == '1' and task == 'counting') or (stimuli == '3' and task == 'counting') or (stimuli == '111' and task == 'reading')
+def is_correct_three(stimuli, task):
+    return (stimuli == '3' and task == 'reading') or (simuli == '111' and task == 'counting') or (simuli == '333' and task == 'counting')
+correct_one = DerivedLevel('1', is_correct_one, [TimelineVariable('stimuli')])
+correct_three = DerivedLevel('3', is_correct_three, [TimelineVariable('stimuli')])
+correct = DerivedParameter('correct', [correct_one, correct_three])
+stimuli_trial = TextStimulus(text=TimelineVariable('stimuli'), correct=correct, choices=['1', '3'])
+*Human:
+task_transition = Factor('task transition', ['repeat', 'switch'])
+response = Factor('response', ['j', 'f']_
+task = Factor('task', ['quantity naming', 'number naming'])
+congruency = Factor('congruency', ['congruent', 'incongruent'])
+Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was beeing performed on that trial.
+*GPT-3:
+def is_*Human_what_number(task):
+    return task == 'number naming'
+def is_*Human_how_many(task):
+    return task == 'quantity naming'
+text_what_number = DerivedLevel('What number?', is_text_what_number, [TimelineVariable('task')])
+text_how_many = DerivedLevel('How many?', is_text_how_many, [TimelineVariable('task')])
+text = DerivedParameter('*Human', [text_what_number, text_how_many])
+before_stimulus = TextStimulus(duration=800, text=text)
+*Human:
+between_counterbalancing_stimulus_to_key = ('color',{'red': 'D', 'green': 'D', 'blue': 'L', 'yellow': 'L'})
+iti Factor('iti', [100, 200, 300])
+color = Factor('color', ['green', 'red', 'blue', 'yellow'])
+word = Factor('word', ['green', 'blue', 'red', 'yellow'])
+prime_color = Factor('prime color', ['red', 'green', 'blue', 'yellow'])
+Participants responded on a QWERTZ keyboard with the keys “D” and “L”. followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms.
+*GPT-3:
+def is_correct_d(word):
+    return word == 'red' or word == 'green'
+def is_correct_l(word):
+    return word == 'blue' or word == 'yellow'
+correct_d = DerivedLevel('d', is_correct_d, [TimelineVariable('word')])
+correct_l = DerivedLevel('l', is_correct_l, [TimelineVariable('word')])
+correct = DerivedParameter('correct', [correct_d, correct_l])
+blank_response = BlankStimulus(duration=2000, correct=correct, choices=['d', 'l'])
+*Human:

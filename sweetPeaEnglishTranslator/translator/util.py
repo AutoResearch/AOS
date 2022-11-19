@@ -67,3 +67,32 @@ def write_to_py(text: str, file_name: str):
     log(f"Writing translation to file '{path}...")
     with open(path, "w") as f:
         f.write(text)
+
+
+def get_factors(text: str) -> str:
+    lines = text.splitlines()
+    res = ''
+    for line in lines:
+        words = line.split()
+        if len(words) >= 3:
+            if words[2].startswith('Factor') or words[2].startswith('factor'):
+                res += line + '\n'
+    return res
+
+
+def get_factors_from_file(path: str) -> str:
+    with open(path) as f:
+        text = f.read()
+    return get_factors(text)
+
+
+def get_stimuli(text: str) -> str:
+    lines = text.splitlines()
+    res = ''
+    for line in lines:
+        words = line.split()
+        if len(words) >= 3:
+            word = words[2].split('(')
+            if word[0].endswith('Stimulus'):
+                res += line + '\n'
+    return res

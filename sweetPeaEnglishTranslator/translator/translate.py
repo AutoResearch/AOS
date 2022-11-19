@@ -8,6 +8,52 @@ from sweetPeaEnglishTranslator.translator.constants import *
 from sweetPeaEnglishTranslator.translator import util
 
 
+def translate(to_translate: str, path_to_prompt: str, preamble: str = ''):
+    """
+    Args:
+        to_translate:
+        path_to_prompt:
+        keyword_start:
+        keyword_stop:
+
+    Returns:
+    """
+    if not to_translate:
+        return ''
+    prompt = store_prompts.store_prompt(to_translate, path_to_prompt, preamble)
+    answer, _ = gpt3(prompt, stop_seq=['*Human'])
+    return answer
+
+
+def translate_text_to_formatted_sbet(to_translate: str, preamble: str = ''):
+    return translate(to_translate, PATH_FORMAT_TEXT_SBET, preamble) + '### END'
+
+
+def translate_regular_to_code_sbet(to_translate: str, preamble: str = ''):
+    _ = extract.extract_segment(to_translate, REGULAR_STIMULI_SPET)
+    return translate(_, PATH_REGULAR_TEXT_SBET, preamble)
+
+
+def translate_conditional_to_code_sbet(to_translate: str, preamble: str = ''):
+    _ = extract.extract_segment(to_translate, CONDITIONAL_STIMULI_SPET)
+    print('extracted')
+    print(_)
+    print('***')
+    _lst = extract.extract_all_segments_as_list(_)
+    print('list')
+    print(_lst)
+    print('***')
+    res = ''
+    for i in _lst:
+        res += translate(i, PATH_CONDITIONAL_TEXT_SBET, preamble)
+    return res
+
+
+def translate_trial_block_to_code_sbet(to_translate: str, preamble: str = ''):
+    _ = extract.extract_segment(to_translate, TRIAL_BLOCK_SPET)
+    return translate(_, PATH_TRIAL_BLOCK_TEXT_SBET, preamble)
+
+
 def translate_text_to_formatted(to_translate: str) -> str:
     """
     Add hashtags and reorganize text
@@ -15,7 +61,7 @@ def translate_text_to_formatted(to_translate: str) -> str:
     :return: A string containing the formated text
     """
     prompt = store_prompts.store_prompt_lower_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formatted:')
-    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted'])
+    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted:'])
     return answer
 
 
@@ -290,6 +336,41 @@ def text_to_code(to_translate: str, txt_file_name: str = None, py_file_name: str
         util.write_to_py(_translation, py_file_name)
 
     util.log("Translation complete.")
+    return translation
+
+
+def text_to_code_sbet(to_translate: str, in_sweet_pea: str = PATH_SWEET_PEA_TMP, py_file_name: str = None,
+                      prompt_file_name: str = None) -> str:
+    """
+    Translates text to sweetPea code
+    :param to_translate: the string or file to translate
+    :param store_sequence_path: the path where sequence should be stored
+    :return: code as string
+    """
+    # create a temporary file if to_translate is not a path
+
+    util.log("Translating text to sbet...")
+    translation = '### REGULAR STIMULI\n'
+    util.log("Translating regular stimuli...")
+    prompt = to_translate + '\nFACTORS(preamble to regular and conditional):\n'
+    factors = None
+    if in_sweet_pea:
+        factors = util.get_factors_from_file(in_sweet_pea)
+        prompt += factors + '\nSTIMULI(preamble to trial block):\n'
+    translation += translate_regular_to_code_sbet(to_translate, factors)
+    util.log("Translating conditional stimuli...")
+    translation += '### CONDITIONAL STIMULI\n'
+    translation += translate_conditional_to_code_sbet(to_translate, factors)
+    util.log("Translating trial blocks...")
+    translation += '### TRIAL BLOCK\n'
+    stimuli = util.get_stimuli(translation)
+    prompt += stimuli
+    translation += translate_trial_block_to_code_sbet(to_translate, stimuli)
+    util.log("Translation complete.")
+    if py_file_name:
+        util.write_to_py(translation, py_file_name)
+    if prompt_file_name:
+        util.write_to_text(prompt, prompt_file_name)
     return translation
 
 

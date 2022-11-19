@@ -1,0 +1,20 @@
+### REGULAR STIMULI
+Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green. An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+### CONDITIONAL STIMULI
+##
+Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green. An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+### TRIAL BLOCK
+Each trial started with a fixation cross (‘x’) presented on the screen for 500ms, followed by a color word (i.e., ‘GREEN’ or ‘RED’). The two color words were presented in either green or red print-color and the participants had to response with either 'C' if the color was red or 'N' if the color was green. An error screen was presented if participants pressed the wrong key or did not respond within 1500ms. There was a 1500ms inter-trial-interval before the next fixation cross occurred.
+### END
+FACTORS(preamble to regular and conditional):
+color = factor("color",  ["red", "green"])
+word = factor("word", ["red", "green"])
+congruency = factor("congruency", [derived_level("congruent", within_trial(is_congruency_congruent, [color, word])), derived_level("incongruent", within_trial(is_congruency_incongruent, [color, word]))])
+congruency_transition = factor("congruency transition", [derived_level("repeat", transition(is_congruency_transition_repeat, [congruency])), derived_level("switch", transition(is_congruency_transition_switch, [congruency]))])
+
+STIMULI(preamble to trial block):
+fixation = FixationStimulus(duration=500)
+color_word = TextStimulus(duration=1500, text=TimelineVariable('word'), color=TimelineVariable('color'))
+intertrial_interval = BlankStimulus(duration=1500)
+feedback = FeedbackStimulus(duration=1500, on_correct=False)
+color_word = TextStimulus(duration=1500, text=TimelineVariable('word'), color=TimelineVariable('color'), correct=correct, choices=['c', 'n'])
