@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, send_file
 from sweetPeaEnglishTranslator.myConfig import MyConfig
 from flask_wtf import FlaskForm
-from sweetPeaEnglishTranslator import spet
+from sweetPeaEnglishTranslator import spet, sbet
+from sweetbean import util
 import os
 import urllib.parse
 
@@ -112,7 +113,65 @@ def sour():
 
 @app.route('/jsPsych', methods=['GET', 'POST'])
 def psych():
-    return render_template('jsPsych.html', title='Psych')
+    with open('sweetPeaEnglishTranslator/test/to_experiment/text_np_full_1.txt') as f:
+        text = f.read()
+    code = ''
+    form = FlaskForm()
+    if request.method == 'POST':
+        if 'formatText' in request.form:
+            if 'gpt3Text' in request.form:
+                text = request.form['gpt3Text']
+                if sbet.check_line_comments(text):
+                    text = sbet.uncomment_text(text)
+                else:
+                    text = sbet.comment_text(text)
+            if 'gpt3Code' in request.form:
+                code = request.form['gpt3Code']
+        elif 'formatCode' in request.form:
+            if 'gpt3Code' in request.form:
+                code = request.form['gpt3Code']
+                if sbet.check_line_comments(code):
+                    code = sbet.uncomment_code(code)
+                else:
+                    code = sbet.comment_code(code)
+            if 'gpt3Text' in request.form:
+                text = request.form['gpt3Text']
+        elif 'toCode' in request.form:
+            if 'gpt3Text' in request.form:
+                text = text_ = request.form['gpt3Text']
+                if sbet.check_line_comments(text):
+                    text_ = sbet.uncomment_text(text)
+                text_ = urllib.parse.quote(convert(text_))
+                return render_template('loading.html', my_endpoint='/jsPsych', my_function='text_to_code', text=text_,
+                                       code=None)
+        elif 'toText' in request.form:
+            if 'gpt3Code' in request.form:
+                code = code_ = request.form['gpt3Code']
+                if sbet.check_line_comments(code):
+                    code_ = sbet.uncomment_code(code)
+                code_ = urllib.parse.quote(convert(code_))
+                return render_template('loading.html', my_endpoint='/jsPsych', my_function='code_to_text', text=None,
+                                       code=code_)
+        elif 'runPython' in request.form:
+            file = open(r'sweetPeaEnglishTranslator/translator/output/sbet/py_tmp.py', 'r').read()
+            exec(file, globals())
+            util.create_html('sweetPeaEnglishTranslator/translator/output/sbet/out.js', 'flask/templates/experiment.html')
+            return render_template('experiment.html')
+        elif 'getPdf' in request.form:
+            return send_file('sweetPeaEnglishTranslator/translator/output/sbet/pdf_tmp.pdf')
+        elif 'loading' in request.form:
+            if request.form['my_function'] == 'text_to_code':
+                text = urllib.parse.unquote(request.form['text'])
+                code = sbet.text_to_code(text, 'sbet/py_tmp.py')
+                return render_template('jsPsych.html', title='Psych', form=form, text=text, code=code)
+            elif request.form['my_function'] == 'code_to_text':
+                code = urllib.parse.unquote(request.form['code'])
+                text = sbet.code_to_text(code, 'pdf_tmp.pdf')
+                text = spet.uncomment_text(text)
+                return render_template('jsPsych.html', title='Psych', form=form, text=text, code=code)
+
+    return render_template('jsPsych.html', title='Psych', form=form, text=text, code=code)
+
 
 
 @app.route('/resources')

@@ -12,7 +12,7 @@ stimuli_trial = TextStimulus(text=TimelineVariable('stimuli'), correct=correct, 
 before_stimulus = TextStimulus(duration=800, text=text)
 Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was being performed on that trial. A variable reponse-stimulus interval (RSI) of 300-600 ms was used for all blocks. When errors were made, a 400ms, red screen appeared
 *GPT-3:
-trial_block = TrialBlock([before_stimulus, stimulus_trial, feedback, response_stimulus_interval])
+trial_block = TrialBlock([before_stimulus, stimulus_trial, feedback, response_stimulus_interval], trial_sequence)
 experiment = Experiment([trial_block])
 *Human:
 color_stroop_task = TextStimulus(duration=304, text=TimelineVariable('word'), color=TimelineVariable('print color'))
@@ -23,6 +23,6 @@ intertrial_interval = BlankStimulus(duration=TimelineVariable('iti'))
 blank_response = BlankStimulus(duration=2000, correct=correct, choices=['d', 'l'])
 A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms, followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
 *GPT-3:
-trial_block = TrialBlock([fixation, prime, color_stroop_task, blank_response, feedback, intertrial_interval])
+trial_block = TrialBlock([fixation, prime, color_stroop_task, blank_response, feedback, intertrial_interval],trial_sequence)
 experiment = Experiment([trial_block])
 *Human:

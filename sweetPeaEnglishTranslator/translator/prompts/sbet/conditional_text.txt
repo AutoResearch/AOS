@@ -63,12 +63,12 @@ word = Factor('word', ['green', 'blue', 'red', 'yellow'])
 prime_color = Factor('prime color', ['red', 'green', 'blue', 'yellow'])
 Participants responded on a QWERTZ keyboard with the keys “D” and “L”. followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms.
 *GPT-3:
-def is_correct_d(word):
-    return word == 'red' or word == 'green'
-def is_correct_l(word):
-    return word == 'blue' or word == 'yellow'
-correct_d = DerivedLevel('d', is_correct_d, [TimelineVariable('word')])
-correct_l = DerivedLevel('l', is_correct_l, [TimelineVariable('word')])
+def is_correct_d(color):
+    return color == 'red' or color == 'green'
+def is_correct_l(color):
+    return color == 'blue' or color == 'yellow'
+correct_d = DerivedLevel('d', is_correct_d, [TimelineVariable('color')])
+correct_l = DerivedLevel('l', is_correct_l, [TimelineVariable('color')])
 correct = DerivedParameter('correct', [correct_d, correct_l])
 blank_response = BlankStimulus(duration=2000, correct=correct, choices=['d', 'l'])
 *Human:
