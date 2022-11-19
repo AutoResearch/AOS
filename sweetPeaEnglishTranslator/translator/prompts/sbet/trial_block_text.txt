@@ -1,16 +1,28 @@
-Text:
+*Human:
 flanker = FlankerStimulus(duration=1000, direction=TimelineVariable('direction of arrow'), correct=correct,distractor=TimelineVariable('distractor direction'), choices=['a', 'l'])
 fixation = Fixation(1000)
 Each trial started with a fixation cross, presented for 1000 at the centre of the screen, followed by a Eriksen flanker task.
-Code:
+*GPT-3:
 trial_block = TrialBlock([fixation, flanker], trial_sequence)
 experiment = Experiment([trial_block])
-Text:
+*Human:
 response_stimulus_interval = BlankStimulus(duration=TimelineVariable("iti"))
 feedback = FeedbackStimulus(duration=400, kind='screen', on_correct=False)
 stimuli_trial = TextStimulus(text=TimelineVariable('stimuli'), correct=correct, choices=['1', '3'])
 before_stimulus = TextStimulus(duration=800, text=text)
 Before each stimulus, either the words, "What number?" or the words "How many?" appeared for 800ms, depending on which task was being performed on that trial. A variable reponse-stimulus interval (RSI) of 300-600 ms was used for all blocks. When errors were made, a 400ms, red screen appeared
+*GPT-3:
 trial_block = TrialBlock([before_stimulus, stimulus_trial, feedback, response_stimulus_interval])
 experiment = Experiment([trial_block])
-Text:
+*Human:
+color_stroop_task = TextStimulus(duration=304, text=TimelineVariable('word'), color=TimelineVariable('print color'))
+prime = TextStimulus(duration=608, text=TimelineVariable('prime'), color='white')
+fixation = FixationStimulus(duration=512)
+feedback = FeedbackStimulus(duration=1008, on_correct=False)
+intertrial_interval = BlankStimulus(duration=TimelineVariable('iti'))
+blank_response = BlankStimulus(duration=2000, correct=correct, choices=['d', 'l'])
+A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms, followed by a blank screen until response registration. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
+*GPT-3:
+trial_block = TrialBlock([fixation, prime, color_stroop_task, blank_response, feedback, intertrial_interval])
+experiment = Experiment([trial_block])
+*Human:

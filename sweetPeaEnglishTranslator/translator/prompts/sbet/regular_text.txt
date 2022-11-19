@@ -1,17 +1,29 @@
-Text:
+*Human:
 direction_of_arrow = Factor('direction of arrow', ['left', 'right']
 distractor_direction = Factor('distractor direction', ['left', 'right']
 congruency = Factor('congruency', [congruent, incongruent]
 a fixation cross, presented for 1000,
-Code:
+*GPT-3:
 fixation = FixationStimulus(duration=1000)
-Text:
+*Human:
 size = Factor('size', [300, 500])
 iti = Factor('iti', [300, 400, 500, 600])
 color = Factor('color', ['red', 'green'])
 number = Factor('number', [100, 200, 300, 400, 500, 600])
 A variable response-stimulus interval (RSI) of 300-600 ms was used for all blocks. Wen errors were made, a 400ms, red screen appeared.
-Code:
+*GPT-3:
 response_stimulus_interval = BlankStimulus(duration=TimelineVariable("iti"))
 feedback = FeedbackStimulus(duration=400, kind='screen', on_correct=False)
-Text:
+*Human:
+print_color = Factor('print color', ['blue', 'green', 'yellow', 'red'])
+word = Factor('word', ['BLUE', 'YELLOW', 'GREEN', 'RED'])
+prime = Factor('prime', ['MEIN', 'EIN'])
+iti = Factor('iti', [256, 320, 384, 448, 512])
+We collected RTs and errors rates while participants performed a manual Color-Stroop task. Participants had to indicate one out of four print colors (yellow, blue, green, red) of color words with a left or right keypress. To manipulate self-reference, a prime word (printed in white) was presented before the color word which could be either the possessive pronoun “MEIN” (german for “my”) or the indefinite article “EIN” (german for “a”). English color words for blue, red, green and yellow (“BLUE”, “RED”, "GREEN"”,” YELLOW”) were presented on a black background. The carrier word was printed in either blue, red, green or yellow color. Primes consisted of the possessive pronoun “MEIN” (German for  ́my ́) and the indefinite article “EIN” (German for  ́a ́) and were printed in white. A trial started with the presentation of a fixation cross for 512 ms, followed by the prime for 608 ms. Then the color word was shown for 304 ms. In case of incorrect, or late response (RT >2000 ms) an error message appeared for 1008 ms. The next trial started after a variable intertrial interval of 256-512 ms.
+*GPT-3:
+color_stroop_task = TextStimulus(duration=304, text=TimelineVariable('word'), color=TimelineVariable('print color'))
+prime = TextStimulus(duration=608, text=TimelineVariable('prime'), color='white')
+fixation = FixationStimulus(duration=512)
+feedback = FeedbackStimulus(duration=1008, on_correct=False)
+intertrial_interval = BlankStimulus(duration=TimelineVariable('iti'))
+*Human:

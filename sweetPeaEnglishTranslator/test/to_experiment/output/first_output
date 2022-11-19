@@ -1,0 +1,8 @@
+fixation = FixationStimulus(duration=500)
+color_word = TextStimulus(duration=1500, text=TimelineVariable('word'), color=TimelineVariable('print color'))
+neutral_letters = TextStimulus(duration=1500, text=TimelineVariable('neutral letters'), color=TimelineVariable('print color'))
+intertrial_interval = BlankStimulus(duration=1500)
+feedback = FeedbackStimulus(duration=1500, on_correct=False)
+
+trial_block = TrialBlock([fixation, color_word, feedback, intertrial_interval])
+experiment = Experiment([trial_block])

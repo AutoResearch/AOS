@@ -1,0 +1,10 @@
+color,word,congruency,congruency transition
+green,green,congruent,
+red,green,incongruent,switch
+green,green,congruent,switch
+green,red,incongruent,switch
+red,green,incongruent,repeat
+green,red,incongruent,repeat
+red,red,congruent,switch
+red,red,congruent,repeat
+green,green,congruent,repeat

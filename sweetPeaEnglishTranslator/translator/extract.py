@@ -29,6 +29,28 @@ def extract_segment(text: str, reg_fac_line: str) -> str:
     return extracted_code
 
 
+def extract_all_segments_as_list(text: str, reg_fac_line: str = "##") -> list:
+    lines = text.splitlines()
+    lst = []
+    index = -1
+    cur = ''
+    index_new = -1
+    for line in lines:
+        if index_new != index:
+            cur = line + '\n'
+            index = index_new
+        elif index >= 0:
+            cur += line + '\n'
+        if line.startswith(reg_fac_line):
+            index_new += 1
+            lst.append(cur)
+            cur = ''
+    if cur:
+        lst.append(cur)
+    return lst
+
+
+
 def extract_regular_factor(filename: str) -> str:
     return extract_segment(filename, REGULAR_FACTORS)
 
