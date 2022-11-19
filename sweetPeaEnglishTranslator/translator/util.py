@@ -1,9 +1,15 @@
 import os
+
+import numpy
 from fpdf import FPDF
+import pandas as pd
+from numpy import nan
+import math
 
 _dirname = os.path.dirname(__file__)
 # prompts for code to text
 PATH_TO_OUTPUT = os.path.join(_dirname, 'output')
+PATH_TO_EXPERIMENT = os.path.join(_dirname, '../../flask/templates/experiment.html')
 
 
 def log(string: str):
@@ -95,4 +101,28 @@ def get_stimuli(text: str) -> str:
             word = words[2].split('(')
             if word[0].endswith('Stimulus'):
                 res += line + '\n'
+    return res
+
+
+def get_sequece(text: str) -> str:
+    df = pd.read_csv(text)
+    columns = df.columns
+    lst = [row for index, row in df.iterrows()]
+    res = []
+    for r in lst:
+        obj = {}
+        for c in columns:
+            if isinstance(r[c], float) and math.isnan(r[c]):
+                obj[c] = 'null'
+            else:
+                obj[c] = r[c]
+        res.append(obj)
+    return res
+
+
+def out_to_js() -> str:
+    _dir = os.path.join(PATH_TO_OUTPUT, '/sbet/out.js')
+    res = 'text = experiment.to_psych()\n'
+    res += 'with open("sweetPeaEnglishTranslator/translator/output/sbet/out.js", "w") as f:\n'
+    res += '    f.write(text)\n'
     return res

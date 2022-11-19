@@ -46,3 +46,4 @@ END_SPET = "### END"
 
 #
 PATH_SWEET_PEA_TMP = os.path.join(_dirname, 'output/spet/py_tmp.py')
+PATH_SEQUENCE_TMP = os.path.join(_dirname, 'output/spet/seq_tmp_0.csv')

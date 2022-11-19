@@ -36,13 +36,7 @@ def translate_regular_to_code_sbet(to_translate: str, preamble: str = ''):
 
 def translate_conditional_to_code_sbet(to_translate: str, preamble: str = ''):
     _ = extract.extract_segment(to_translate, CONDITIONAL_STIMULI_SPET)
-    print('extracted')
-    print(_)
-    print('***')
     _lst = extract.extract_all_segments_as_list(_)
-    print('list')
-    print(_lst)
-    print('***')
     res = ''
     for i in _lst:
         res += translate(i, PATH_CONDITIONAL_TEXT_SBET, preamble)
@@ -339,7 +333,8 @@ def text_to_code(to_translate: str, txt_file_name: str = None, py_file_name: str
     return translation
 
 
-def text_to_code_sbet(to_translate: str, in_sweet_pea: str = PATH_SWEET_PEA_TMP, py_file_name: str = None,
+def text_to_code_sbet(to_translate: str, in_sweet_pea: str = PATH_SWEET_PEA_TMP,
+                      in_sequence_pea: str = PATH_SEQUENCE_TMP, py_file_name: str = None,
                       prompt_file_name: str = None) -> str:
     """
     Translates text to sweetPea code
@@ -348,7 +343,6 @@ def text_to_code_sbet(to_translate: str, in_sweet_pea: str = PATH_SWEET_PEA_TMP,
     :return: code as string
     """
     # create a temporary file if to_translate is not a path
-
     util.log("Translating text to sbet...")
     translation = '### REGULAR STIMULI\n'
     util.log("Translating regular stimuli...")
@@ -368,9 +362,17 @@ def text_to_code_sbet(to_translate: str, in_sweet_pea: str = PATH_SWEET_PEA_TMP,
     translation += translate_trial_block_to_code_sbet(to_translate, stimuli)
     util.log("Translation complete.")
     if py_file_name:
-        util.write_to_py(translation, py_file_name)
+        write = 'from sweetbean import *\n'
+        write += 'from sweetbean.primitives import *\n'
+        write += 'from numpy import nan\n'
+        write += f'trial_sequence = TrialSequence({str(util.get_sequece(in_sequence_pea))})\n'
+        write += translation + '\n'
+        write += util.out_to_js()
+        util.write_to_py(write, py_file_name)
     if prompt_file_name:
         util.write_to_text(prompt, prompt_file_name)
+
+
     return translation
 
 
@@ -431,3 +433,6 @@ def code_to_formatted(to_translate: str, txt_file_name: str = None, py_file_name
         util.write_to_py(translation, py_file_name)
     print("Translation complete.")
     return translation
+
+if __name__ == '__main__':
+    print(str(util.get_sequece(PATH_SEQUENCE_TMP)))
