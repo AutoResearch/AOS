@@ -41,5 +41,5 @@ def codeToCode(infile):
 
 
 if __name__ == '__main__':
-    # sweetToSour('example_1/code_1.py')
-    codeToCode('example_2/code_1.py')
+    sweetToSour('example_2/code_1.py')
+    #codeToCode('example_2/code_1.py')
