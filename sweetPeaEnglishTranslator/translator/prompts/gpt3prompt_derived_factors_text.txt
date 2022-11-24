@@ -11,13 +11,13 @@ def is_response_down(color):
     return color == "brown"
 response = factor("response", [derived_level("left", within_trial(is_response_left, [color])), derived_level("right", within_trial(is_response_right, [color])), derived_level("up", within_trial(is_response_up, [color])), derived_level("down", within_trial(is_response_down, [color]))])
 Text:
-the congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent".
+the congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent". The ratio between "congruent" and "incongruent" trials was 7 to 11
 Code:
 def is_congruency_congruent(color, word):
     return color == word
 def is_congruency_incongruent(color, word):
     return not is_congruency_congruent(color, word)
-congruency = factor("congruency", [derived_level("congruent", within_trial(is_congruency_congruent, [color, word])), derived_level("incongruent", within_trial(is_congruency_incongruent, [color, word]))])
+congruency = factor("congruency", [derived_level("congruent", within_trial(is_congruency_congruent, [color, word]), 7), derived_level("incongruent", within_trial(is_congruency_incongruent, [color, word]), 11)])
 Text:
 the parity factor depends on the regular factor digit has two levels: "odd" and "even". a trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
 Code:
@@ -51,7 +51,7 @@ def is_response_right(color, word, task):
     return (task == "color naming" and color == "green") or (task == "word reading" and word == "red")
 response = factor("response", [derived_level("left", within_trial(is_response_left, [color, word, task])), derived_level("right", within_trial(is_response_right, [color, word, task]))])
 Text:
-the number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". if the number on the current trial is larger than the previous one, then the trial is considered an "increment". if the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". otherwise, the trial is considered a "decrement".
+the number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". if the number on the current trial is larger than the previous one, then the trial is considered an "increment". if the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". otherwise, the trial is considered a "decrement". The "increment" level occured three times as often as the "unchanged" and the "decrement" level.
 Code:
 def is_number_transition_increment(number):
     return int(number[0]) < int(number[1])
@@ -59,7 +59,7 @@ def is_number_transition_unchanged(number):
     return int(number[0]) == int(number[1])
 def is_number_transition_decrement(number):
     return not is_number_transition_increment(num_factor) and not is_number_transition_unchanged(num_factor)
-number_transition = factor("number transition", [derived_level("increment", transition(is_number_transition_increment, [number])), derived_level("unchanged", transition(is_number_transition_unchanged, [number])), derived_level("decrement", transition(is_number_transition_decrement, [number]))])
+number_transition = factor("number transition", [derived_level("increment", transition(is_number_transition_increment, [number]),3), derived_level("unchanged", transition(is_number_transition_unchanged, [number])), derived_level("decrement", transition(is_number_transition_decrement, [number]))])
 Text:
 the hit factor has two levels: "correct" and "incorrect". it depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back and the letter on the current trial matches the letter one trial back, then the trial is "correct". otherwise, the current trial is "incorrect".
 Code:
@@ -85,11 +85,11 @@ def is_one_back_lure_no(letter):
     return not is_one_back_lure_yes(letter)
 one_back_lure = factor("one-back lure", [derived_level("yes", window(is_one_back_lure_yes, [letter], 3, 1)), derived_level("no",  window(is_one_back_lure_no, [letter], 3, 1))])
 Text:
-the color response factor depends on the color factor and has two levels: -1 and 1. if the color is red or blue, then the corresponding color response is -1 or 1, respectively.
+the color response factor depends on the color factor and has two levels: -1 and 1. if the color is red or blue, then the corresponding color response is -1 or 1, respectively. The -1 level occured 5 times as often as the +1 level
 Code:
 def is_color_response_minus_one(color):
     return (color == "red" or color == "blue")
 def is_color_response_one(color):
     return not is_color_response_minus_one(color)
-color_response = factor("color response", [derived_level(-1, within_trial(is_color_response_minus_one,   [color])), derived_level(1, within_trial(is_color_response_one,   [color]))])
+color_response = factor("color response", [derived_level(-1, within_trial(is_color_response_minus_one,   [color]),5), derived_level(1, within_trial(is_color_response_one,   [color]))])
 Text:

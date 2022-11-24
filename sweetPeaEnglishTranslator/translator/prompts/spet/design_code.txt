@@ -1,0 +1,340 @@
+Code:
+num = factor("number",  range(0,20))
+up_lvl = simple_level("up")
+down_lvl = simple_level("down")
+mot = factor("motion",  [up_lvl, down_lvl])
+shp = factor("shape", ["circle", "square", "triangle"])
+def is_larg_10(num):
+    return int(num) > 10
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+large_level = derived_level("large", within_trial(is_larg_10, [num]))
+small_level = derived_level("small", within_trial(is_small_eq_10, [num]))
+mag_factor = factor("magnitude", [
+    large_level,
+    small_level
+])
+exclusion = exclude(mot, down_lvl)
+eliminate = [
+    exclusion,
+    minimum_trials(100)]
+all_factors = [num, mot, shp]
+block = MultiCrossBlock(design=all_factors, crossings=[[mot], [shp,mot], [num]], eliminate)
+Text:
+We counterbalanced the factors motion and number seperatly. We also crossed the factors shape and motion. However, we excluded all trials in which the motion was down. All experiment sequences contained at least 100 trials.
+Code:
+col = factor("color",  ["red", "green", "blue", "brown"])
+wrd = factor("word", ["red", "green", "blue", "brown"])
+congr = derived_level("congruent", within_trial(is_congruent, [color, word]))
+incongr = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+# Define the congruency factor with two derived levels.
+congruency = factor("congruency", [
+    congr,
+    incongr
+])
+trial_constraint = minimum_trials(20)
+exclusion_constraint = exclude(congruency, congr)
+nuppo = [trial_constraint, exclusion_constraint]
+experi = [col, wrd, response, congruency]
+block = fully_cross_block(design=experi, [col, wrd], nuppo, require_complete_crossing=False)
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We counterbalanced the color factor with the word factor. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+col = factor("color",  ["red", "green"])
+wrd = factor("word", ["red", "green"])
+tsk = factor("task", ["color naming", "word reading"])
+response_transition = factor("response transition", [
+    derived_level("repetition",
+                 transition(is_response_repeat, [response])),
+    derived_level("switch",
+                 transition(is_response_switch, [response]))
+])
+task_transition = factor("task transition", [
+    derived_level("repetition",
+                 transition(is_task_repetition, [tsk])),
+    derived_level("switch",
+                 transition(is_task_switch, [tsk]))
+])
+constraints = [
+    no_more_than_k_in_a_row(4, task_transition),
+    no_more_than_k_in_a_row(4, response_transition)]
+block = fully_cross_block(design=[col, wrd, tsk, cong, resp, task_transition, response_transition], crossing=[col, wrd, tsk, task_transition, response_transition], constraints)
+Text:
+We counterbalanced the factors color, word, task, task transition, and response transition. However, the experiment sequences were generated subject to two constraints. First, we allowed for no more than 4 of the same task transitions in a row. Second, we allowed for no more than 4 of the same response transitions in a row.
+Code:
+all_letters = ["A", "B", "C", "D", "E", "F"]
+char = factor("letter",  all_letters)
+tar = factor("target", [
+    derived_level("yes", window(is_target, [char], 3, 1)),
+    derived_level("no",  window(is_no_target, [char], 3, 1))
+])
+letter = facor("lure", ["is lure", "is not lure"])
+block = fully_cross_block([char, tar, letter], [char, tar], [])
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We counterbalanced the letter factor with the target and the lure factor.
+Code:
+col = factor("color",  ["red", "green", "blue", "brown"])
+wrd = factor("word", ["red", "green", "blue", "brown"])
+congr = derived_level("congruent", within_trial(is_congruent, [color, word]))
+incongr = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congruency = factor("congruency", [
+    congr,
+    incongr
+])
+trial_constraint = minimum_trials(20)
+exclusion_constraint = exclude(congruency, congr)
+nuppo = [trial_constraint, exclusion_constraint]
+experi  = [[col, wrd], [wrd, response], [col,congruency], [col congruency, response]]
+block = MultiCrossBlock(design=[col, wrd, response, congruency], constraints=nuppo, crossings=experi)
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We had a design with multiple seperate crossings.The color factor was crossed with the word factor, the word factor was crossed with the response factor, the color factor was crossed with te congruency factor and the color, congruency and response factor were croessed with each other. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+all_letters = ["A", "B", "C", "D", "E", "F"]
+target = Factor("lure", [1, 0])
+char = factor("letter",  all_letters)
+tar = factor("target", [
+    derived_level("yes", window(is_target, [char], 3, 1)),
+    derived_level("no",  window(is_no_target, [char], 3, 1))
+])
+design       = [[char, tar], [lure]]
+crossing     = [char, tar]
+block        = MultiCrossBlock(design=crossing,constraints=[],crossings=design)
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We had a counterbalance design with multiple crossings. The letter factor was crossed with the target factor while the lure factor was counterbalanced seperatly.
+Code:
+target = factor("number", ['1', '2', '3', '4', '5'])
+color = factor("Color",  ["red", "green"])
+word = factor("Word", ["red", "green"])
+task = factor("Task", ["color naming", "word reading"])
+def is_lrg(num_factor):
+    return int(num_factor[0]) < int(num_factor[1])
+def is_eq(num_factor):
+    return int(num_factor[0]) == int(num_factor[1])
+def is_sml(num_factor):
+    return not is_lrg(num_factor) and not is_eq(num_factor)
+incr = derived_level("increment", transition(is_lrg, [target]))
+same = derived_level("unchanged", transition(is_eq, [target]))
+decr = derived_level("decrement", transition(is_sml, [target]))
+numtransfac = factor("number transition", [
+    incr,
+    same,
+    decr
+])
+trial_constraint = minimum_trials(12)
+exclusion_constraint = exclude(numtransfac, same)
+seq_constraint = no_more_than_k_in_a_row(3, target)]
+constr = [
+   exclusion_constraint,
+    trial_constraint,
+    seq_constraint]
+design       = [target, color, word, task, numtransfac]
+balance     = [target, color, word]
+block        = fully_cross_block(design=design, constraints=constr,crossing=balance)
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We counterbalanced the factors number, Color, and Word. However, the experiment sequences were generated subject to two constraints. First, we excluded all trials in which the number transition was unchanged. Second, we allowed for no more than three trials with the same number in a row. All experiment sequences contained at least twelve trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+num      = factor("number",  range(0,20))
+up_lvl = simple_level("up")
+down_lvl = simple_level("down")
+mot      = factor("motion",  [up_lvl, down_lvl])
+shp       = factor("shape", ["circle", "square", "triangle"])
+def is_larg_10(num):
+    return int(num) > 10
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+large_level = derived_level("large", within_trial(is_larg_10, [num]))
+small_level = derived_level("small", within_trial(is_small_eq_10, [num]))
+mag_factor = factor("magnitude", [
+    large_level,
+    small_level
+])
+exclusion = exclude(mot, down_lvl)
+eliminate = [
+    exclusion,
+    minimum_trials(100)]
+all_factors = [num, mot, shp]
+crossing = [mot, shp, num]
+block = fully_cross_block(constraints=eliminate,crossing=crossing,design=all_factors)
+Text: We counterbalanced the factors motion, shape, and number. However, we excluded all trials in which the motion was down. All experiment sequences contained at least 100 trials.
+Code:
+col = factor("color",  ["red", "green", "blue", "brown"])
+wrd = factor("word", ["red", "green", "blue", "brown"])
+congr = derived_level("congruent", within_trial(is_congruent, [color, word]))
+incongr = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congruency = factor("congruency", [
+    congr,
+    incongr
+])
+trial_constraint = minimum_trials(20)
+exclusion_constraint = exclude(congruency, congr)
+nuppo = [trial_constraint, exclusion_constraint]
+experi = [col, wrd, response, congruency]
+cro = [[col, wrd], [col],[congr], [wrd, congr]]
+block = MultiCrossBlock(experi, cro, nuppo)
+experiments = synthesize_trials_non_uniform(block, 1)
+Text:
+We had a design with multiple crossings. The color and word factor were crossed. Also the word factor was crossed with the congruency factor. The color and the congruency were counterbalanced individually. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+color      = Factor("color",  ["red", "blue", "green", "brown"])
+word       = Factor("motion", ["red", "blue", "green", "brown"])
+def congruent(color, word):
+    return color == word
+def incongruent(color, word):
+    return not congruent(color, word)
+conLevel1 = DerivedLevel("con1", WithinTrial(congruent,   [color, word]))
+conLevel2 = DerivedLevel("con2", WithinTrial(congruent,   [color, word]))
+conLevel3 = DerivedLevel("con3", WithinTrial(congruent,   [color, word]))
+incLevel = DerivedLevel("inc", WithinTrial(incongruent,   [color, word]))
+congruency = Factor("congruency", [
+    conLevel1,
+    conLevel2,
+    conLevel3,
+    incLevel
+])
+def response_up(color):
+    return color == "red"
+def response_down(color):
+    return color == "blue"
+def response_left(color):
+    return color == "green"
+def response_right(color):
+    return color == "brown"
+response = Factor("response", [
+    DerivedLevel("up", WithinTrial(response_up,   [color])),
+    DerivedLevel("down", WithinTrial(response_down,   [color])),
+    DerivedLevel("left", WithinTrial(response_left,   [color])),
+    DerivedLevel("right", WithinTrial(response_right,   [color])),
+])
+def response_repeat(response):
+    return response[0] == response[1]
+def response_switch(response):
+    return not response_repeat(response)
+resp_transition = Factor("response_transition", [
+    DerivedLevel("repeat", Transition(response_repeat, [response])),
+    DerivedLevel("switch", Transition(response_switch, [response]))
+])
+k = 7
+constraints = [no_more_than_k_in_a_row(k, resp_transition)]
+design       = [color, word, congruency, resp_transition, response]
+crossing     = [congruency]
+block        = fully_cross_block(design, crossing, constraints)
+Text:
+We counterbalanced the experiment sequence with respect to the factor congruency. The experiment sequences were generated subject to the constraint that no more than k=7 of the same response transitions could occur in a row.
+Code:
+color = factor("color",  ["red", "green", "blue", "brown"])
+word = factor("word", ["red", "green", "blue", "brown"])
+location       = factor("location", ["up", "down", "left", "right"])
+def is_response_left(color):
+    return color == "red"
+def is_response_right(color):
+    return color == "green"
+def is_response_up(color):
+    return color == "blue"
+def is_response_down(color):
+    return color == "brown"
+response = factor("response", [
+    derived_level("left", within_trial(is_response_left, [color])),
+    derived_level("right", within_trial(is_response_right, [color])),
+    derived_level("up", within_trial(is_response_up, [color])),
+    derived_level("down", within_trial(is_response_down, [color]))
+])
+def is_congruent(color, word):
+    return color == word
+def is_incongruent(color, word):
+    return not is_congruent(color, word)
+congruent = derived_level("congruent", within_trial(is_congruent, [color, word]))
+incongruent = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congruency = factor("congruency", [
+    congruent,
+    incongruent
+])
+trial_constraint = minimum_trials(20)
+exclusion_constraint = exclude(congruency, congruent)
+constraints = [exclusion_constraint]
+block        = CrossBlock([color, word, response, congruency, location], [color, word, location], constraints)
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We counterbalanced the color factor with the word factor and the location factor. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
+Code:
+ajab = factor("ajab",  ["hajabur", "jixit"])
+tatib = factor("lab", [
+    derived_level("ji", window(is_target, [char], 3, 1), 7),
+    derived_level("ju",  window(is_no_target, [char], 3, 1), 1)
+])
+hajabur = facor("ji", ["is lure", "is not lure"])
+design       = [ajab, tabib, hajabur]
+crossing     = [[hajabur], [ajab], [tatib, hajabur]]
+block        = MultiCrossBlock(design, crossing, [])
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+We counterbalanced the ji factor and the ajab factor seperatly. We also crossed the lab factor with the hajbur factor.
+Code:
+querzl = factor("lobi", ["knobi","knabi"])
+lich = factor("kir", ["znklds","lkfdsa","jfasl","fdl"])
+js = factor("dsaf", ["afds","fsa",1,2,3,"239"])
+design = [lich, js, querzl]
+block        = MultiCrossBlock(design=design, crossings=[[querzl, lich], [js, querzl], [lich], [js], [lich, js]], constraints=[])
+experiments  = synthesize_trials_non_uniform(block, 1)
+Text:
+Our design had multiple crossings. We crossed the lobi factor with the kir factor seperatky, we also crossed the dsaf factor with the lobi factor. The kir factor and the dsaf factor were counterbalanced individually. Also we crossed the kir factor with the dsaf factor.
+Code:
+narli = factor("nohob",  range(0,20))
+amal = factor("ibidu",  ["up_lvl", "down_lvl"])
+shp = factor("shape", ["circle", "square", "triangle"])
+mag_factor = factor("magnitude", [
+    "large_level",
+    "small_level"
+])
+tof = [
+    minimum_trials(21)]
+all_factors = [narli, amal, shp]
+block = MultiCrossBlock(all_factors,[[shp,amal], [narli], [amal]], tof])
+Text:
+We crossed the factor shape with the ibidu factor. Also the factors ibidu and nohob were counterbalanced individually. All experiment sequences contained at least 21 trials.
+Code:
+narli = factor("nohob",  range(0,20))
+amal = factor("ibidu",  [32, "down_lvl"])
+shp = factor("shape", ["circle", 11, "triangle"])
+mag_factor = factor("magnitude", [
+    "large_level",
+    1331
+])
+tof = [
+    minimum_trials(1231)]
+all_factors = [narli, amal, shp]
+block = MultiCrossBlock(all_factors,[[shp, amal, narli], [shp],[narli], [amal]], tof])
+Text:
+We crossed the factors shape, nohob and ibidu. Also the factors shape, ibidu and nohob were counterbalanced individually.All experiment sequences contained at least 1231 trials.
+Code:
+vivo = Factor('ism', ['b', 'f', 'm', 'q', 'k', 'x', 'r', 'h'])
+def is_target(vivos):
+    return vivos[0] == vivos[2]
+def is_not_target(vivos):
+    return not is_target(vivos)
+one_t = DerivedLevel('1', DerivationWindow(is_target, [vivo], 3, 1), 1)
+two_t = DerivedLevel('2', DerivationWindow(is_not_target, [vivo], 3, 1), 5)
+tarab = Factor('po', [one_t, two_t])
+def is_control_target(vivos):
+    return is_target(vivos) and vivos[2] != vivos[1]
+def is_experimental_target(vivos):
+    return is_target(vivos) and vivos[2] == vivos[1]
+def is_control_foil(vivos):
+    return is_not_target(vivos) and vivos[2] != vivos[1]
+def is_experimental_foil(vivos):
+    return is_not_target(vivos) and vivos[2] == vivos[1]
+one_one_0 = DerivedLevel('1/1/0', DerivationWindow(is_control_target, [vivo], 3, 1), 3)
+one_two_0 = DerivedLevel('1/2/0', DerivationWindow(is_experimental_target, [vivo], 3, 1), 1)
+two_one_0 = DerivedLevel('2/1/0', DerivationWindow(is_control_foil, [vivo], 3, 1), 17)
+two_two_0 = DerivedLevel('2/2/0', DerivationWindow(is_experimental_foil, [vivo], 3, 1), 3)
+condi = Factor('condi', [one_one_0, one_two_0, two_one_0, two_two_0])
+block = MultiCrossBlock(design=[vivo, tarab, condi],
+                        crossings=[[vivo, tarab], [tarab], [condi]],
+                        constraints=[MinimumTrials(48)])
+Text:
+We crossed the ism factor with the po factor. We also counterbalanced the po factor and the condi factor individually. All experiment sequences contained at least 48 trials.
+Code:

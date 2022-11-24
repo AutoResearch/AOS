@@ -1,4 +1,4 @@
-from sweetPeaEnglishTranslator.translator import extract
+from sweetPeaEnglishTranslator.translator import extract, util
 
 
 def store_prompt(to_translate: str, prompt_filename: str, preamble:str='') -> str:
@@ -158,7 +158,7 @@ def store_prompt_derived_factors(to_translate: str, prompt_filename: str, factor
     for variable in relevant_variable_names:
         helper_code += extract.get_variable_definition(variable, full_code, df_code)
 
-    prompt = primer + helper_code + df_code + "\nText:\n"
+    prompt = primer + helper_code + util.get_functions(to_translate) + util.get_code_without_functions(df_code) + "\nText:\n"
     return prompt
 
 

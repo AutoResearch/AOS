@@ -1,4 +1,5 @@
 import os
+from string import whitespace
 
 import numpy
 from fpdf import FPDF
@@ -84,6 +85,46 @@ def get_factors(text: str) -> str:
             if words[2].startswith('Factor') or words[2].startswith('factor'):
                 res += line + '\n'
     return res
+
+def get_functions(text: str) -> str:
+    lines = text.splitlines()
+    res = ''
+    read = False
+    for line in lines:
+        words = line.split()
+        if len(words) >= 1:
+            if words[0].startswith('def'):
+                read = True
+            elif not line[0] in whitespace or not line:
+                read = False
+        else:
+            read = False
+        if read:
+            res += line +'\n'
+    return res
+
+def get_code_without_functions(text: str) ->str:
+    lines = text.splitlines()
+    res = ''
+    read = True
+    for line in lines:
+        words = line.split()
+        if len(words) >= 1:
+            if words[0].startswith('def'):
+                read = False
+            elif not line[0] in whitespace or not line:
+                read = True
+        else:
+            read = True
+        if read and line:
+            res += line + '\n'
+    return res
+
+
+def get_functions_from_file(path: str) -> str:
+    with open(path) as f:
+        text = f.read()
+    return get_functions(text)
 
 
 def get_factors_from_file(path: str) -> str:

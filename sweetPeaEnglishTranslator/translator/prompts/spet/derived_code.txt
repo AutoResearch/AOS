@@ -1,0 +1,320 @@
+Code:
+col      = factor("Color",  ["red", "green", "blue", "brown"])
+wrd       = factor("Word", ["red", "green", "blue", "brown"])
+def is_response_left(col_factor):
+    return col_factor == "red"
+def is_response_right(col_factor):
+    return col_factor == "green"
+def is_response_up(col_factor):
+    return col_factor == "blue"
+def is_response_down(col_factor):
+    return col_factor == "brown"
+resp = factor("response", [
+    derived_level("left", within_trial(is_response_left, [col])),
+    derived_level("right", within_trial(is_response_right, [col]),2),
+    derived_level("up", within_trial(is_response_up, [col])),
+    derived_level("down", within_trial(is_response_down, [col]),3)
+])
+Text:
+The response factor depends on the Color factor and has four levels: "left", "right", "up", and "down". If the Color is "red", "green", "blue", or "brown", then the corresponding response is "left", "right", "up", and "down", respectively. The level "right" occured twice as often as the level "up" or "left". The level "down" occured three times as often as the level "up" or "left".
+Code:
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+def is_congruent(color, word):
+    return color == word
+def is_incongruent(color, word):
+    return not is_congruent(color, word)
+congr_level = derived_level("congruent", within_trial(is_congruent, [color, word]))
+incongr_level = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congr_factor = factor("congruency", [
+    congr_level,
+    incongr_level
+])
+Text:
+The congruency factor depends on the regular factors Color and Word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color matches the Word, otherwise, it is considered "incongruent".
+Code:
+num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+def is_e(num):
+    return (int(num) % 2) == 0
+def is_o(num):
+    return not is_e(num)
+o_level = derived_level("odd", within_trial(is_e, [num]))
+e_level = derived_level("even", within_trial(is_o, [num]))
+par_factor = factor("parity", [
+    o_level,
+    e_level
+])
+Text:
+The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
+Code:
+num      = factor("number",  range(0,20))
+mot      = factor("motion",  ["up", "down"])
+shp       = factor("shape", ["circle", "square", "triangle"])
+def is_larg_10(num):
+    return int(num) > 10
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+large_level = derived_level("large", within_trial(is_larg_10, [num]))
+small_level = derived_level("small", within_trial(is_small_eq_10, [num]))
+mag_factor = factor("magnitude", [
+    large_level,
+    small_level
+])
+Text:
+The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
+Code:
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+def is_congruent(color, word):
+    return color == word
+def is_incongruent(color, word):
+    return not is_congruent(color, word)
+congr = factor("congruency", [
+    DerivedLevel("congruent",
+                 within_trial(is_congruent, [color, word])),
+    DerivedLevel("incongruent",
+                 within_trial(is_incongruent, [color, word]))
+])
+Text:
+The congruency factor depends on the Color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color factor matches the Word factor and otherwise it is considered "incongruent".
+Code:
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+
+def is_response_left(color, word, task):
+    return (task == "color naming" and color == "red") or (task == "word reading" and word == "green")
+    return (task == "color naming" and color == "red") or (task == "word reading" and word == "green")
+def is_response_right(color, word, task):
+    return (task == "color naming" and color == "green") or (task == "word reading" and word == "red")
+resp = factor("response", [
+    derived_level("left",
+                 within_trial(is_response_left, [color, word, task])),
+    derived_level("right",
+                 within_trial(is_response_right, [color, word, task]))
+])
+Text:
+The response factor depends on the factors Color, Word, and Task, and has two levels: "left" and "right". The response is "left" if the Task is "color naming" and the Color is "red" or if the Task is "word reading" and the Word is "green". Conversely, the response is "right" if the Task is "color naming" and the Color is "green" or if the Task is "word reading" and the Word is "red".
+Code:
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+def is_task_repetition(task):
+    return task[0] == task[1]
+def is_task_switch(task):
+    return not is_task_repetition(task)
+task_transition = factor("Task Transition", [
+    derived_level("task repetition",
+                 transition(is_task_repetition, [task])),
+    derived_level("task switch",
+                 transition(is_task_switch, [task]))
+])
+Text:
+The task transition factor depends on the transition of the Task factor and has two levels: "task repetition" and "task switch". If the Task on the current trial is the same as on the previous trial, then the trial is considered a "task repetition", otherwise, it is considered a "task switch".
+Code:
+target = factor("number", ['1', '2', '3', '4', '5'])
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+def is_lrg(num_factor):
+    return int(num_factor[0]) < int(num_factor[1])
+def is_eq(num_factor):
+    return int(num_factor[0]) == int(num_factor[1])
+def is_sml(num_factor):
+    return not is_lrg(num_factor) and not is_eq(num_factor)
+numtransfac = factor("number transition", [
+    DerivedLevel("increment",
+                 transition(is_lrg, [target])),
+    DerivedLevel("unchanged",
+                  transition(is_eq, [target])),
+    DerivedLevel("decrement",
+                 transition(is_sml, [target]), 3)
+])
+Text:
+The number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". If the number on the current trial is larger than the previous one, then the trial is considered an "increment". If the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". Otherwise, the trial is considered a "decrement". The "decrement" level occured thre times as often as the "increment" or "unchanged" level.
+Code:
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+def is_response_repeat(response):
+    return response[0] == response[1]
+def is_response_switch(response):
+    return not is_response_repeat(response)
+response_transition = factor("Response Transition", [
+    derived_level("response repetition",
+                 transition(is_response_repeat, [response])),
+    derived_level("response switch",
+                 transition(is_response_switch, [response]))
+])
+Text:
+The response transition factor depends on the transition of the response factor and has two levels: "response repetition" and "response switch". If the response on the current trial is the same as on the previous trial, then the trial is considered a "response repetition", otherwise, it is considered a "response switch".
+Code:
+all_letters = ["A", "B", "C", "D", "E", "F"]
+letter = factor("character",  all_letters)
+def is_target(letter):
+    return letter[0] == letter[2]
+def is_no_target(letter):
+    return not is_target(letter)
+targ = factor("target", [
+    derived_level("is a target", window(is_target, [letter], 3, 1)),
+    derived_level("is not a target",  window(is_no_target, [letter], 3, 1))
+])
+Text:
+The target factor has two levels: "it is a target" and "it is not a target". It depends on a moving trial window (for the last three trials) defined by the character factor. If the character on the current trial matches the character two trials back, then the trial "is a target". Conversely, if the character on the current trial does not match the character two trials back, then the trial "is not a target".
+Code:
+all_letters = ["A", "B", "C", "D", "E", "F"]
+letter = factor("Letter",  all_letters)
+def is_target(letter):
+    return letter[0] == letter[3] and letter[2] == letter[3]
+def is_no_target(letter):
+    return not is_target(letter)
+targ = factor("hit", [
+    derived_level("correct", window(is_target, [letter], 4, 1)),
+    derived_level("incorrect",  window(is_no_target, [letter], 3, 1))
+])
+Text:
+The hit factor has two levels: "correct" and "incorrect". It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is "correct". Otherwise, the current trial is "incorrect".
+Code:
+all_letters = ["A", "B", "C", "D", "E", "F"]
+letter = factor("character",  all_letters)
+def is_lure(letter, targ):
+    return targ[1] == "no" and letter[0] == letter[1]
+def is_no_lure(letter, targ):
+    return not is_lure(letter, targ)
+lure = factor("Lure", [
+    derived_level("is lure", window(is_lure, [letter, targ], 2, 1)),
+    derived_level("is not a lure",  window(is_no_lure, [letter, targ], 2, 1))
+])
+Text:
+The Lure factor has two levels: "yes" and "no". It depends on a moving trial window (for the last two trials) defined by the character and Target factors. If the character on the current trial matches the character on the previous trial and the Target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
+Code:
+colorCoherence      = factor("color coherence",  ["0.3", "0.53", "0.76", "1.0"])
+motionCoherence     = factor("motion coherence", ["0.3", "0.53", "0.76", "1.0"])
+color      = factor("color direction", ["red", "blue"])
+motion      = factor("motion direction", ["up", "down"])
+def leftResponse(stimulusDimension):
+    return (stimulusDimension == "red" or stimulusDimension == "up")
+def rightResponse(stimulusDimension):
+    return (stimulusDimension == "blue" or stimulusDimension == "down")
+leftColorResponseLevel = derived_level("-1", within_trial(leftResponse,   [color]))
+rightColorResponseLevel = derived_level("1", within_trial(rightResponse,   [color]))
+colorResponse = factor("correct color response", [
+    leftColorResponseLevel,
+    rightColorResponseLevel
+])
+Text:
+The color response factor depends on the color factor and has two levels: -1 and 1. If the color is red or blue, then the corresponding color response is -1 or 1, respectively.
+Code:
+col      = factor("Color",  [Level("red",2), "green", "blue", "brown"])
+wrd       = factor("Word", ["red", "green", "blue", "brown"])
+def is_response_left(col_factor):
+    return col_factor == "red"
+def is_response_right(col_factor):
+    return col_factor == "green"
+def is_response_up(col_factor):
+    return col_factor == "blue"
+def is_response_down(col_factor):
+    return col_factor == "brown"
+resp = factor("response", [
+    derived_level("left", within_trial(is_response_left, [col]),2),
+    derived_level("right", within_trial(is_response_right, [col])),
+    derived_level("up", within_trial(is_response_up, [col]),3),
+    derived_level("down", within_trial(is_response_down, [col]),14)
+])
+Text:
+The response factor depends on the Color factor and has four levels: "left", "right", "up", and "down". If the Color is "red", "green", "blue", or "brown", then the corresponding response is "left", "right", "up", and "down", respectively. The response "left" occured twice as often as the response "right", The response "up" occured three time as often as the response "right". The response "down" occured 14 times as often as the response "right".
+Code:
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+def is_congruent(color, word):
+    return color == word
+def is_incongruent(color, word):
+    return not is_congruent(color, word)
+congr_level = derived_level("congruent", within_trial(is_congruent, [color, word]),weight=4)
+incongr_level = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congr_factor = factor("congruency", [
+    congr_level,
+    incongr_level
+])
+Text:
+The congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent". The trial sequence included four times as many "congruent" trials as "incongruent" trials.
+Code:
+num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+color      = factor("Color",  ["red", "green", "blue", "brown"])
+word       = factor("Word", ["red", "green", "blue", "brown"])
+def is_e(num):
+    return (int(num) % 2) == 0
+def is_o(num):
+    return not is_e(num)
+o_level = derived_level("odd", within_trial(is_e, [num]),3)
+e_level = derived_level("even", within_trial(is_o, [num]),2)
+par_factor = factor("parity", [
+    o_level,
+    e_level
+])
+Text:
+The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd". The experiment sequences were generated such that the ratio between "odd" and "even" trials was 3 to 2.
+Code:
+num      = factor("number",  range(0,20))
+mot      = factor("motion",  ["up", "down"])
+shp       = factor("shape", ["circle", "square", "triangle"])
+def is_larg_10(num):
+    return int(num) > 10
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+large_level = DerivedLevel("large", within_trial(is_larg_10, [num]),1)
+small_level = DerivedLevel("small", within_trial(is_small_eq_10, [num]),weight=5)
+mag_factor = factor("magnitude", [
+    large_level,
+    small_level
+])
+Text:
+The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small". The level "small" occured 5 times as often as the level "large".
+Code:
+target = factor("number", ['1', '2', '3', '4', '5'])
+color      = factor("Color",  ["red", "green"])
+word       = factor("Word", ["red", "green"])
+task       = factor("Task", ["color naming", "word reading"])
+def is_lrg(num_factor):
+    return int(num_factor[0]) < int(num_factor[1])
+def is_eq(num_factor):
+    return int(num_factor[0]) == int(num_factor[1])
+def is_sml(num_factor):
+    return not is_lrg(num_factor) and not is_eq(num_factor)
+inc = DerivedLevel("increase", transition(is_lrg, [target]), 1)
+un = DerivedLevel("unchanged", transition(is_eq, [target]), 3)
+de = DerivedLevel("decrease", transition(is_sml, [target]), 2)
+numtransfac = factor("number transition", [inc, un ,de])
+Text:
+The number transition factor depends on the transition of the number factor and has three levels: "increase", "decrease", or "unchanged". If the number on the current trial is larger than the previous one, then the trial is considered an "increase". If the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". Otherwise, the trial is considered a "decrease". The "unchanged" level occured three times as often as the "increase" level, and the "decrease" transition occured twice as often as the "increase" transition.
+Code:
+nor      = factor("bidi",  ["tat", "ver"])
+lab       = factor("ufo", ["ver", "tat"])
+keng       = factor("arbi", ["nirm", "holpe"])
+def is_mot(nor, lab):
+    return nor == lab
+def is_mib(nor, lab):
+    retutn nor != lab
+def is_response_left(color, word, task):
+    return (task == "nirm" and color == "tat") or (task == "holpe" and word == "tat")
+def is_response_right(color, word, task):
+    return (task == "holpe" and color == "ver") or (task == "nirm" and word == "ver")
+def is_hoba(color, word, task):
+   return is_mot(color, word) and is_response_left(color, word, task)
+def is_hibi(color, word, task):
+   return is_mot(color, word) and is_response_right(color, word, task)
+def is_habo(color, word, task):
+   return not is_mot(color, word)
+resp = factor("response", [
+    DerivedLevel("left",
+                 within_trial(is_hoba, [nor, lab, keng]), 1),
+    DerivedLevel("right",
+                 within_trial(is_hibi, [nor, lab, keng]), 13),
+    DerivedLevel("mid", within_trial(is_habo, [nor, lab, keng]), 7)
+])
+Text:
+The response factor depends on the factors bidi, ufo, and arbit, and has three levels: "left", "right" and "mid". The response factor is "left" if the bidi factor and the ufo factor are equal and if either the arbi factor is "nirm" and the bidi factor is "tat" or the arbi factor is "holpe" and the ufo factor is "tat". The response factor is "right" if the bidi factor and the ufo factor are equal and if either the arbi factor is "holpe" and the bidi factor is "ver" or if the arbi factor is "nirm" and the ufo factor is "ver". The response is "mid" if the bidi factor and the ufo factor are not equal. The "right" response occured 13 as often as the "left" response. The "mid" response occured 7 times as often as the "left" response.
+Code:

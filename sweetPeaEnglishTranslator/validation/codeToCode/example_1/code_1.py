@@ -5,7 +5,8 @@ color = Factor('color', ['red', 'green', 'blue', 'yellow'])
 word = Factor('word', ['red', 'green', 'blue', 'yellow'])
 
 def is_congruent(word, color):
-    return word == color
+    return (word == color)
+
 def is_not_congruent(word, color):
     return not is_congruent(word, color)
 

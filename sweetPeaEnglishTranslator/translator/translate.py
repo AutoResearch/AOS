@@ -55,7 +55,7 @@ def translate_text_to_formatted(to_translate: str) -> str:
     :return: A string containing the formated text
     """
     prompt = store_prompts.store_prompt_lower_simple(to_translate, PATH_TO_FORMAT_TEXT, 'Formatted:')
-    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted:'])
+    answer, prompt = gpt3(prompt, response_length=1024, stop_seq=['Unformatted:'])
     return answer
 
 
@@ -66,7 +66,7 @@ def translate_code_to_formatted(to_translate: str) -> str:
     :return: A string containing the formated code
     """
     prompt = store_prompts.store_prompt_simple(to_translate, PATH_TO_FORMAT_CODE, 'Formatted:')
-    answer, prompt = gpt3(prompt, response_length=512, stop_seq=['Unformatted'])
+    answer, prompt = gpt3(prompt, response_length=1024, stop_seq=['Unformatted'])
     return answer
 
 
@@ -310,8 +310,9 @@ def text_to_code(to_translate: str, txt_file_name: str = None, py_file_name: str
     factors = post_process.get_factors_from_code_full(translation)
     translation += translate_counterbalancing_text_to_code(to_translate, factors)
     translation += f'design = {post_process.get_factors_from_code(translation)}\n'
-    translation += "block = fully_cross_block(design, crossing, constraints, False)\n"
-    translation += "experiments = synthesize_trials_non_uniform(block, 1)\n"
+    translation += f'block = {post_process.get_block_from_code(translation)}\n'
+
+    translation += "experiments = synthesize_trials(block, 1)\n"
     translation += '### END OF EXPERIMENT DESIGN'
 
     if txt_file_name:

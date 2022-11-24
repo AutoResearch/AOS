@@ -1,4 +1,5 @@
-from sweetPeaEnglishTranslator.translator import translate, pre_process
+from sweetPeaEnglishTranslator.translator import translate, pre_process, util
+import time
 
 
 def sweetToSour(infile):
@@ -19,14 +20,18 @@ def sweetToSour(infile):
 def codeToCode(infile):
     with open(infile) as f:
         code_1 = f.read()
-    formatted = translate.code_to_formatted(code_1)
+    _ = pre_process.preprocess_code(code_1)
+    formatted = translate.code_to_formatted(_)
+    time.sleep(15)
     with open(infile[:-3] + '_formatted_gpt3.py', 'w') as f:
         f.write(formatted)
     txt = translate.code_to_text(formatted)
+    time.sleep(15)
     with open(infile[:-3] + '_text_gpt3.txt', 'w') as f:
         f.write(txt)
     _t = pre_process.preprocess_text(txt)
     txt_formatted = translate.text_to_formatted(_t)
+    time.sleep(15)
     with open(infile[:-3] + '_text_formatted_gpt3.txt', 'w') as f:
         f.write(txt_formatted)
     code_2 = translate.text_to_code(txt_formatted)
@@ -37,4 +42,4 @@ def codeToCode(infile):
 
 if __name__ == '__main__':
     # sweetToSour('example_1/code_1.py')
-    codeToCode('example_1/code_1.py')
+    codeToCode('example_2/code_1.py')
