@@ -1,7 +1,6 @@
 Code:
 col      = factor("Color",  ["red", "green", "blue", "brown"])
 wrd       = factor("Word", ["red", "green", "blue", "brown"])
-
 def is_response_left(col_factor):
     return col_factor == "red"
 def is_response_right(col_factor):
@@ -10,7 +9,6 @@ def is_response_up(col_factor):
     return col_factor == "blue"
 def is_response_down(col_factor):
     return col_factor == "brown"
-
 resp = factor("response", [
     derived_level("left", within_trial(is_response_left, [col])),
     derived_level("right", within_trial(is_response_right, [col])),
@@ -22,16 +20,12 @@ The response factor depends on the Color factor and has four levels: "left", "ri
 Code:
 color      = factor("Color",  ["red", "green", "blue", "brown"])
 word       = factor("Word", ["red", "green", "blue", "brown"])
-
 def is_congruent(color, word):
     return color == word
-
 def is_incongruent(color, word):
     return not is_congruent(color, word)
-
 congr_level = derived_level("congruent", within_trial(is_congruent, [color, word]))
 incongr_level = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
-
 congr_factor = factor("congruency", [
     congr_level,
     incongr_level
@@ -42,16 +36,12 @@ Code:
 num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 color      = factor("Color",  ["red", "green", "blue", "brown"])
 word       = factor("Word", ["red", "green", "blue", "brown"])
-
 def is_e(num):
     return (int(num) % 2) == 0
-
 def is_o(num):
     return not is_e(num)
-
 o_level = derived_level("odd", within_trial(is_e, [num]))
 e_level = derived_level("even", within_trial(is_o, [num]))
-
 par_factor = factor("parity", [
     o_level,
     e_level
@@ -62,16 +52,12 @@ Code:
 num      = factor("number",  range(0,20))
 mot      = factor("motion",  ["up", "down"])
 shp       = factor("shape", ["circle", "square", "triangle"])
-
 def is_larg_10(num):
     return int(num) > 10
-
 def is_small_eq_10(num):
     return not is_larg_10(num)
-
 large_level = derived_level("large", within_trial(is_larg_10, [num]))
 small_level = derived_level("small", within_trial(is_small_eq_10, [num]))
-
 mag_factor = factor("magnitude", [
     large_level,
     small_level
@@ -82,13 +68,10 @@ Code:
 color      = factor("Color",  ["red", "green"])
 word       = factor("Word", ["red", "green"])
 task       = factor("Task", ["color naming", "word reading"])
-
 def is_congruent(color, word):
     return color == word
-
 def is_incongruent(color, word):
     return not is_congruent(color, word)
-
 congr = factor("congruency", [
     derived_level("congruent",
                  within_trial(is_congruent, [color, word])),
@@ -103,14 +86,9 @@ word       = factor("Word", ["red", "green"])
 task       = factor("Task", ["color naming", "word reading"])
 
 def is_response_left(color, word, task):
-    return (task == "color naming" and color == "red") or
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      (task == "word reading" and word == "green")
-    return (task == "color naming" and color == "red") or
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       (task == "word reading" and word == "green")
+    return (task == "color naming" and color == "red") or (task == "word reading" and word == "green")
 def is_response_right(color, word, task):
-    return (task == "color naming" and color == "green") or
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       (task == "word reading" and word == "red")
-
+    return (task == "color naming" and color == "green") or (task == "word reading" and word == "red")
 resp = factor("response", [
     derived_level("left",
                  within_trial(is_response_left, [color, word, task])),
@@ -123,13 +101,10 @@ Code:
 color      = factor("Color",  ["red", "green"])
 word       = factor("Word", ["red", "green"])
 task       = factor("Task", ["color naming", "word reading"])
-
 def is_task_repetition(task):
     return task[0] == task[1]
-
 def is_task_switch(task):
     return not is_task_repetition(task)
-
 task_transition = factor("Task Transition", [
     derived_level("task repetition",
                  transition(is_task_repetition, [task])),
@@ -143,16 +118,12 @@ target = factor("number", ['1', '2', '3', '4', '5'])
 color      = factor("Color",  ["red", "green"])
 word       = factor("Word", ["red", "green"])
 task       = factor("Task", ["color naming", "word reading"])
-
 def is_lrg(num_factor):
     return int(num_factor[0]) < int(num_factor[1])
-
 def is_eq(num_factor):
     return int(num_factor[0]) == int(num_factor[1])
-
 def is_sml(num_factor):
     return not is_lrg(num_factor) and not is_eq(num_factor)
-
 numtransfac = factor("number transition", [
     derived_level("increment",
                  transition(is_lrg, [target])),
@@ -167,13 +138,10 @@ Code:
 color      = factor("Color",  ["red", "green"])
 word       = factor("Word", ["red", "green"])
 task       = factor("Task", ["color naming", "word reading"])
-
 def is_response_repeat(response):
     return response[0] == response[1]
-
 def is_response_switch(response):
     return not is_response_repeat(response)
-
 response_transition = factor("Response Transition", [
     derived_level("response repetition",
                  transition(is_response_repeat, [response])),
@@ -184,7 +152,6 @@ Text:
 The response transition factor depends on the transition of the response factor and has two levels: "response repetition" and "response switch". If the response on the current trial is the same as on the previous trial, then the trial is considered a "response repetition", otherwise, it is considered a "response switch".
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
-
 letter = factor("character",  all_letters)
 
 def is_target(letter):
@@ -210,25 +177,17 @@ def is_no_target(letter):
 
 targ = factor("hit", [
     derived_level("correct", window(is_target, [letter], 4, 1)),
-    derived_level("incorrect",  window(is_no_target, [letter], 3, 1))
+    derived_level("incorrect",  window(is_no_target, [letter], 4, 1))
 ])
 Text:
 The hit factor has two levels: "correct" and "incorrect". It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is "correct". Otherwise, the current trial is "incorrect".
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
-
 letter = factor("character",  all_letters)
-
 def is_lure(letter, targ):
     return targ[1] == "no" and letter[0] == letter[1]
 def is_no_lure(letter, targ):
     return not is_lure(letter, targ)
-
-targ = factor("Target", [
-    derived_level("yes", window(is_target, [letter], 3, 1)),
-    derived_level("no",  window(is_no_target, [letter], 3, 1))
-])
-
 lure = factor("Lure", [
     derived_level("is lure", window(is_lure, [letter, targ], 2, 1)),
     derived_level("is not a lure",  window(is_no_lure, [letter, targ], 2, 1))
