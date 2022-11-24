@@ -1,0 +1,134 @@
+Text:
+the response factor depends on the color factor and has four levels: "left", "right", "up", and "down". if the color is "red", "green", "blue", or "brown", then the corresponding response is "left", "right", "up", and "down", respectively.
+Code:
+def is_response_left(color):
+    return color == "red"
+def is_response_right(color):
+    return color == "green"
+def is_response_up(color):
+    return color == "blue"
+def is_response_down(color):
+    return color == "brown"
+response = factor("response", [derived_level("left", within_trial(is_response_left, [color])), derived_level("right", within_trial(is_response_right, [color])), derived_level("up", within_trial(is_response_up, [color])), derived_level("down", within_trial(is_response_down, [color]))])
+Text:
+the congruency factor depends on the regular factors color and word and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the color matches the word, otherwise, it is considered "incongruent". The ratio between "congruent" and "incongruent" trials was 7 to 11
+Code:
+def is_congruency_congruent(color, word):
+    return color == word
+def is_congruency_incongruent(color, word):
+    return not is_congruency_congruent(color, word)
+congruency = factor("congruency", [derived_level("congruent", within_trial(is_congruency_congruent, [color, word]), 7), derived_level("incongruent", within_trial(is_congruency_incongruent, [color, word]), 11)])
+Text:
+the parity factor depends on the regular factor digit has two levels: "odd" and "even". a trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd".
+Code:
+def is_parity_even(digit):
+    return (int(digit) % 2) == 0
+def is_parity_odd(digit):
+    return not is_parity_odd(digit)
+parity = factor("parity", [derived_level("odd", within_trial(is_parity_even, [digit])),derived_level("even", within_trial(is_parity_odd, [digit]))])
+Text:
+the magnitude factor depends on the regular factor number has two levels: "large" and "small". a trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
+Code:
+def is_magnitude_large(number):
+    return int(number) > 10
+def is_magnitude_small(number):
+    return not is_magnitude_large(number)
+magnitude = factor("magnitude", [derived_level("large", within_trial(is_magnitude_large, [number])), derived_level("small", within_trial(is_magnitude_small, [number]))])
+Text:
+the congruency factor depends on the color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the color factor is equal to the word factor and otherwise it is considered "incongruent".
+Code:
+def is_congruency_congruent(color, word):
+    return Color == word
+def is_congruency_incongruent(color, word):
+    return not is_congruency_congruent(color, word)
+congruency = factor("congruency", [derived_level("congruent", within_trial(is_congruent, [color, word])), derived_level("incongruent", within_trial(is_incongruent, [color, word]))])
+Text:
+the response factor depends on the factors color, word, and task, and has two levels: "left" and "right". the response is "left" if the task is "color naming" and the color is "red" or if the task is "word reading" and the Word is "green". conversely, the response is "right" if the task is "color naming" and the color is "green" or if the task is "word reading" and the word is "red".
+Code:
+def is_response_left(color, word, task):
+    return (task == "color naming" and color == "red") or (task == "word reading" and word == "green")
+def is_response_right(color, word, task):
+    return (task == "color naming" and color == "green") or (task == "word reading" and word == "red")
+response = factor("response", [derived_level("left", within_trial(is_response_left, [color, word, task])), derived_level("right", within_trial(is_response_right, [color, word, task]))])
+Text:
+the number transition factor depends on the transition of the number factor and has three levels: "increment", "decrement", or "unchanged". if the number on the current trial is larger than the previous one, then the trial is considered an "increment". if the number on the current trial is equal to the number on the previous trial, then the trial is considered "unchanged". otherwise, the trial is considered a "decrement". The "increment" level occured three times as often as the "unchanged" and the "decrement" level.
+Code:
+def is_number_transition_increment(number):
+    return int(number[0]) < int(number[1])
+def is_number_transition_unchanged(number):
+    return int(number[0]) == int(number[1])
+def is_number_transition_decrement(number):
+    return not is_number_transition_increment(num_factor) and not is_number_transition_unchanged(num_factor)
+number_transition = factor("number transition", [derived_level("increment", transition(is_number_transition_increment, [number]),3), derived_level("unchanged", transition(is_number_transition_unchanged, [number])), derived_level("decrement", transition(is_number_transition_decrement, [number]))])
+Text:
+the hit factor has two levels: "correct" and "incorrect". it depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back and the letter on the current trial matches the letter one trial back, then the trial is "correct". otherwise, the current trial is "incorrect".
+Code:
+def is_hit_correct(letter):
+    return letter[0] == letter[3] and letter[2] == letter[3]
+def is_hit_incorrect(Letter):
+    return not is_hit_correct(letter)
+hit = factor("hit", [derived_level("correct", window(is_hit_correct, [letter], 4, 1)),derived_level("incorrect",  window(is_hit_incorrect, [letter], 4, 1))])
+Text:
+the lure factor has two levels: "yes" and "no". it depends on a moving trial window (for the last two trials) defined by the character and target factors. if the character on the current trial matches the character on the previous trial and the target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
+Code:
+def is_lure_yes(character, target):
+    return target[1] == "no" and character[0] == character[1]
+def is_lure_no(character, target):
+    return not is_lure_yes(character, target)
+lure = factor("lure", [derived_level("yes", window(is_lure_yes, [character, target], 2, 1)), derived_level("no",  window(is_lure_no, [character, target], 2, 1))])
+Text:
+the lure factor has two levels: "yes" and "no". it depends on a moving trial window (for the last three trials) defined by the character factor. if the character on the current trial matches the character on the previous trial it is a lure; otherwise, it is not a lure.
+Code:
+def is_lure_yes(character):
+    return character[1] == character[2]
+def is_lure_no(character):
+    return not is_one_back_lure_yes(charcter)
+lure = factor("lure", [derived_level("yes", window(is_lure_yes, [character], 3, 1)), derived_level("no",  window(is_lure_no, [character], 3, 1))])
+Text:
+the color response factor depends on the color factor and has two levels: -1 and 1. if the color is red or blue, then the corresponding color response is -1 or 1, respectively. The -1 level occured 5 times as often as the +1 level
+Code:
+def is_color_response_minus_one(color):
+    return (color == "red" or color == "blue")
+def is_color_response_one(color):
+    return not is_color_response_minus_one(color)
+color_response = factor("color response", [derived_level(-1, within_trial(is_color_response_minus_one,   [color]),5), derived_level(1, within_trial(is_color_response_one,   [color]))])
+Text:
+the cri factor has four levels: "cra", "cro", "cri", and "cru". it depends on a moving trial window (for the last four trials) defined by the ibn factor. if the ibn on the current trial matches the ibn two trials back and the ibn on the last trial is greater then the ibn three trials back, then the trial is "cra". if the ibn on the current trial is "libi" or the ibn on the current trial is the same as the ibn three trials back the cri factor is "cro". If the ibn three trials back is less then the ibn two trials back, the cri factor is "cri" . In all other cases the cri factor is "cru". The "cro" level occured 13 times as much as the "cri" level. The "cra" level occured three times more often then the "cri" level. The "cru" level occured four times as much as the "cri" level.
+Code:
+def is_cri_cra(ibn):
+    return ibn[3] == ibn[1] and ibn[2] > ibn[0]
+def is_cri_cro(ibn):
+    return ibn[2] == "libi" or ibn[3] == ibn[0]
+def is_cri_cri(ibn):
+    return ibn[0] == ibn[1]
+def is_cri_cru(ibn):
+    not (is_cri_cra(ibn) or is_cri_cro(ibn) or is_cri_cri(ibn))
+cri = factor("cri", [derived_level("cra", window(is_cri_cra, [ibn], 4, 1), 3), derived_level("cro", window(is_cri_cro, [ibn], 4, 1), 13), derived_level("cri", window(is_cri_cri), [ibn], 4, 1)), derived_level("cru", window(is_cri_cru, [ibn], 4, 1), 4)])
+Text:
+the que factor has three levels: "xzlo", "laa", "3". it depends on a moving trial window (for the last four trials) defined by the ben factor. if the ben on the current trial matches the ben of the last trial, then the que factor is "xzlo". if the ben on the current trial is "onk", then the que factor is laa. If the ben of the last trial is not equal to the ben two trials back then the que is "3".
+Code:
+def is_que_xzlo(ben):
+    return ben[3] == ben[2]
+def is_que_laa(ben):
+    return ben[3] == "onk"
+def is_que_3(ben):
+    return ben[2] != ben[1]
+que = factor("que", [derived_level("xzlo", window(is_que_xzlo, [ben], 4, 1)), derived_level("laa", window(is_que_laa, [ibn], 4, 1)), derived_level("3", window(is_que_3), [ben], 4, 1))])
+Text:
+the obo la factor has two levels: "i" and "a". it depends on a moving trial window (for the last three trials) defined by the ca factor. if the ca on the current trial is bigger then the ca on the previous trial it is a "i"; otherwise, it is a "a".
+Code:
+def is_obo_la_i(ca):
+    return ca[2] > ca[1]
+def is_obo_la_a(ca):
+    return not is_obo_i(ca)
+obo_la = factor("obo la", [derived_level("i", window(is_obo_la_i, [ca], 3, 1)), derived_level("a",  window(is_obo_la_a, [ca], 3, 1))])
+Text:
+the rabo factor has two levels: "1" and "2". it depends on a moving trial window (for the last three trials) defined by the ribi factor. if the ribi on the current trial matches the ribi two trials back and the ibi on the current trial does not match the ribi one trial back, then the trial is "1". Otherewise it is "2".
+Code:
+def is_rabo_1(ribi):
+    return ribi[2] == ribi[0] and ribi[2] != ribi[1]
+def is_rabo_2(ribi):
+    return not is_rabo_1(ribi)
+rabo = factor("rabo", [derived_level("1", window(is_rabo_1, [ribi], 3, 1), 3), derived_level("2", window(is_rabo_2, [ribi], 3, 1))])
+Text:
+

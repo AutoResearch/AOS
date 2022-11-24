@@ -173,7 +173,7 @@ def is_no_target(letter):
     return not is_target(letter)
 targ = factor("hit", [
     derived_level("correct", window(is_target, [letter], 4, 1)),
-    derived_level("incorrect",  window(is_no_target, [letter], 3, 1))
+    derived_level("incorrect",  window(is_no_target, [letter], 4, 1))
 ])
 Text:
 The hit factor has two levels: "correct" and "incorrect". It depends on a moving trial window (for the last four trials) defined by the Letter factor. If the Letter on the current trial matches the Letter three trials back and the Letter on the current trial matches the Letter one trial back, then the trial is "correct". Otherwise, the current trial is "incorrect".
