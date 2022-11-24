@@ -5,8 +5,8 @@ trial_sequence = TrialSequence([{'color': 'green', 'word': 'green', 'congruency'
 ### REGULAR STIMULI
 fixation = FixationStimulus(duration=500)
 color_word = TextStimulus(duration=1500, text=TimelineVariable('word'), color=TimelineVariable('color'))
-intertrial_interval = BlankStimulus(duration=1500)
 feedback = FeedbackStimulus(duration=1500, on_correct=False)
+intertrial_interval = BlankStimulus(duration=1500)
 
 ### CONDITIONAL STIMULI
 def is_correct_c(color):

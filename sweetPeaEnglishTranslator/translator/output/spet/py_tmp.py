@@ -6,6 +6,7 @@ color = factor("color",  ["red", "green"])
 word = factor("word", ["red", "green"])
 ### DERIVED FACTORS
 ##
+
 def is_congruency_congruent(color, word):
     return color == word
 def is_congruency_incongruent(color, word):
@@ -21,7 +22,7 @@ congruency_transition = factor("congruency transition", [derived_level("repeat",
 constraints = []
 crossing = [color, word, congruency_transition]
 design = [color, word, congruency, congruency_transition]
-block = fully_cross_block(design, crossing, constraints, False)
-experiments = synthesize_trials_non_uniform(block, 1)
+block = CrossBlock(design, crossing, constraints)
+experiments = synthesize_trials(block, 1)
 ### END OF EXPERIMENT DESIGN
 save_experiments_csv(block, experiments,"sweetPeaEnglishTranslator/translator/output/spet/seq_tmp")
