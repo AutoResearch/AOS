@@ -10,7 +10,7 @@ def store_prompt(to_translate: str, prompt_filename: str, preamble:str='') -> st
 
     Returns:
     """
-    with open(prompt_filename, 'r') as file:
+    with open(prompt_filename, 'r', encoding='utf-8') as file:
         stored_string = file.read()
     return stored_string + f'\n{preamble}\n{to_translate}\n*GPT-3\n'
 
