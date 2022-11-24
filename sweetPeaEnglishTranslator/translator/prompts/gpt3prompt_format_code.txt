@@ -1,9 +1,6 @@
 Unformatted:
-### REGULAR FACTORS
 object = Factor("object identity", [Level("H", 2), Level("S", 1)])
 motion = Factor("motion", [Level("left", 2), Level("right", 3)])
-### DERIVED FACTORS
-##
 def response_left(object):
     return object == "H"
 def response_right(object):
@@ -12,7 +9,6 @@ response = Factor("correct response", [
     DerivedLevel("left", WithinTrial(response_left, [object])),
     DerivedLevel("right", WithinTrial(response_right, [object])),
 ])
-##
 def compatible(motion, response):
     return motion == response
 def incompatible(motion, response):
@@ -23,7 +19,6 @@ congruency = Factor("response congruency", [
     conLevel,
     incLevel
 ])
-##
 def congr_repeat(congruency):
     return congruency[0] == congruency[1]
 def congr_switch(congruency):
@@ -32,7 +27,6 @@ congr_transition = Factor("congruency transition", [
     DerivedLevel("repeat", Transition(congr_repeat, [congruency])),
     DerivedLevel("switch", Transition(congr_switch, [congruency]))
 ])
-### EXPERIMENT
 constraints = [at_most_k_in_a_row(5, response),
                at_most_k_in_a_row(5, congruency),
                minimum_trials(100)]

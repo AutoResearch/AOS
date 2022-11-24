@@ -10,6 +10,14 @@ def check_for_line_comments(to_check: str) -> bool:
             return True
     return False
 
+def _rempove_import(to_process: str) -> str:
+    lines = to_process.splitlines(True)
+    res = ''
+    for line in lines:
+        if not (line.startswith('import ') or line.startswith('from ')):
+            res += line
+    return res
+
 
 def _remove_line_comments(to_process: str) -> str:
     """
@@ -60,5 +68,6 @@ def preprocess_text(to_process: str) -> str:
 
 
 def preprocess_code(to_process: str) -> str:
-    res = _remove_line_comments(to_process)
+    _ = _remove_line_comments(to_process)
+    res = _rempove_import(_)
     return _remove_empty_lines(res)
