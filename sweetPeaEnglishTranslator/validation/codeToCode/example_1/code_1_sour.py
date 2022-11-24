@@ -23,7 +23,6 @@ crossing = [word, congruency]
 block = Block(design=design, crossing=crossing, constraints=constraints)
 
 sequence = trials_from_csv('code_2_sequences/seq_0.csv')
-block.test(sequence)
 
 
 test = block.test(sequence)

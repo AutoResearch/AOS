@@ -32,3 +32,7 @@ design = [letter, target, one_back, condi]
 block = MultiCrossBlock(design, crossing, constraints)
 experiments = synthesize_trials(block, 1)
 ### END OF EXPERIMENT DESIGNsave_experiments_csv(block, experiments, 'code_2_sequences/seq')
+
+experiment = synthesize_trials(block, 1)
+
+save_experiments_csv(block, experiment, 'code_2_sequences/seq')
