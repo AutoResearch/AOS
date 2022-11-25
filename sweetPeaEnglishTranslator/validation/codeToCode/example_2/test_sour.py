@@ -59,11 +59,24 @@ block_1 = Block(design=[letter, target, one_back, condi], crossing=[letter, targ
 block_2 = Block(design=[letter, target, one_back, condi], crossing=[one_back], constraints=[MinimumTrials(48)])
 block_3 = Block(design=[letter, target, one_back, condi], crossing=[condi], constraints=[MinimumTrials(48)])
 
-sequence = trials_from_csv('code_2_sequences/seq_0.csv')
+sequence_1 = trials_from_csv('code_1_sequences/seq_0.csv')
+sequence_2 = trials_from_csv('code_2_sequences/seq_0.csv')
 
-test_1 = block_1.test(sequence)
-test_2 = block_2.test(sequence)
-test_3 = block_3.test(sequence)
-print(test_1)
-print(test_2)
-print(test_3)
+test_1 = block_1.test(sequence_1)
+test_2 = block_2.test(sequence_1)
+test_3 = block_3.test(sequence_1)
+
+test_4 = block_1.test(sequence_2)
+test_5 = block_2.test(sequence_2)
+test_6 = block_3.test(sequence_2)
+
+
+with open('scores.txt', 'w') as f:
+    f.write('Original code, sourpea scores:\n')
+    f.write(str(test_1) + '\n')
+    f.write(str(test_2) + '\n')
+    f.write(str(test_3) + '\n')
+    f.write('Translated code, sourpea scores:\n')
+    f.write(str(test_4) + '\n')
+    f.write(str(test_5) + '\n')
+    f.write(str(test_6) + '\n')

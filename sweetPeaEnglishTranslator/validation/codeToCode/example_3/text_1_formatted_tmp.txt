@@ -1,0 +1,10 @@
+
+### REGULAR FACTORS
+there is one regular factor: letter. the letter factor consists of the four letters: "b", "c", "d", and "e".
+### DERIVED FACTORS
+there is another derived factor referred to as target.
+## target
+the target factor has two levels: 1 and 0. it depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter two trials back, then the trial is 1. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is 0. the ratio between the 1 level and the 0 level was 2 to 3.
+### EXPERIMENT
+we counterbalanced the letter factor with the target factor.
+### END OF EXPERIMENT DESIGN

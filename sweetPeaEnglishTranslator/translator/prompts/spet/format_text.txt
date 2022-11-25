@@ -1,10 +1,10 @@
 Unformatted:
-there are three REGULAR FACTORS: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500. there are two DERIVED FACTORS: congruency and congruency transition. the congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". a task is considered "congruent" if word and color are the same. otherwise it is considered "incongruent". the congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". a task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. otherwise it is considered a "switch". color, word and iti facter was counterbalanced. however, the trial sequence was constructed in a way that no congruent trials were included.
+there are three regular factors: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500. there are two DERIVED FACTORS: congruency and congruency transition. the congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". a task is considered "congruent" if word and color are the same. otherwise it is considered "incongruent". the congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". a task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. otherwise it is considered a "switch". color, word and iti facter was counterbalanced. however, the trial sequence was constructed in a way that no congruent trials were included.
 Formatted:
 ### REGULAR FACTORS
-there are three REGULAR FACTORS: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500.
+there are three regular factors: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500.
 ### DERIVED FACTORS
-there are two DERIVED FACTORS: congruency and congruency transition.
+there are two derived factors: congruency and congruency transition.
 ## congruency
 the congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". a task is considered "congruent" if word and color are the same. otherwise it is considered "incongruent".
 ## congruency transition
@@ -57,5 +57,17 @@ lubadoo was large if soa was 200ms and size was small. it was small if soa was 2
 libasii was large if lubadoo was small and 200ms otherwise.
 ### EXPERIMENT
 the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+we have the regular factor: kil. the factor kil is either lab or lob. The ratio between the lab and the lob level is 4 to 5. as a derived factor we had kribo that was ribi if kil was not lab. it was small otherwise. the ratio between the level ribi and small was 11 to 21. kil and kribo were counterbalanced. however there was no small trial in the kribo factor.
+Formatted:
+### REGULAR FACTORS
+we have the regular factor: kil. the factor kil is either lab or lob. The ratio between the lab and the lob level is 4 to 5.
+### DERIVED FACTORS
+as a derived factor we had kribo
+## kribo
+kribo that was ribi if kil was not lab. it was small otherwise. the ratio between the level ribi and small was 11 to 21.
+### EXPERIMENT
+kil and kribo were counterbalanced. however there was no small trial in the kribo factor.
 ### END OF EXPERIMENT DESIGN
 Unformatted:

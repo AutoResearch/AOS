@@ -115,13 +115,13 @@ def is_que_3(ben):
     return ben[2] != ben[1]
 que = factor("que", [derived_level("xzlo", window(is_que_xzlo, [ben], 4, 1)), derived_level("laa", window(is_que_laa, [ibn], 4, 1)), derived_level("3", window(is_que_3), [ben], 4, 1))])
 Text:
-the obo la factor has two levels: "i" and "a". it depends on a moving trial window (for the last three trials) defined by the ca factor. if the ca on the current trial is bigger then the ca on the previous trial it is a "i"; otherwise, it is a "a".
+the obo la factor has two levels: "i" and "a". it depends on a moving trial window (for the last three trials) defined by the ca factor. if the ca on the current trial is bigger then the ca on the previous trial it is a "i", otherwise, it is a "a". The ratio betwee the "i" and the "a" level was 3 to 9.
 Code:
 def is_obo_la_i(ca):
     return ca[2] > ca[1]
 def is_obo_la_a(ca):
     return not is_obo_i(ca)
-obo_la = factor("obo la", [derived_level("i", window(is_obo_la_i, [ca], 3, 1)), derived_level("a",  window(is_obo_la_a, [ca], 3, 1))])
+obo_la = factor("obo la", [derived_level("i", window(is_obo_la_i, [ca], 3, 1), 3), derived_level("a",  window(is_obo_la_a, [ca], 3, 1), 9)])
 Text:
 the rabo factor has two levels: "1" and "2". it depends on a moving trial window (for the last three trials) defined by the ribi factor. if the ribi on the current trial matches the ribi two trials back and the ibi on the current trial does not match the ribi one trial back, then the trial is "1". Otherewise it is "2".
 Code:

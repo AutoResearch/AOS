@@ -5,7 +5,7 @@ word = Factor('word', ['red', 'green', 'blue', 'yellow'])
 ### DERIVED FACTORS
 ##
 def is_congruent(word, color):
-    return word == color
+    return (word == color)
 def is_not_congruent(word, color):
     return not is_congruent(word, color)
 congruent = DerivedLevel('congruent', WithinTrial(is_congruent, [word, color]))

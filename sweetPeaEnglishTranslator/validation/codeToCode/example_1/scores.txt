@@ -1,0 +1,6 @@
+Original code, sourpea scores:
+{'pValue': 1.0, 'levels': {'word': True, 'color': True, 'congruency': True}, 'constraints': [True]}
+Translated code, sourpea scores:
+{'pValue': 1.0, 'levels': {'word': True, 'color': True, 'congruency': True}, 'constraints': [True]}
+Rouge score:
+{'rouge1': Score(precision=1.0, recall=1.0, fmeasure=1.0), 'rougeL': Score(precision=1.0, recall=1.0, fmeasure=1.0)}
