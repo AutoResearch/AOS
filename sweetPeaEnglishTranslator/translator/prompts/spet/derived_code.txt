@@ -159,11 +159,11 @@ def is_target(letter):
 def is_no_target(letter):
     return not is_target(letter)
 targ = factor("target", [
-    derived_level("is a target", window(is_target, [letter], 3, 1)),
-    derived_level("is not a target",  window(is_no_target, [letter], 3, 1))
+    derived_level("is a target", window(is_target, [letter], 3, 1), 13),
+    derived_level("is not a target",  window(is_no_target, [letter], 3, 1), 3)
 ])
 Text:
-The target factor has two levels: "it is a target" and "it is not a target". It depends on a moving trial window (for the last three trials) defined by the character factor. If the character on the current trial matches the character two trials back, then the trial "is a target". Conversely, if the character on the current trial does not match the character two trials back, then the trial "is not a target".
+The target factor has two levels: "is a target" and "is not a target". It depends on a moving trial window (for the last three trials) defined by the character factor. If the character on the current trial matches the character two trials back, then the trial "is a target". Conversely, if the character on the current trial does not match the character two trials back, then the trial "is not a target". The ratio between the "is a target" level and the "is not a target" level was 13 to 3.
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
 letter = factor("Letter",  all_letters)
@@ -180,6 +180,7 @@ The hit factor has two levels: "correct" and "incorrect". It depends on a moving
 Code:
 all_letters = ["A", "B", "C", "D", "E", "F"]
 letter = factor("character",  all_letters)
+targ = factor("target", ["yes", "no"])
 def is_lure(letter, targ):
     return targ[1] == "no" and letter[0] == letter[1]
 def is_no_lure(letter, targ):
@@ -189,7 +190,7 @@ lure = factor("Lure", [
     derived_level("is not a lure",  window(is_no_lure, [letter, targ], 2, 1))
 ])
 Text:
-The Lure factor has two levels: "yes" and "no". It depends on a moving trial window (for the last two trials) defined by the character and Target factors. If the character on the current trial matches the character on the previous trial and the Target factor on the current trial is "no", then the current trial is a lure; otherwise, it is not a lure.
+The Lure factor has two levels: "is lure" and "is not a lure". It depends on a moving trial window (for the last two trials) defined by the character and target factors. If the character on the current trial matches the character on the previous trial and the target factor on the current trial is "no", then the current trial has the level "is lure"; otherwise, it has the level "is not a lure".
 Code:
 colorCoherence      = factor("color coherence",  ["0.3", "0.53", "0.76", "1.0"])
 motionCoherence     = factor("motion coherence", ["0.3", "0.53", "0.76", "1.0"])
@@ -256,7 +257,7 @@ par_factor = factor("parity", [
     e_level
 ])
 Text:
-The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd". The experiment sequences were generated such that the ratio between "odd" and "even" trials was 3 to 2.
+The parity factor depends on the regular factor digit has two levels: "odd" and "even". A trial is considered "even" if the digit is divisible by 2, otherwise, it is considered "odd". The ratio between the levels "odd" and "even" was 3 to 2.
 Code:
 num      = factor("number",  range(0,20))
 mot      = factor("motion",  ["up", "down"])
@@ -317,4 +318,20 @@ resp = factor("response", [
 ])
 Text:
 The response factor depends on the factors bidi, ufo, and arbit, and has three levels: "left", "right" and "mid". The response factor is "left" if the bidi factor and the ufo factor are equal and if either the arbi factor is "nirm" and the bidi factor is "tat" or the arbi factor is "holpe" and the ufo factor is "tat". The response factor is "right" if the bidi factor and the ufo factor are equal and if either the arbi factor is "holpe" and the bidi factor is "ver" or if the arbi factor is "nirm" and the ufo factor is "ver". The response is "mid" if the bidi factor and the ufo factor are not equal. The "right" response occured 13 as often as the "left" response. The "mid" response occured 7 times as often as the "left" response.
+Code:
+kik      = factor("nolo",  range(0,20))
+mot      = factor("marbu",  ["lala", "funk"])
+jib       = factor("jobi", ["morbi", "nila", "rap"])
+def is_larg_10(num):
+    return int(num) > 10
+def is_small_eq_10(num):
+    return not is_larg_10(num)
+labla = DerivedLevel("mikt", within_trial(is_larg_10, [kik]),3)
+lobo = DerivedLevel("orrr", within_trial(is_small_eq_10, [kik]),7)
+mag_factor = factor("mrso", [
+    labla,
+    lobo
+])
+Text:
+The mrso factor depends on the regular factor nolo and had two levels: "mikt" and "orrr". A trial is considered "mikt" if the nolo factor is larger than 10, otherwise, it is considered "orrr". The ratio between the levels "mikt" and "orrr" was 3 to 7.
 Code:

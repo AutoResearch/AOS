@@ -22,9 +22,16 @@ crossing = [word, congruency]
 
 block = Block(design=design, crossing=crossing, constraints=constraints)
 
-sequence = trials_from_csv('code_2_sequences/seq_0.csv')
+sequence_1 = trials_from_csv('code_1_sequences/seq_0.csv')
+sequence_2 = trials_from_csv('code_2_sequences/seq_0.csv')
 
 
-test = block.test(sequence)
-print(test)
+test_1 = block.test(sequence_1)
+test_2 = block.test(sequence_2)
+
+with open('scores.txt', 'w') as f:
+    f.write('Original code, sourpea scores:\n')
+    f.write(str(test_1) + '\n')
+    f.write('Translated code, sourpea scores:\n')
+    f.write(str(test_2) + '\n')
 

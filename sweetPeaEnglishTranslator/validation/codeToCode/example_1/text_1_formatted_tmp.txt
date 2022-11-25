@@ -6,5 +6,5 @@ there is another derived factor referred to as congruency.
 ## congruency
 the congruency factor depends on the regular factors word and color and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the word matches the color, otherwise, it is considered "incongruent".
 ### EXPERIMENT
-we counterbalanced the word factor with the congruency factor. however, the experiment sequences were generated subject to the constraint that all experiment sequences contained at least 48 trials.
+we counterbalanced the word factor with the congruency factor. all experiment sequences contained at least 48 trials.
 ### END OF EXPERIMENT DESIGN
