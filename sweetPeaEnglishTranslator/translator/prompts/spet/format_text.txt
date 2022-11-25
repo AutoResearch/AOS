@@ -13,16 +13,16 @@ the congruency transition factor depends on the transition of the congruency fac
 color, word and iti facter was counterbalanced. however, the trial sequence was constructed in a way that no congruent trials were included.
 ### END OF EXPERIMENT DESIGN
 Unformatted:
-there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". there are two DERIVED FACTORS: target and lure. the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure. we counterbalanced the target and lure factors.
+there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". there are two DERIVED FACTORS: target and lure. the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. the ratio between target and not a target level was 13 to 11. the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure. the is a lure level occured seven times as often as the not a lure level. we counterbalanced the target and lure factors.
 Formatted:
 ### REGULAR FACTORS
 there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
 ### DERIVED FACTORS
 there are two DERIVED FACTORS: target and lure.
 ## target factor
-the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
+the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The ratio between target and not a target level was 13 to 11.
 ## lure factor
-the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure.
+the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure. the is a lure level occured seven times as often as the not a lure level.
 ### EXPERIMENT
 we counterbalanced the target and lure factors.
 ### END OF EXPERIMENT DESIGN
@@ -45,7 +45,7 @@ the n-back lure factor also depends on a moving trial window (for the last three
 we counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
 ### END OF EXPERIMENT DESIGN
 Unformatted:
-we have the REGULAR FACTORS: soa and size. the soa is either 200ms or 700ms. the size is either big or small. as a derived factor we had lubadoo that was large if soa was 200ms and size was small. it was small if soa was 200ms and size was large. otherwize it was undefined. as sescond derived factor was libadii. this was large if lubadoo was small and 200ms otherwise. the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
+we have the regular factors: soa and size. the soa is either 200ms or 700ms. the size is either big or small. as a derived factor we had lubadoo that was large if soa was 200ms and size was small. it was small if soa was 200ms and size was large. otherwize it was undefined. as sescond derived factor was libadii. this was large if lubadoo was small and 200ms otherwise. the large level occured ten times as often as the 200ms level. the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
 Formatted:
 ### REGULAR FACTORS
 we have the REGULAR FACTORS: soa and size. the soa is either 200ms or 700ms. the size is either big or small.
@@ -54,7 +54,7 @@ as a derived factor we had lubadoo. as a sescond derived factor was libasii.
 ## lubadoo
 lubadoo was large if soa was 200ms and size was small. it was small if soa was 200ms and size was large. otherwize it was undefined.
 ## libasii
-libasii was large if lubadoo was small and 200ms otherwise.
+libasii was large if lubadoo was small and 200ms otherwise. the large level occured ten times as often as the 200ms level.
 ### EXPERIMENT
 the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
 ### END OF EXPERIMENT DESIGN
