@@ -1,0 +1,10 @@
+
+### REGULAR FACTORS
+there are three regular factors: number, letter, and task. the number factor consists of eight levels: 125, 132, 139, 146, 160, 167, 174, and 181. the letter factor consists of eight levels: "b", "d", "f", "h", "s", "u", "w", and "y". the task factor consists of three levels: "number task", "letter task", and "free choice task".
+### DERIVED FACTORS
+there is another derived factor referred to as task transition.
+## task transition
+the task transition factor depends on the transition of the task factor and has five levels: "forced switch", "forced repeat", "free transition", "free repeat", and "forced first". if the task on the current trial is "number task" and the task on the previous trial is "letter task" or if the task on the current trial is "letter task" and the task on the previous trial is "number task", then the trial is considered a "forced switch". if the task on the current trial is "number task" and the task on the previous trial is "number task" or if the task on the current trial is "letter task" and the task on the previous trial is "letter task", then the trial is considered a "forced repeat". if the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", then the trial is considered a "free transition". if the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". if the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "forced first".
+### EXPERIMENT
+the ratio between the "forced switch" level and the "forced repeat" level was 3 to 1. the ratio between the "free transition" level and the "free repeat" level was 4 to 4. the ratio between the "forced first" level and the "free repeat" level was 4 to 4. we crossed the letter factor with the number factor. we also counterbalanced the task transition factor individually. all experiment sequences contained at least 256 trials.
+### END OF EXPERIMENT DESIGN
