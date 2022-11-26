@@ -221,7 +221,8 @@ def translate_counterbalancing_code_to_text(to_translate: str):
     Returns:
         A string containing the English translation of the counterbalancing scheme
     """
-    prompt = store_prompts.store_prompt_balancing(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS_CODE)
+    _ = store_prompts.store_prompt_balancing(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS_CODE)
+    prompt = util.get_code_without_functions(_)
     answer, prompt = gpt3(prompt, stop_seq=['Code'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer

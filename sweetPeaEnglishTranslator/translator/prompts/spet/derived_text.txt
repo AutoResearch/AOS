@@ -58,14 +58,14 @@ def is_number_transition_increment(number):
 def is_number_transition_unchanged(number):
     return int(number[0]) == int(number[1])
 def is_number_transition_decrement(number):
-    return not is_number_transition_increment(num_factor) and not is_number_transition_unchanged(num_factor)
+    return not is_number_transition_increment(number) and not is_number_transition_unchanged(number)
 number_transition = factor("number transition", [derived_level("increment", transition(is_number_transition_increment, [number]),3), derived_level("unchanged", transition(is_number_transition_unchanged, [number])), derived_level("decrement", transition(is_number_transition_decrement, [number]))])
 Text:
 the hit factor has two levels: "correct" and "incorrect". it depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back and the letter on the current trial matches the letter one trial back, then the trial is "correct". otherwise, the current trial is "incorrect".
 Code:
 def is_hit_correct(letter):
     return letter[0] == letter[3] and letter[2] == letter[3]
-def is_hit_incorrect(Letter):
+def is_hit_incorrect(letter):
     return not is_hit_correct(letter)
 hit = factor("hit", [derived_level("correct", window(is_hit_correct, [letter], 4, 1)),derived_level("incorrect",  window(is_hit_incorrect, [letter], 4, 1))])
 Text:
@@ -131,4 +131,51 @@ def is_rabo_2(ribi):
     return not is_rabo_1(ribi)
 rabo = factor("rabo", [derived_level("1", window(is_rabo_1, [ribi], 3, 1), 3), derived_level("2", window(is_rabo_2, [ribi], 3, 1))])
 Text:
-
+the naba lu factor depends on the transition of the nibi and has three levels: "onko", "doko", or "daka". if the nibi on the current trial is not the same as in the previous one, then the trial is considered an "onko". it is "doko" if the nibi of the previous trial is greater then on the current one. otherwise, the trial is considered a "daka". The "onko" level and the "doko" level appeared in the ratio eight to twelve. The "onko" level and the "daka" appeared in the ratio eight to ten.
+Code:
+def is_naba_lu_onko(nibi):
+    return nibi[1] != nibi[0]
+def is_naba_lu_doko(nibi):
+    return nibi[0] > nibi[1]
+def is_naba_lu_daka(nibi):
+    return not is_naba_lu_onko(nibi) and not is_naba_lu_doko(nibi)
+naba_lu = Factor("naba lu", [DerivedLevel("onko", Transition(is_naba_lu_onko, [nibi]),8), DerivedLevel("doko", Transition(is_naba_lu_doko, [nibi]), 12), DerivedLevel("daka", Transition(is_naba_lu_daka, [nibi]), 10)])
+Text:
+the dibi dabi factor depends on the reng transition and has four levels: "la la la", "li", "lu","lo" or "li bi". if the reng on the current trial is "jip" or it is bigger then in previous one, then the trial is an "la la la". if the reng of the current trial minus 1 is lower then the reng of the previous trial it is a "li" trial. if the reng of the previous trial is greater then the on the current one it is a "lu" trial. If the reng of the current trial is "obun" and the reng of the previous trial is not "aba" then the trial is a "lo" trial. If the reng of the previous trial is not "ob lik" and the reng of the current trial is "ob lik" then the trial is a "li bi" trial.
+Code:
+def is_dibi_dabi_la_la_la(reng):
+    return reng[1] == "jip" or reng[1] > reng[0]
+def is_dibi_dabi_li(reng):
+    return reng[1] - 1 < reng[0]
+def is_dibi_dabi_lu(reng):
+    return reng[0] > reng[1]
+def is_dibi_dabi_lo(reng):
+    return reng[1] == "obun" and reng[0] != "aba"
+def is_dibi_dabi_li_bi(reng):
+    return reng[0] != "ob lik" and reng[1] == "ob lik"
+dibi_dabi = Factor("dibi dabi", [DerivedLevel("la la la", Transition(is_dibi_dabi_la_la_la, [reng])), DerivedLevel("li", Transition(is_dibi_dabi_li, [reng])), DerivedLevel("lu", Transition(is_dibi_dabi_lu, [reng])), DerivedLevel("lo", Transition(is_dibi_dabi_lo, [reng])), DerivedLevel("li bi", Transition(is_dibi_dabi_li_bi, [reng]))])
+Text:
+The wav pi du factor depend on the transition of the hil. It is "ja ho knu tik" if the hil of the previous trial is "jop ti karw" and the hil of the current trial is not "jop ti karw". It is "jaba jap jap" if the hil of the current trial is not "jobo" but the hil of the previous one is. Finally, it is "xa" if the hil of the previous trial is "ja ja".
+Code:
+def is_wav_pi_du_ja_ho_knu_tik(hil):
+    return hil[0] == "jop ti karw" and hil[1] != "jop ti karw"
+def is_wav_pi_du_jaba_jap_jap(hil):
+    return hil[1] != "jobo" and hil[0] == "jobo"
+def is_wav_pi_du_xa(hil):
+    return hil[0] == "ja ja"
+wav_pi_du = Factor("wav pi du", [DerivedLevel("ja ho knu tik", Transition(is_wav_pi_du_ja_ho_knu_tik, [hil])), DerivedLevel("jaba jap jap", Transition(is_wav_pi_du_jaba_jap_jap, [hil])), DervedLevel("xa", Transition(is_wav_pi_du_xa, [hil]))])
+Text:
+the task transition factor depends on the transition of the task and has the levels: "f switch", "f repeat", "free transition", "free repeat", and "f first". if the task on the current trial is "number task" and the task on the previous trial is "letter task" or if the task on the current trial is "letter task" and the task on the previous trial is "number task", then the trial is considered a "f switch". if the task on the current trial is "number task" and the task on the previous trial is "number task" or if the task on the current trial is "letter task" and the task on the previous trial is "letter task", then the trial is considered a "f repeat". if the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", then the trial is considered a "free transition". if the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". if the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "f first". the ratio between the "f switch" level and the "f repeat" level was 3 to 1. the ratio between the "free transition" level and the "free repeat" level was 4 to 4. the ratio between the "forced first" level and the "free repeat" level was 4 to 4.
+Code:
+def is_task_transition_f_switch(task):
+    return (task[1] == "number task" and task[0] == "letter task") or (task[1] == "letter task" and task[0] == "number task")
+def is_task_transition_f_repeat(task):
+    return (task[1] == "number task" and task[0] == "number task") or (task[1] == "letter task" and task[0] == "letter task")
+def is_task_transition_free_transition(task):
+    return task[1] == "free choice task" and task[0] != "free choice task"
+def is_task_transition_free_repeat(task):
+    return task[1] == "free choice task" and task[0] == "free choice task"
+def is_task_transition_f_first(task):
+    return task[1] != "free choice task" and task[0] == "free choice task"
+task_transition = Factor("task transition", [DerivedLevel("f switch", Transition(is_task_transition_f_switch, [task]), 3), DerivedLevel("f repeat", Transition(is_task_transition_f_repeat, [task])), DerivedLevel("free transition", Transition(is_task_transition_free_transition, [task]), 4), DerivedLevel("free repeat", Transition(is_task_transition_free_repeat, [task]), 4), DerivedLevel("f first", Transition(is_task_transition_f_first, [task]), 4)])
+Text:

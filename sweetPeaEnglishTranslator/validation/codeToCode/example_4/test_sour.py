@@ -2,7 +2,7 @@ from sourpea import *
 from sourpea.primitives import *
 from sourpea.util import *
 
-number_list = [125, 132, 139, 146, 160, 167, 174, 181]
+number_list = ["125", "132", "139", "146", "160", "167", "174", "181"]
 letter_list = ['b', 'd', 'f', 'h', 's', 'u', 'w', 'y']
 
 number = Factor("number", number_list)
@@ -34,21 +34,27 @@ def is_not_relevant_transition(task):
 
 
 transit = Factor("task transition", [
-    DerivedLevel("forced switch", transition(is_forced_trial_switch, [task]), 3),
-    DerivedLevel("forced repeat", transition(is_forced_trial_repeat, [task])),
-    DerivedLevel("free transition", transition(is_free_trial_transition, [task]), 4),
-    DerivedLevel("free repeat", transition(is_free_trial_repeat, [task]), 4),
-    DerivedLevel("forced first", transition(is_not_relevant_transition, [task]), 4)
+    DerivedLevel("forced switch", Transition(is_forced_trial_switch, [task]), 3),
+    DerivedLevel("forced repeat", Transition(is_forced_trial_repeat, [task])),
+    DerivedLevel("free transition", Transition(is_free_trial_transition, [task]), 4),
+    DerivedLevel("free repeat", Transition(is_free_trial_repeat, [task]), 4),
+    DerivedLevel("forced first", Transition(is_not_relevant_transition, [task]), 4)
 ])
 design = [letter, number, task, transit]
 crossing = [[letter], [number], [transit]]
 constraints = [MinimumTrials(256)]
 
-block = MultiCrossBlock(design, crossing, constraints)
+block_1 = Block(design, [letter], constraints)
+block_2 = Block(design, [number], constraints)
+block_3 = Block(design, [transit], constraints)
 
 
 sequence_1 = trials_from_csv('code_1_sequences/seq_0.csv')
 sequence_2 = trials_from_csv('code_2_sequences/seq_0.csv')
+
+for i in range(len(sequence_1)):
+    sequence_1[i]['number'] = str(sequence_1[i]['number'])
+    sequence_2[i]['number'] = str(sequence_2[i]['number'])
 
 test_1 = block_1.test(sequence_1)
 test_2 = block_2.test(sequence_1)

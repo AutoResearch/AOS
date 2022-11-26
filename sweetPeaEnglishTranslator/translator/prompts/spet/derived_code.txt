@@ -65,59 +65,59 @@ mag_factor = factor("magnitude", [
 Text:
 The magnitude factor depends on the regular factor number has two levels: "large" and "small". A trial is considered "large" if the number is larger than 10, otherwise, it is considered "small".
 Code:
-color      = factor("Color",  ["red", "green"])
-word       = factor("Word", ["red", "green"])
-task       = factor("Task", ["color naming", "word reading"])
+c      = factor("Color",  ["red", "green"])
+w       = factor("Word", ["red", "green"])
+t       = factor("Task", ["color naming", "word reading"])
 def cg(co, wo):
     return co == wo
 def icg(co, wo):
     return not cg(co, wo)
 congr = factor("congruency", [
     DerivedLevel("congruent",
-                 within_trial(cg, [color, word])),
+                 within_trial(cg, [c, w])),
     DerivedLevel("incongruent",
-                 within_trial(icg, [color, word]))
+                 within_trial(icg, [c, w]))
 ])
 Text:
 The congruency factor depends on the Color and Word factors and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color factor matches the Word factor and otherwise it is considered "incongruent".
 Code:
-color      = factor("Color",  ["red", "green"])
-word       = factor("Word", ["red", "green"])
-task       = factor("Task", ["color naming", "word reading"])
+col      = factor("cl",  ["e", "gr"])
+wor       = factor("wr", ["d", "gr"])
+tsk       = factor("ts", ["c n", "w r"])
 
 def res_lt(c, w, t):
-    return (t == "color naming" and c == "red") or (t == "word reading" and w == "green")
+    return (t == "c n" and c == "e") or (t == "w r" and w == "gr")
 def res_rt(c, w, t):
-    return (t == "color naming" and c == "green") or (t == "word reading" and w == "red")
-resp = factor("response", [
-    derived_level("left",
-                 within_trial(res_lt, [color, word, task])),
-    derived_level("right",
-                 within_trial(res_rt, [color, word, task]))
+    return (t == "c n" and c == "gr") or (t == "w r" and w == "d")
+resp = factor("rsp", [
+    derived_level("lt",
+                 within_trial(res_lt, [col, wor, tsk])),
+    derived_level("rt",
+                 within_trial(res_rt, [col, wor, tsk]))
 ])
 Text:
-The response factor depends on the factors Color, Word, and Task, and has two levels: "left" and "right". The response is "left" if the Task is "color naming" and the Color is "red" or if the Task is "word reading" and the Word is "green". Conversely, the response is "right" if the Task is "color naming" and the Color is "green" or if the Task is "word reading" and the Word is "red".
+The rsp factor depends on the factors cl, wr, and ts, and has two levels: "lt" and "rt". The rsp is "lt" if the ts is "c n" and the cl is "e" or if the ts is "w r" and the wr is "gr". Conversely, the response is "rt" if the ts is "c n" and the cl is "gr" or if the ts is "w r" and the wr is "d".
 Code:
-color      = factor("Color",  ["red", "green"])
-word       = factor("Word", ["red", "green"])
-task       = factor("Task", ["color naming", "word reading"])
+cr      = factor("cr",  ["r", "g"])
+wd       = factor("wd", ["r", "g"])
+t       = factor("Task", ["co na", "ww rr"])
 def is_t_rep(ts):
     return ts[0] == ts[1]
 def is_t_sw(ts):
     return not is_t_rep(ts)
 task_transition = factor("Task Transition", [
     derived_level("task repetition",
-                 transition(is_t_rep, [task])),
+                 transition(is_t_rep, [t])),
     derived_level("task switch",
-                 transition(is_t_sw, [task]))
+                 transition(is_t_sw, [t]))
 ])
 Text:
 The task transition factor depends on the transition of the Task factor and has two levels: "task repetition" and "task switch". If the Task on the current trial is the same as on the previous trial, then the trial is considered a "task repetition", otherwise, it is considered a "task switch".
 Code:
 target = factor("number", ['1', '2', '3', '4', '5'])
-color      = factor("Color",  ["red", "green"])
-word       = factor("Word", ["red", "green"])
-task       = factor("Task", ["color naming", "word reading"])
+c      = factor("col",  ["d", "r"])
+w       = factor("wd", ["d", "r"])
+t       = factor("ts", ["color naming", "word reading"])
 def is_lrg(n_):
     return int(n_[0]) < int(n_[1])
 def is_eq(n_):
