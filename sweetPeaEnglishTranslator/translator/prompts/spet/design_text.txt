@@ -94,7 +94,7 @@ rowi = factor("rowi", [2, 4, 8, 12])
 ribi = factor("ribi", [aba, uba, iba, eba])
 rili_dili = factor("rili dili", ["hicks", "hacks"])
 hemhem = factor("hemhem", [robo, bobo, boro])
-We counterbalanced the rowi factor with the hemhem factor. Ee also counterbalanced the ribi factor and the hemhem factor seperatly. all experiment sequences contained at least 967 trials.
+We counterbalanced the rowi factor with the hemhem factor. We also counterbalanced the ribi factor and the hemhem factor seperatly. all experiment sequences contained at least 967 trials.
 Code:
 constraints = [minimum_trials(967)]
 crossing = [[rowi, hemem], [ribi], [hemhem]]

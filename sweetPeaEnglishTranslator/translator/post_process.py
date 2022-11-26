@@ -3,7 +3,7 @@ def get_factors_from_code(code: str) -> str:
     design = []
     for line in lines:
         words = line.split()
-        if len(words) >= 3 and words[2].startswith('factor'):
+        if len(words) >= 3 and (words[2].startswith('factor') or words[2].startswith('Factor')):
             design.append(words[0])
     design = str(design)
     design = design.replace("'", "")
@@ -24,6 +24,6 @@ def get_factors_from_code_full(code: str) -> str:
     res = ''
     for line in lines:
         words = line.split()
-        if len(words) >= 3 and words[2].startswith('factor'):
+        if len(words) >= 3 and (words[2].startswith('factor') or words[2].startswith('Factor')):
             res += line
     return res
