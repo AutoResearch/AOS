@@ -138,9 +138,11 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-color: var(--pink);
-    background-size: 2vw 2vw;
+    background-size: 30px 30px;
     width: 2.4vw;
     height: 2.4vw;
+    min-width: 30px;
+    min-height: 30px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -154,6 +156,8 @@ body {
     background: var(--pink);
     width: 2.4vw;
     height: 2.4vw;
+    min-width: 30px;
+    min-height: 30px;
     outline: 1px solid var(--pink);
     border-radius: 10px;
     content: '';
@@ -169,6 +173,8 @@ body {
     background: var(--pink);
     width: 2.4vw;
     height: 2.4vw;
+    min-width: 30px;
+    min-height: 30px;
     outline: 1px solid var(--pink);
     border-radius: 10px;
     content: '';
