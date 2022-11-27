@@ -31,7 +31,7 @@ congr_factor = factor("congruency", [
     incongr_level
 ])
 Text:
-The congruency factor depends on the regular factors Color and Word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color matches the Word, otherwise, it is considered "incongruent".
+The congruency variable depends on the regular factors Color and Word and has two levels: "congruent" and "incongruent". A trial is considered "congruent" if the Color matches the Word, otherwise, it is considered "incongruent".
 Code:
 num      = factor("digit",  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 color      = factor("Color",  ["red", "green", "blue", "brown"])
@@ -112,7 +112,7 @@ task_transition = factor("Task Transition", [
                  transition(is_t_sw, [t]))
 ])
 Text:
-The task transition factor depends on the transition of the Task factor and has two levels: "task repetition" and "task switch". If the Task on the current trial is the same as on the previous trial, then the trial is considered a "task repetition", otherwise, it is considered a "task switch".
+The task transition variable depends on the transition of the Task variable and has two levels: "task repetition" and "task switch". If the Task on the current trial is the same as on the previous trial, then the trial is considered a "task repetition", otherwise, it is considered a "task switch".
 Code:
 target = factor("number", ['1', '2', '3', '4', '5'])
 c      = factor("col",  ["d", "r"])
