@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Online Research Assistant</h2>
+<img class="titleImage" src="{{ url_for('static', filename='icon/icon.svg') }}">
+<h2 class="title"><span class="title_emph">AUTOBOL</span><br>Transforming text into science</h2>
+<p>
+    With help of the <span class="emph">auto</span>mated <span class="emph">b</span>ehavioral <span class="emph">o</span>nline <span class="emph">l</span>aboratory researcher can transform english text into experiments...
+</p>
 <h3 style="color: red">DISCLAIMER</h3>
 <p style="color: red">
-    This product and its dependencies are experimental and under development. Pleas use the output carefully. If in question double check.
+    This product and its dependencies are experimental and under development. Please use them carefully. If in doubt double check.
 </p>
 {% endblock %}
