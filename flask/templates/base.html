@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     {% if title %}
-    <title>{{ title }} - Autoperimenter</title>
+    <title>{{ title }} - Autobol</title>
     {% else %}
     <title>Autoperimenter</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
 </head>
 <body>
 <div class="header">
     <div class="navBar">
         <div class="float_left">
-            <a href="/sweetPea" class="{% if title == 'Sweet' %}current{% else %}notcurrent{% endif %}">Sweet</a>
-            <a href="/sourPea" class="{% if title == 'Sour' %}current{% else %}notcurrent{% endif %}">Sour</a>
-            <a href="/jsPsych" class="{% if tile == 'Psych' %}current{% else %}notcurrent{% endif %}">Psych</a>
+            <a href="/sweetPea"
+               class="nav_text {% if title == 'Sweet' %}current{% else %}notcurrent{% endif %}">Sweet</a>
+            <a href="/sourPea" class="nav_text {% if title == 'Sour' %}current{% else %}notcurrent{% endif %}">Sour</a>
+            <a href="/jsPsych" class="nav_text {% if title == 'Psych' %}current{% else %}notcurrent{% endif %}">Psych</a>
         </div>
         <div class="float_right">
-            <a href="/index" class="{% if title == 'About' %}current{% else %}notcurrent{% endif %}">About</a>
             <a href="/resources"
-               class="{% if title == 'Resources' %}current{% else %}notcurrent{% endif %}">Resources</a>
-            <a href="/team" class="{% if title == 'Team' %}current{% else %}notcurrent{% endif %}">Team</a>
+               class="nav_text {% if title == 'Resources' %}current{% else %}notcurrent{% endif %}">Resources</a>
+            <a href="/team" class="nav_text {% if title == 'Team' %}current{% else %}notcurrent{% endif %}">Team</a>
+            <a href="/index" class="nav_img {% if title == 'About' %}img_current{% else %}img_notcurrent{% endif %}"></a>
         </div>
     </div>
 
