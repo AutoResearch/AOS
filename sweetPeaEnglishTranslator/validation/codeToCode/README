@@ -3,3 +3,5 @@ code_1 -> text_1 -> code_2 -> text_2
 
 compare sourpea score for code_1 vs code_2
 compare rouge score for text_1 vs text_2
+
+in the altered version text_1 gets altered via gpt-3 edit

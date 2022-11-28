@@ -179,3 +179,11 @@ def is_task_transition_f_first(task):
     return task[1] != "free choice task" and task[0] == "free choice task"
 task_transition = Factor("task transition", [DerivedLevel("f switch", Transition(is_task_transition_f_switch, [task]), 3), DerivedLevel("f repeat", Transition(is_task_transition_f_repeat, [task])), DerivedLevel("free transition", Transition(is_task_transition_free_transition, [task]), 4), DerivedLevel("free repeat", Transition(is_task_transition_free_repeat, [task]), 4), DerivedLevel("f first", Transition(is_task_transition_f_first, [task]), 4)])
 Text:
+the mrob factor has two levels: 1 and 2. it depends on a moving trial window (for the last three trials) defined by the xiew factor. if the xiew on the current trial matches the xiew two trials back, then the trial is 1. otherwise, the trial is 2. the ratio between the levels 1 and 2 was six to four.
+Code:
+def is_mrob_1(xiew):
+    return xiew[2] == xiew[0]
+def is_mrob_2(xiew):
+    return not is_mrob_1(xiew)
+mrob = factor("mrob", [derived_level(1, window(is_mrob_1, [xiew], 3, 1), 6), derived_level(2, window(is_mrob_2, [xiew], 3, 1), 4)])
+Text:

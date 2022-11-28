@@ -1,0 +1,14 @@
+
+### REGULAR FACTORS
+the experiment had one regular factor: letter. the letter factor consisted of the eight letters: "b", "f", "m", "q", "k", "x", "r", and "h".
+### DERIVED FACTORS
+there were three derived factors: target, one back, and condi.
+## target
+the target factor had two levels: 1 and 2. it depended on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matched the letter two trials back, then the trial was 1. otherwise, the trial was 2. the ratio between the levels 1 and 2 was 1 to 5.
+## one back
+the one back factor had two levels: 1 and 2. it depended on a moving trial window (for the last two trials) defined by the letter factor. if the letter on the current trial matched the letter on the previous trial, then the trial had the level 2. otherwise, the trial had the level 1. the ratio between the levels 1 and 2 was 5 to 1.
+## condi
+the condi factor had four levels: "1/1/0", "1/2/0", "2/1/0", and "2/2/0". it depended on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matched the letter two trials back and the letter on the current trial did not match the letter one trial back, then the trial was "1/1/0". if the letter on the current trial matched the letter two trials back and the letter on the current trial matched the letter one trial back, then the trial was "1/2/0". if the letter on the current trial did not match the letter two trials back and the letter on the current trial did not match the letter one trial back, then the trial was "2/1/0". if the letter on the current trial did not match the letter two trials back and the letter on the current trial matched the letter one trial back, then the trial was "2/2/0". the ratio between the levels "1/1/0" and "1/2/0" was 3 to 1. the ratio between the levels "2/1/0" and "2/2/0" was 17 to 3.
+### EXPERIMENT
+we crossed the letter factor and the target factor. we also counterbalanced the one back factor and the condi factor individually. all experiment sequences contained at least 48 trials. 
+### END OF EXPERIMENT DESIGN

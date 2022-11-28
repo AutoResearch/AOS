@@ -1,5 +1,9 @@
 from sweetPeaEnglishTranslator.translator import translate, pre_process, util
+from sweetPeaEnglishTranslator import gpt3
 import time
+import random
+
+ALTER_TEXT_INSTRUCTIONS = [('Rephrase this as a scientist', .5), ('Paraphrase as a scientific text', .5)]
 
 SLEEP_TIME = 30
 
@@ -18,7 +22,7 @@ def sweetToSour(infile):
         f.write(res)
 
 
-def codeToCode(infile):
+def codeToCode(infile, alterText=False):
     with open(infile) as f:
         code_1 = f.read()
     _code_preprocessed = pre_process.preprocess_code(code_1)
@@ -30,6 +34,13 @@ def codeToCode(infile):
     time.sleep(SLEEP_TIME)
     with open(infile[:-9] + 'text_1.txt', 'w') as f:
         f.write(text_1)
+    if alterText:
+        instruction = random.choice(ALTER_TEXT_INSTRUCTIONS)
+        print(f'Altering text with instructions: {instruction[0]}')
+        text_1 = gpt3.gpt3_edit(text_1, instruction[0], temperature=instruction[1])
+        time.sleep(SLEEP_TIME)
+        with open(infile[:-9] + 'text_1_altered.txt', 'w') as f:
+            f.write(text_1)
     _text_1_preprocessed = pre_process.preprocess_text(text_1)
     txt_formatted = translate.text_to_formatted(_text_1_preprocessed)
     time.sleep(SLEEP_TIME)
@@ -52,4 +63,4 @@ def codeToCode(infile):
 
 
 if __name__ == '__main__':
-    codeToCode('example_4/code_1.py')
+    codeToCode('altered_text/example_4/code_1.py', True)

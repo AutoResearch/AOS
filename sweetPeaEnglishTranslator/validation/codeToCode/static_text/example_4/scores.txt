@@ -6,5 +6,3 @@ Translated code, sourpea scores:
 {'pValue': 1.0, 'levels': {'letter': True, 'number': True, 'task': True, 'task transition': True}, 'constraints': [True]}
 {'pValue': 1.0, 'levels': {'letter': True, 'number': True, 'task': True, 'task transition': True}, 'constraints': [True]}
 {'pValue': 0.9999827666597173, 'levels': {'letter': True, 'number': True, 'task': True, 'task transition': True}, 'constraints': [True]}
-Rouge score:
-{'rouge1': Score(precision=1.0, recall=1.0, fmeasure=1.0), 'rougeL': Score(precision=1.0, recall=1.0, fmeasure=1.0)}

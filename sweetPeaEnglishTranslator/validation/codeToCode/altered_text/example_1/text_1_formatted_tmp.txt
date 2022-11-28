@@ -1,0 +1,10 @@
+
+### REGULAR FACTORS
+there are two independent variables: color and word. the color variable consists of four levels: "red", "green", "blue", and "yellow". the word variable also consists of the four levels: "red", "green", "blue", and "yellow".
+### DERIVED FACTORS
+there is another derived variable referred to as congruency.
+## congruency
+the congruency variable depends on the independent variables word and color and has two levels: "congruent" and "incongruent". a trial is considered "congruent" if the word matches the color, otherwise, it is considered "incongruent".
+### EXPERIMENT
+we crossed the word variable with the congruency variable. all experiment sequences contained at least 48 trials. 
+### END OF EXPERIMENT DESIGN

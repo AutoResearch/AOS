@@ -7,7 +7,7 @@ PATH_TO_DERIVED_PROMPTS_CODE = os.path.join(_dirname, 'prompts/spet/derived_code
 PATH_TO_COUNTERBALANCING_PROMPTS_CODE = os.path.join(_dirname, 'prompts/spet/design_code.txt')
 
 ## prompts for text to code
-PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_text.txt')
+PATH_TO_REGULAR_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/spet/regular_text.txt')
 PATH_TO_DERIVED_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/spet/derived_text.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS_TEXT = os.path.join(_dirname, 'prompts/spet/design_text.txt')
 

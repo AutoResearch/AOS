@@ -223,7 +223,7 @@ def translate_counterbalancing_code_to_text(to_translate: str):
     """
     _ = store_prompts.store_prompt_balancing(to_translate, PATH_TO_COUNTERBALANCING_PROMPTS_CODE)
     prompt = util.get_code_without_functions(_)
-    answer, prompt = gpt3(prompt, stop_seq=['Code'])
+    answer, prompt = gpt3(prompt, response_length=1024, stop_seq=['Code'])
     stripped_answer = answer.replace("\n\n", "")
     return stripped_answer
 

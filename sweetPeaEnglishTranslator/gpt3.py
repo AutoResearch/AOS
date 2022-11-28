@@ -22,3 +22,13 @@ def gpt3(prompt, engine='code-davinci-002', response_length=1548,
     answer = response.choices[0]['text']
     new_prompt = prompt + start_text + answer + restart_text
     return answer, new_prompt
+
+def gpt3_edit(input, instruction, engine='text-davinci-edit-001', temperature=.7):
+    response = openai.Edit.create(
+        engine="text-davinci-edit-001",
+        input=input,
+        instruction=instruction,
+        temperature=temperature
+    )
+    answer = response.choices[0]['text']
+    return answer
