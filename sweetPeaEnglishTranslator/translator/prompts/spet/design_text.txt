@@ -99,3 +99,14 @@ Code:
 constraints = [minimum_trials(967)]
 crossing = [[rowi, hemem], [ribi], [hemhem]]
 Text:
+jo_hin = factor("jo hin", [DerivedLevel("jip", within_trial(is_jo_hin_jip, [haol, him])), DerivedLevel("ja", within_trial(is_jo_hin_ja,[haol, him])), DerivedLevel("qwe we", within_trial(is_jo_hin_qwe_we, [haol, him]))])
+labi = factor("labi", [1, 2, 3, 4])
+mano_ci_qu = factor("mano ci qu", ["mano", "ci", "qu"])
+adfs = factor("adfs", [DerivedLevel("fa", transition(is_adfs_fa, [hemhem])), DerivedLevel("fu", transition(is_adfs_fu, [hemhem]))])
+
+all experiment sequences contained at least 73 trials. the experiment crossed the adfs factor with the labi factor and the mano ci qu factor. the experiment also counterbalanced the labi factor and the jo hin factor individually.
+Code:
+constraints = [minimum_trials(73)]
+crossing = [[adfs, labi, mano_ci_qu], [labi], [jo_hin]]
+Text:
+

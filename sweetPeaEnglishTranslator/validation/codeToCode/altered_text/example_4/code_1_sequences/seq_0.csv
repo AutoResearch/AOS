@@ -1,0 +1,257 @@
+letter,number,task,task transition
+f,181,letter task,
+u,160,free choice task,free transition
+h,132,number task,forced first
+w,139,free choice task,free transition
+y,174,free choice task,free repeat
+b,167,number task,forced first
+s,125,letter task,forced switch
+d,146,free choice task,free transition
+y,174,free choice task,free repeat
+f,146,letter task,forced first
+w,139,number task,forced switch
+u,132,number task,forced repeat
+b,160,free choice task,free transition
+d,167,free choice task,free repeat
+h,181,free choice task,free repeat
+s,125,letter task,forced first
+d,181,number task,forced switch
+w,125,letter task,forced switch
+b,132,free choice task,free transition
+h,146,free choice task,free repeat
+s,139,free choice task,free repeat
+f,174,letter task,forced first
+y,167,letter task,forced repeat
+u,160,number task,forced switch
+b,146,letter task,forced switch
+w,132,free choice task,free transition
+h,139,letter task,forced first
+u,125,free choice task,free transition
+s,174,free choice task,free repeat
+y,160,free choice task,free repeat
+d,181,letter task,forced first
+f,167,free choice task,free transition
+y,132,letter task,forced first
+f,125,letter task,forced repeat
+h,139,free choice task,free transition
+u,181,free choice task,free repeat
+b,174,free choice task,free repeat
+d,160,number task,forced first
+s,146,free choice task,free transition
+w,167,free choice task,free repeat
+h,146,letter task,forced first
+y,181,free choice task,free transition
+w,160,free choice task,free repeat
+s,125,letter task,forced first
+f,132,free choice task,free transition
+b,167,number task,forced first
+d,139,letter task,forced switch
+u,174,number task,forced switch
+d,174,letter task,forced switch
+f,125,number task,forced switch
+w,146,number task,forced repeat
+u,167,free choice task,free transition
+y,132,free choice task,free repeat
+s,160,number task,forced first
+b,139,free choice task,free transition
+h,181,free choice task,free repeat
+u,132,free choice task,free repeat
+y,167,letter task,forced first
+d,160,number task,forced switch
+b,125,free choice task,free transition
+f,181,free choice task,free repeat
+w,139,letter task,forced first
+h,174,free choice task,free transition
+s,146,letter task,forced first
+b,132,number task,forced switch
+w,160,letter task,forced switch
+u,167,number task,forced switch
+h,125,free choice task,free transition
+s,139,free choice task,free repeat
+y,174,number task,forced first
+f,146,letter task,forced switch
+d,181,letter task,forced repeat
+w,132,free choice task,free transition
+f,181,free choice task,free repeat
+u,139,free choice task,free repeat
+s,125,letter task,forced first
+d,160,free choice task,free transition
+b,174,free choice task,free repeat
+y,167,letter task,forced first
+h,146,free choice task,free transition
+b,146,number task,forced first
+y,167,number task,forced repeat
+f,139,free choice task,free transition
+s,174,free choice task,free repeat
+u,160,free choice task,free repeat
+w,181,free choice task,free repeat
+d,125,number task,forced first
+h,132,free choice task,free transition
+h,132,free choice task,free repeat
+w,167,number task,forced first
+y,146,letter task,forced switch
+s,181,number task,forced switch
+b,139,free choice task,free transition
+d,160,letter task,forced first
+u,174,free choice task,free transition
+f,125,number task,forced first
+b,174,letter task,forced switch
+u,125,free choice task,free transition
+s,167,number task,forced first
+f,132,free choice task,free transition
+d,181,free choice task,free repeat
+y,139,free choice task,free repeat
+h,160,number task,forced first
+w,146,free choice task,free transition
+s,139,letter task,forced first
+d,125,number task,forced switch
+w,160,letter task,forced switch
+b,146,free choice task,free transition
+f,174,free choice task,free repeat
+h,132,free choice task,free repeat
+y,167,number task,forced first
+u,181,number task,forced repeat
+h,146,letter task,forced switch
+d,139,number task,forced switch
+u,132,letter task,forced switch
+b,125,number task,forced switch
+y,181,free choice task,free transition
+w,160,number task,forced first
+f,167,free choice task,free transition
+s,174,free choice task,free repeat
+y,174,number task,forced first
+w,132,free choice task,free transition
+b,160,free choice task,free repeat
+s,125,number task,forced first
+h,181,number task,forced repeat
+f,146,free choice task,free transition
+u,167,free choice task,free repeat
+d,139,free choice task,free repeat
+w,181,number task,forced first
+y,125,free choice task,free transition
+u,139,number task,forced first
+s,174,free choice task,free transition
+b,167,free choice task,free repeat
+f,146,free choice task,free repeat
+h,132,free choice task,free repeat
+d,160,letter task,forced first
+d,174,number task,forced switch
+h,160,letter task,forced switch
+u,132,number task,forced switch
+y,125,free choice task,free transition
+w,139,free choice task,free repeat
+f,181,number task,forced first
+b,146,free choice task,free transition
+s,167,number task,forced first
+y,160,number task,forced repeat
+b,167,free choice task,free transition
+s,146,free choice task,free repeat
+u,139,letter task,forced first
+d,132,number task,forced switch
+f,125,number task,forced repeat
+h,181,letter task,forced switch
+w,174,free choice task,free transition
+w,125,letter task,forced first
+b,160,number task,forced switch
+d,174,free choice task,free transition
+s,139,free choice task,free repeat
+u,132,free choice task,free repeat
+y,146,letter task,forced first
+h,167,free choice task,free transition
+f,181,free choice task,free repeat
+w,146,number task,forced first
+y,160,letter task,forced switch
+f,132,free choice task,free transition
+d,181,free choice task,free repeat
+s,125,number task,forced first
+b,139,free choice task,free transition
+u,167,free choice task,free repeat
+h,174,free choice task,free repeat
+y,132,number task,forced first
+d,146,letter task,forced switch
+f,139,free choice task,free transition
+b,160,free choice task,free repeat
+w,167,letter task,forced first
+s,125,free choice task,free transition
+h,181,letter task,forced first
+u,174,letter task,forced repeat
+u,132,number task,forced switch
+s,174,free choice task,free transition
+y,146,number task,forced first
+b,181,letter task,forced switch
+h,160,number task,forced switch
+f,139,free choice task,free transition
+d,125,free choice task,free repeat
+w,167,number task,forced first
+h,132,free choice task,free transition
+y,181,letter task,forced first
+b,174,number task,forced switch
+f,167,number task,forced repeat
+d,139,free choice task,free transition
+w,146,free choice task,free repeat
+s,160,free choice task,free repeat
+u,125,free choice task,free repeat
+f,160,number task,forced first
+u,146,letter task,forced switch
+s,139,free choice task,free transition
+y,132,free choice task,free repeat
+w,167,letter task,forced first
+h,125,free choice task,free transition
+d,174,number task,forced first
+b,181,free choice task,free transition
+b,181,free choice task,free repeat
+s,160,letter task,forced first
+u,167,free choice task,free transition
+w,132,free choice task,free repeat
+h,174,free choice task,free repeat
+f,139,letter task,forced first
+y,146,letter task,forced repeat
+d,125,number task,forced switch
+w,125,letter task,forced switch
+s,160,free choice task,free transition
+u,167,number task,forced first
+d,146,letter task,forced switch
+f,174,free choice task,free transition
+y,139,free choice task,free repeat
+h,132,letter task,forced first
+b,181,letter task,forced repeat
+f,125,number task,forced switch
+w,160,free choice task,free transition
+h,132,free choice task,free repeat
+d,167,number task,forced first
+y,174,free choice task,free transition
+s,146,free choice task,free repeat
+u,139,free choice task,free repeat
+b,181,letter task,forced first
+h,125,number task,forced switch
+s,160,number task,forced repeat
+y,174,free choice task,free transition
+d,146,number task,forced first
+w,181,free choice task,free transition
+f,167,letter task,forced first
+u,139,free choice task,free transition
+b,132,free choice task,free repeat
+h,132,free choice task,free repeat
+f,160,letter task,forced first
+w,174,free choice task,free transition
+u,167,free choice task,free repeat
+s,146,free choice task,free repeat
+b,181,letter task,forced first
+d,125,number task,forced switch
+y,139,letter task,forced switch
+u,146,number task,forced switch
+d,132,free choice task,free transition
+h,174,letter task,forced first
+b,139,number task,forced switch
+s,125,free choice task,free transition
+f,160,number task,forced first
+y,167,free choice task,free transition
+w,181,letter task,forced first
+y,132,number task,forced switch
+s,174,number task,forced repeat
+f,160,letter task,forced switch
+u,125,free choice task,free transition
+d,167,free choice task,free repeat
+h,146,free choice task,free repeat
+w,139,free choice task,free repeat
+b,181,free choice task,free repeat

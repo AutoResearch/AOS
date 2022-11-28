@@ -36,7 +36,7 @@ experiments  = synthesize_trials_non_uniform(block, 1)
 Text:
 We counterbalanced the color factor with the word factor. However, the experiment sequences were generated subject to the constraint that no congruent trials were included. All experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-col = factor("color",  ["red", "green"])
+col = factor("color", ["red", "green"])
 wrd = factor("word", ["red", "green"])
 tsk = factor("task", ["color naming", "word reading"])
 response_transition = factor("response transition", [
@@ -47,9 +47,9 @@ response_transition = factor("response transition", [
 ])
 task_transition = factor("task transition", [
     derived_level("repetition",
-                 transition(is_task_repetition, [tsk])),
+                 transition(is_tk_reption, [tsk])),
     derived_level("switch",
-                 transition(is_task_switch, [tsk]))
+                 transition(is_tk_swch, [tsk]))
 ])
 constraints = [
     AtMostKInARow(4, task_transition),
@@ -73,8 +73,8 @@ Code:
 col = factor("color",  ["red", "green", "blue", "brown"])
 wrd = factor("word", ["red", "green", "blue", "brown"])
 response = factor("response", ["left", "right"]
-congr = derived_level("congruent", within_trial(is_congruent, [color, word]))
-incongr = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congr = derived_level("congruent", within_trial(is_cuent, [color, word]))
+incongr = derived_level("incongruent", within_trial(is_iuent, [color, word]))
 congruency = factor("congruency", [
     congr,
     incongr
@@ -106,9 +106,9 @@ target = factor("number", ['1', '2', '3', '4', '5'])
 color = factor("Color",  ["red", "green"])
 word = factor("Word", ["red", "green"])
 task = factor("Task", ["color naming", "word reading"])
-incr = derived_level("increment", transition(is_lrg, [target]))
-same = derived_level("unchanged", transition(is_eq, [target]))
-decr = derived_level("decrement", transition(is_sml, [target]))
+incr = derived_level("incr", transition(is_lrg, [target]))
+same = derived_level("unch", transition(is_eq, [target]))
+decr = derived_level("decr", transition(is_sml, [target]))
 numtransfac = factor("number transition", [
     incr,
     same,
@@ -151,8 +151,8 @@ We crossed the factors motion, shape, and number. However, we excluded all trial
 Code:
 col = factor("color",  ["red", "green", "blue", "brown"])
 wrd = factor("word", ["red", "green", "blue", "brown"])
-congr = derived_level("congruent", within_trial(is_congruent, [color, word]))
-incongr = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
+congr = derived_level("congruent", within_trial(is_cng, [color, word]))
+incongr = derived_level("incongruent", within_trial(is_icng, [color, word]))
 congruency = factor("congruency", [
     congr,
     incongr
@@ -169,10 +169,10 @@ The color and word factor were crossed. Also the word factor was crossed with th
 Code:
 color      = Factor("color",  ["red", "blue", "green", "brown"])
 word       = Factor("motion", ["red", "blue", "green", "brown"])
-conLevel1 = DerivedLevel("con1", WithinTrial(congruent,   [color, word]))
-conLevel2 = DerivedLevel("con2", WithinTrial(congruent,   [color, word]))
-conLevel3 = DerivedLevel("con3", WithinTrial(congruent,   [color, word]))
-incLevel = DerivedLevel("inc", WithinTrial(incongruent,   [color, word]))
+conLevel1 = DerivedLevel("con1", WithinTrial(congr,   [color, word]))
+conLevel2 = DerivedLevel("con2", WithinTrial(congr,   [color, word]))
+conLevel3 = DerivedLevel("con3", WithinTrial(congr,   [color, word]))
+incLevel = DerivedLevel("inc", WithinTrial(incongr,   [color, word]))
 congruency = Factor("congruency", [
     conLevel1,
     conLevel2,
@@ -180,14 +180,14 @@ congruency = Factor("congruency", [
     incLevel
 ])
 response = Factor("response", [
-    DerivedLevel("up", WithinTrial(response_up,   [color])),
-    DerivedLevel("down", WithinTrial(response_down,   [color])),
-    DerivedLevel("left", WithinTrial(response_left,   [color])),
-    DerivedLevel("right", WithinTrial(response_right,   [color])),
+    DerivedLevel("up", WithinTrial(resp_up,   [color])),
+    DerivedLevel("down", WithinTrial(resp_down,   [color])),
+    DerivedLevel("left", WithinTrial(resp_left,   [color])),
+    DerivedLevel("right", WithinTrial(resp_right,   [color])),
 ])
 resp_transition = Factor("response_transition", [
-    DerivedLevel("repeat", Transition(response_repeat, [response])),
-    DerivedLevel("switch", Transition(response_switch, [response]))
+    DerivedLevel("repeat", Transition(resp_repeat, [response])),
+    DerivedLevel("switch", Transition(resp_switch, [response]))
 ])
 k = 7
 constraints = [no_more_than_k_in_a_row(k, resp_transition)]
@@ -201,10 +201,10 @@ color = factor("color",  ["red", "green", "blue", "brown"])
 word = factor("word", ["red", "green", "blue", "brown"])
 location       = factor("location", ["up", "down", "left", "right"])
 response = factor("response", [
-    derived_level("left", within_trial(is_response_left, [color])),
-    derived_level("right", within_trial(is_response_right, [color])),
-    derived_level("up", within_trial(is_response_up, [color])),
-    derived_level("down", within_trial(is_response_down, [color]))
+    derived_level("left", within_trial(is_rsp_lt, [color])),
+    derived_level("right", within_trial(is_rsp_rit, [color])),
+    derived_level("up", within_trial(is_rsp_up, [color])),
+    derived_level("down", within_trial(is_rsp_down, [color]))
 ])
 congruent = derived_level("congruent", within_trial(is_congruent, [color, word]))
 incongruent = derived_level("incongruent", within_trial(is_incongruent, [color, word]))
@@ -274,10 +274,10 @@ vivo = Factor('ism', ['b', 'f', 'm', 'q', 'k', 'x', 'r', 'h'])
 one_t = DerivedLevel('1', DerivationWindow(i_t, [vivo], 3, 1), 1)
 two_t = DerivedLevel('2', DerivationWindow(i_n_t, [vivo], 3, 1), 5)
 tarab = Factor('po', [one_t, two_t])
-o_o_0 = DerivedLevel('1/1/0', DerivationWindow(is_control_target, [vivo], 3, 1), 3)
-o_t_0 = DerivedLevel('1/2/0', DerivationWindow(is_experimental_target, [vivo], 3, 1), 1)
-t_o_0 = DerivedLevel('2/1/0', DerivationWindow(is_control_foil, [vivo], 3, 1), 17)
-t_t_0 = DerivedLevel('2/2/0', DerivationWindow(is_experimental_foil, [vivo], 3, 1), 3)
+o_o_0 = DerivedLevel('1/1/0', DerivationWindow(is_cool_target, [vivo], 3, 1), 3)
+o_t_0 = DerivedLevel('1/2/0', DerivationWindow(is_expental_target, [vivo], 3, 1), 1)
+t_o_0 = DerivedLevel('2/1/0', DerivationWindow(is_col_foil, [vivo], 3, 1), 17)
+t_t_0 = DerivedLevel('2/2/0', DerivationWindow(is_expental_foil, [vivo], 3, 1), 3)
 condi = Factor('condi', [o_o_0, o_t_0, t_o_0, t_t_0])
 block = MultiCrossBlock(design=[vivo, tarab, condi],
                         crossings=[[vivo, tarab], [tarab], [condi]],
@@ -305,8 +305,8 @@ response = factor("response", [
     derived_level("up", within_trial(gr, [c])),
     derived_level("down", within_trial(ir_e, [c]))
 ])
-congruent = derived_level("congruent", within_trial(is_c, [c, w]))
-incongruent = derived_level("incongruent", within_trial(is_i, [c, w]))
+con = derived_level("con", within_trial(is_c, [c, w]))
+inc = derived_level("inc", within_trial(is_i, [c, w]))
 congruency = factor("congruency", [
     congruent,
     incongruent
@@ -341,9 +341,9 @@ nmbr = Factor("num", number_list)
 ltr = Factor("letter", letter_list)
 tsk = Factor("tr", ["number task", "letter task", "free choice task"])
 tr = Factor("tr tt", [
-    DerivedLevel("fs", transition(is_forced_trial_switch, [task]), 3),
-    DerivedLevel("fr", transition(is_forced_trial_repeat, [task])),
-    DerivedLevel("fr tr", transition(is_free_trial_transition, [task]), 4)
+    DerivedLevel("fs", transition(is_ford_trl_switch, [task]), 3),
+    DerivedLevel("fr", transition(is_ford_trl_repeat, [task])),
+    DerivedLevel("fr tr", transition(is_fr_trl_transition, [task]), 4)
 ])
 design = [nmbr, ltr, tsk, tr]
 crossing = [[ltr], [nmbr], [tr]]
@@ -351,4 +351,34 @@ constraints = [MinimumTrials(231)]
 block = MultiCrossBlock(design, crossing, constraints)
 Text:
 The factors letter, num and tr tt were counterbalanced individually. All experiment sequences contained at least 231 trials.
+Code:
+bo = factor("afjdk",  range(0,20))
+bibid = factor("alsd",  ["u", "d"])
+obo = DerivedLevel('fas', DerivationWindow(is_con_tat, [let], 3, 1), 3)
+abla = DerivedLevel('afsa0', DerivationWindow(is_experal_tart, [let], 3, 1), 1)
+pres = factor("nae", ["c", "s", "t"])
+fol = factor("craoj", ["lg","sml"])
+ibli = DerivedLevel('1', DerivationWindow(is_con_f, [let], 3, 1), 17)
+dab = DerivedLevel('20', DerivationWindow(is_expetal_fl, [let], 3, 1), 3)
+block = MultiCrossBlock(design=[bo, bibid, pres, fol], crossings=[[bo, pres], [bibid], [fol]], constraints=[])
+Text:
+We crossed the afdfk and the nae factors. Also we counterbalanced the alsd and the craoj factor individually.
+Code:
+lt = Factor('lt', ['b', 'f', 'm', 'q', 'k', 'x', 'r', 'h'])
+one_t = DerivedLevel(1, DerivationWindow(is_target, [lt], 3, 1), 1)
+two_t = DerivedLevel(2, DerivationWindow(is_not_target, [lt], 3, 1), 5)
+tro = Factor('tro', [one_t, two_t])
+two_o = DerivedLevel(2, DerivationWindow(is_one_back, [lt], 2, 1), 1)
+one_o = DerivedLevel(1, DerivationWindow(is_not_one_back, [lt], 2, 1), 5)
+ubi_du = Factor('ubi du', [one_o, two_o])
+one_one_0 = DerivedLevel('1/1/0', DerivationWindow(is_control_target, [lt], 3, 1), 3)
+one_two_0 = DerivedLevel('1/2/0', DerivationWindow(is_experimental_target, [lt], 3, 1), 1)
+two_one_0 = DerivedLevel('2/1/0', DerivationWindow(is_control_foil, [lt], 3, 1), 17)
+two_two_0 = DerivedLevel('2/2/0', DerivationWindow(is_experimental_foil, [lt], 3, 1), 3)
+condi = Factor('condi', [one_one_0, one_two_0, two_one_0, two_two_0])
+block = MultiCrossBlock(design=[lt, target, one_back, condi],
+                        crossings=[[lt, tro], [ubi_du], [condi]],
+                        constraints=[MinimumTrials(11)])
+Text:
+We crossed the letter factor and the tro factor. We also counterbalanced the ubi du factor and the condi factor individually. All experiment sequences contained at least 11 trials.
 Code:

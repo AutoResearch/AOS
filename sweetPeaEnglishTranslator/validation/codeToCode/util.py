@@ -3,7 +3,7 @@ from sweetPeaEnglishTranslator import gpt3
 import time
 import random
 
-ALTER_TEXT_INSTRUCTIONS = [('Rephrase this as a scientist', .5)]
+ALTER_TEXT_INSTRUCTIONS = [('Rephrase this as a scientist', .5), ('Paraphrase as a scientific text', .5)]
 
 SLEEP_TIME = 30
 
@@ -63,4 +63,4 @@ def codeToCode(infile, alterText=False):
 
 
 if __name__ == '__main__':
-    codeToCode('altered_text/example_1/code_1.py', True)
+    codeToCode('altered_text/example_4/code_1.py', True)
