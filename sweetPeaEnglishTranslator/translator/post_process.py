@@ -15,8 +15,8 @@ def get_block_from_code(code: str) -> str:
         if line.startswith('crossing'):
             words = line.split()
             if len(words) >= 3 and words[2].startswith('[['):
-                return 'MultiCrossBlock(design, crossing, constraints)'
-    return 'CrossBlock(design, crossing, constraints)'
+                return 'MultiCrossBlock(design, crossing, constraints, require_complete_crossing=False)'
+    return 'CrossBlock(design, crossing, constraints, require_complete_crossing=False)'
 
 
 def get_factors_from_code_full(code: str) -> str:
