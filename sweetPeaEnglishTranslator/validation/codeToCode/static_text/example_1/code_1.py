@@ -1,5 +1,4 @@
 from sweetpea import *
-from sweetpea.primitives import *
 
 color = Factor('color', ['red', 'green', 'blue', 'yellow'])
 word = Factor('word', ['red', 'green', 'blue', 'yellow'])

@@ -10,21 +10,21 @@ task = Factor("task", ["number task", "letter task", "free choice task"])
 
 
 def is_forced_trial_switch(task):
-    return (task[0] == "number task" and task[1] == "letter task") or \
-           (task[0] == "letter task" and task[1] == "number task")
+    return (task[-1] == "number task" and task[0] == "letter task") or \
+           (task[-1] == "letter task" and task[0] == "number task")
 
 
 def is_forced_trial_repeat(task):
-    return (task[0] == "number task" and task[1] == "number task") or \
-           (task[0] == "letter task" and task[1] == "letter task")
+    return (task[-1] == "number task" and task[0] == "number task") or \
+           (task[-1] == "letter task" and task[0] == "letter task")
 
 
 def is_free_trial_transition(task):
-    return task[0] != "free choice task" and task[1] == "free choice task"
+    return task[-1] != "free choice task" and task[0] == "free choice task"
 
 
 def is_free_trial_repeat(task):
-    return task[0] == "free choice task" and task[1] == "free choice task"
+    return task[-1] == "free choice task" and task[0] == "free choice task"
 
 
 def is_not_relevant_transition(task):

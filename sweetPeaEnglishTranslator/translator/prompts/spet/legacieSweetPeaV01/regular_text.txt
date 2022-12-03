@@ -1,86 +1,86 @@
 Text:
 there are two regular factors: color and word. the color factor consists of four levels: "red", "green", "blue", "brown". the word factor also consists of the four levels: "red", "green", "blue", "brown".
 Code:
-color = Factor("color",  ["red", "green", "blue", "brown"])
-word = FactorFactor("word", ["red", "green", "blue", "brown"])
+color = factor("color",  ["red", "green", "blue", "brown"])
+word = factor("word", ["red", "green", "blue", "brown"])
 Text:
 there are three regular factors: color, word, and task. the color factor consists of two levels: "red" and "green". the word factor also consists of the same two levels: "red" and "green". the task factor has the levels "color naming" and "word reading".
 Code:
-color = Factor("color",  ["red", "green"])
-word = Factor("word", ["red", "green"])
-task = Factor("task", ["color naming", "word reading"])
+color = factor("color",  ["red", "green"])
+word = factor("word", ["red", "green"])
+task = factor("task", ["color naming", "word reading"])
 Text:
 there is one regular factor: letter. the letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F".
 Code:
-letter = Factor("letter",  ["A", "B", "C", "D", "E", "F"])
+letter = factor("letter",  ["A", "B", "C", "D", "E", "F"])
 Text:
 there are three regular factors: deviant color, deviant orientation, and deviant movement. the deviant color factor consists of the two levels "pink" and "purple". the deviant orientation factor consists of the two levels "left" and "right". the deviant movement factor consists of the two levels "vertical" and "horizontal".
 Code:
-deviant_color = Factor("deviant color",  ["pink", "purple"])
-deviant_orientation = Factor("deviant orientation", ["left", "right"])
-deviant_movement = Factor("deviant movement", ["vertical", "horizontal"])
+deviant_color = factor("deviant color",  ["pink", "purple"])
+deviant_orientation = factor("deviant orientation", ["left", "right"])
+deviant_movement = factor("deviant movement", ["vertical", "horizontal"])
 Text:
 there are three regular variables: color, word and location. the color variable consists of four levels: "red", "green", "blue", "brown". the word variable also consists of the four levels: "red", "green", "blue", "brown". the location variable consists of four levels: "up", "down", "left", "right".
 Code:
-color = Factor("color",  ["red", "green", "blue", "brown"])
-word = Factor("word", ["red", "green", "blue", "brown"])
-location = Factor("location", ["up", "down", "left", "right"])
+color = factor("color",  ["red", "green", "blue", "brown"])
+word = factor("word", ["red", "green", "blue", "brown"])
+location = factor("location", ["up", "down", "left", "right"])
 Text:
 there are two regular factors: stimulus and task cue. the stimulus factor consists of four levels: "green diamond", "blue diamond", "green heart", "blue heart". the task cue factor consists of two levels: "color" and "shape".
 Code:
-stimulus = Factor("stimulus", ["green diamond", "blue diamond", "green heart", "blue heart"])
-task_cue = Factor("task cue", ["color", "shape"])
+stimulus = factor("stimulus", ["green diamond", "blue diamond", "green heart", "blue heart"])
+task_cue = factor("task cue", ["color", "shape"])
 Text:
 there are two regular factors: color and sounds. the color factor consists of three levels: "blue", "green", "red". the sounds factor consists of two levels: "bell" and "honk".
 Code:
-color = Factor("color", ["blue", "green", "red"])
-sounds = Factor("sounds", ["bell", "honk"])
+color = factor("color", ["blue", "green", "red"])
+sounds = factor("sounds", ["bell", "honk"])
 Text:
 there are four regular factors: color, sounds, letters, and numbers. the color factor consists of three levels: "blue", "green", "red". the sounds factor consists of two levels: "bell" and "honk". the letters factor consists of three levels: "a", "b", "c". the numbers factor consists of five levels: "1", "2", "3", "4", and "5".
 Code:
-color = Factor("color", ["blue", "green", "red"])
-sounds = Factor("sounds", ["bell", "honk"])
-letters = Factor("letters", ["a", "b", "c"])
-numbers = Factor("numbers", ["1", "2", "3", "4", "5"])
+color = factor("color", ["blue", "green", "red"])
+sounds = factor("sounds", ["bell", "honk"])
+letters = factor("letters", ["a", "b", "c"])
+numbers = factor("numbers", ["1", "2", "3", "4", "5"])
 Text:
 there are two regular factors: object identity and motion. the object identity factor consists of two levels: "H" and "S". for the object identity factor, the ratio between the levels "H" and "S" was 2 to 1. the motion factor also consists of the two levels: "left" and "right".
 Code:
-object_identity = Factor("object identity", [Level("H", 2), Level("S", 1)])
-motion = Factor("motion", ["left", "right"])
+object_identity = factor("object identity", [Level("H", 2), Level("S", 1)])
+motion = factor("motion", ["left", "right"])
 Text:
 there are two regular factors: color and word. the color factor consists of two levels: "red" and "green". the word factor consists of the four levels: "red", "green, "blue" and "brown". for the color factor, the ratio of the levels "red" and "green" was 3 to 2.
 Code:
-color = Factor("color",  [Level("red",3), Level("green",2)])
-word = Factor("word", ["red", "green", "blue", "brown"])
+color = factor("color",  [Level("red",3), Level("green",2)])
+word = factor("word", ["red", "green", "blue", "brown"])
 Text:
 there are two regular factors: color and word. the color factor consists of two levels: "red" and "green". the word factor consists of the four levels: "red", "green, "blue" and "brown". however, for the color factor, the ratio of the levels "red" and "green" was 3 to 2.
 Code:
-color = Factor("color",  [Level("red",3), Level("green",2)])
-word = Factor("word", ["red", "green", "blue", "brown"])
+color = factor("color",  [Level("red",3), Level("green",2)])
+word = factor("word", ["red", "green", "blue", "brown"])
 text:
 there is one regular factor: letter. the letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F". for the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F", and the letter "D" appeared twice as often as "B", "C", "E" and "F".
 Code:
-letter = Factor("letter",  [Level("A", 3), "B", "C", Level("D", 2), "E", "F"])
+letter = factor("letter",  [Level("A", 3), "B", "C", Level("D", 2), "E", "F"])
 Text:
 there is one regular factor: letter. the letter factor consists of the six letters: "A", "B", "C", "D", "E", and "F". in the letter factor, the letter "A" appeared three times as often as the letters "B", "C", "E" and "F" and the letter "D" appeared twice as often as "B", "C", "E" and "F".
 Code:
-letter = Factor("letter",  [Level("A", 3), Level("B", 1), Level("C", 1), Level("D", 2), Level("E", 1), Level("F", 1)])
+letter = factor("letter",  [Level("A", 3), Level("B", 1), Level("C", 1), Level("D", 2), Level("E", 1), Level("F", 1)])
 Text:
 there is one regular factor: word. the word factor consists of the six letters: "red", "green", "yellow", "blue" and "pink". in the word factor, word "pink" appeared four times as often as the letters "red", "green" and "yellow" and the word "blue" appeared twice as often as "red", "green" and "yellow".
 Code:
-word = Factor("word",  ["red", Level("green", 1), "yellow", Level("blue", 2), Level("pink", 4)])
+word = factor("word",  ["red", Level("green", 1), "yellow", Level("blue", 2), Level("pink", 4)])
 Text:
 there are is one regular variables: word. the word variable consists of the six letters: "red", "green", "yellow", "blue" and "pink" with a ratio of 1 : 2 : 4 : 2 : 4, respectively. for instance, the level "green" appeared twice as often as the level "red".
 Code:
-word = Factor("word",  ["red", Level("green", 2), Level("yellow", 4), Level("blue", 2), Level("pink", 4)])
+word = factor("word",  ["red", Level("green", 2), Level("yellow", 4), Level("blue", 2), Level("pink", 4)])
 Text:
 there are two regular factors: object identity and motion. the object identity factor consists of two levels: "H" and "S". for the object identity factor, the ratio level "H" appears three times as often as the level "S". the motion factor also consists of the two levels: "left" and "right".
 Code:
-object_identity = Factor("object identity", [Level("H", 3), Level("S", 1)])
-motion = Factor("motion", ["left", "right"])
+object_identity = factor("object identity", [Level("H", 3), Level("S", 1)])
+motion = factor("motion", ["left", "right"])
 Text:
 there are two regular variable: color and word. the variable color consists of two levels: "red" and green". however, in the color variable, the levels occur with different frequencies: the level "green" appears four times as often as the level "red". the word variable consists of the four levels: "red", "green, "blue" and "brown".
 Code:
-color = Factor("color",  ["red", Level("green",4)])
-word = Factor("word", ["red", "green", "blue", "brown"])
+color = factor("color",  ["red", Level("green",4)])
+word = factor("word", ["red", "green", "blue", "brown"])
 Text:

@@ -48,7 +48,7 @@ def codeToCode(infile, alterText=False):
         f.write(txt_formatted)
     _code_2 = translate.text_to_code(txt_formatted)
     time.sleep(SLEEP_TIME)
-    code_2 = "from sweetpea import *\nfrom sweetpea.primitives import *\n" + _code_2 + "\nsave_experiments_csv(block, experiments, 'code_2_sequences/seq')"
+    code_2 = "from sweetpea import *\n"+ _code_2 + "\nsave_experiments_csv(block, experiments, 'code_2_sequences/seq')"
     with open(infile[:-4] + '2.py', 'w') as f:
         f.write(code_2)
     _code_2_preprocessed = pre_process.preprocess_code(code_2)
@@ -63,4 +63,4 @@ def codeToCode(infile, alterText=False):
 
 
 if __name__ == '__main__':
-    codeToCode('altered_text/example_4/code_1.py', True)
+    codeToCode('altered_text/example_2/code_1.py', True)
