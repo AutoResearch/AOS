@@ -1,0 +1,245 @@
+Unformatted:
+object = Factor("object identity", [Level("H", 2), Level("S", 1)])
+motion = Factor("motion", [Level("left", 2), Level("right", 3)])
+def response_left(object):
+    return object == "H"
+def response_right(object):
+    return object == "S"
+response = Factor("correct response", [
+    DerivedLevel("left", WithinTrial(response_left, [object])),
+    DerivedLevel("right", WithinTrial(response_right, [object])),
+])
+def compatible(motion, response):
+    return motion == response
+def incompatible(motion, response):
+    return not compatible(motion, response)
+conLevel = DerivedLevel("compatible", WithinTrial(compatible, [motion, response]))
+incLevel = DerivedLevel("incompatible", WithinTrial(incompatible, [motion, response]))
+congruency = Factor("response congruency", [
+    conLevel,
+    incLevel
+])
+def congr_repeat(congruency):
+    return congruency[0] == congruency[1]
+def congr_switch(congruency):
+    return not congr_repeat(congruency)
+congr_transition = Factor("congruency transition", [
+    DerivedLevel("repeat", Transition(congr_repeat, [congruency])),
+    DerivedLevel("switch", Transition(congr_switch, [congruency]))
+])
+constraints = [at_most_k_in_a_row(5, response),
+               at_most_k_in_a_row(5, congruency),
+               minimum_trials(100)]
+design = [object, motion, congruency, response, congr_transition]
+crossing = [object, motion, congr_transition]
+block = fully_cross_block(design, crossing, constraints)
+experiments = synthesize_trials_non_uniform(block, 1)
+### END OF EXPERIMENT DESIGN
+Formatted:
+### REGULAR FACTORS
+object = Factor("object identity", [Level("H", 2), Level("S", 1)])
+motion = Factor("motion", [Level("left", 2), Level("right", 3)])
+### DERIVED FACTORS
+##
+def response_left(object):
+    return object == "H"
+def response_right(object):
+    return object == "S"
+response = Factor("correct response", [
+    DerivedLevel("left", WithinTrial(response_left, [object])),
+    DerivedLevel("right", WithinTrial(response_right, [object])),
+])
+##
+def compatible(motion, response):
+    return motion == response
+def incompatible(motion, response):
+    return not compatible(motion, response)
+conLevel = DerivedLevel("compatible", WithinTrial(compatible, [motion, response]))
+incLevel = DerivedLevel("incompatible", WithinTrial(incompatible, [motion, response]))
+congruency = Factor("response congruency", [
+    conLevel,
+    incLevel
+])
+##
+def congr_repeat(congruency):
+    return congruency[0] == congruency[1]
+def congr_switch(congruency):
+    return not congr_repeat(congruency)
+congr_transition = Factor("congruency transition", [
+    DerivedLevel("repeat", Transition(congr_repeat, [congruency])),
+    DerivedLevel("switch", Transition(congr_switch, [congruency]))
+])
+### EXPERIMENT
+constraints = [at_most_k_in_a_row(5, response),
+               at_most_k_in_a_row(5, congruency),
+               minimum_trials(100)]
+design = [object, motion, congruency, response, congr_transition]
+crossing = [object, motion, congr_transition]
+block = fully_cross_block(design, crossing, constraints)
+experiments = synthesize_trials_non_uniform(block, 1)
+Unformatted:
+object = Factor("object identity",  ["H", "S"])
+motion = Factor("motion", ["left", "right"])
+def response_left(object):
+    return object == "H"
+def response_right(object):
+    return object == "S"
+def compatible(motion, response):
+    return motion == response
+def incompatible(motion, response):
+    return not compatible(motion, response)
+response = Factor("correct response", [
+    DerivedLevel("left", WithinTrial(response_left,   [object])),
+    DerivedLevel("right", WithinTrial(response_right,   [object])),
+])
+conLevel = DerivedLevel("compatible", WithinTrial(compatible, [motion, response]))
+incLevel = DerivedLevel("incompatible", WithinTrial(incompatible, [motion, response]))
+congruency = Factor("response congruency", [
+    conLevel,
+    incLevel
+])
+def congr_repeat(congruency):
+    return congruency[0] == congruency[1]
+def congr_switch(congruency):
+    return not congr_repeat(congruency)
+congr_transition = Factor("congruency transition", [
+    DerivedLevel("repeat", Transition(congr_repeat, [congruency])),
+    DerivedLevel("switch", Transition(congr_switch, [congruency]))
+])
+constraints = [at_most_k_in_a_row(5, response),
+               at_most_k_in_a_row(5, congruency),
+               minimum_trials(100)]
+design = [object, motion, congruency, response, congr_transition]
+crossing = [object, motion, congr_transition]
+block = fully_cross_block(design, crossing, constraints)
+experiments = synthesize_trials_non_uniform(block, 1)
+Formatted:
+### REGULAR FACTORS
+object = Factor("object identity",  ["H", "S"])
+motion = Factor("motion", ["left", "right"])
+### DERIVED FACTORS
+##
+def response_left(object):
+    return object == "H"
+def response_right(object):
+    return object == "S"
+response = Factor("correct response", [
+    DerivedLevel("left", WithinTrial(response_left,   [object])),
+    DerivedLevel("right", WithinTrial(response_right,   [object])),
+])
+##
+def compatible(motion, response):
+    return motion == response
+def incompatible(motion, response):
+    return not compatible(motion, response)
+conLevel = DerivedLevel("compatible", WithinTrial(compatible, [motion, response]))
+incLevel = DerivedLevel("incompatible", WithinTrial(incompatible, [motion, response]))
+congruency = Factor("response congruency", [
+    conLevel,
+    incLevel
+])
+##
+def congr_repeat(congruency):
+    return congruency[0] == congruency[1]
+def congr_switch(congruency):
+    return not congr_repeat(congruency)
+congr_transition = Factor("congruency transition", [
+    DerivedLevel("repeat", Transition(congr_repeat, [congruency])),
+    DerivedLevel("switch", Transition(congr_switch, [congruency]))
+])
+### EXPERIMENT
+constraints = [at_most_k_in_a_row(5, response),
+               at_most_k_in_a_row(5, congruency),
+               minimum_trials(100)]
+design = [object, motion, congruency, response, congr_transition]
+crossing = [object, motion, congr_transition]
+block = fully_cross_block(design, crossing, constraints)
+experiments = synthesize_trials_non_uniform(block, 1)
+### END OF EXPERIMENT DESIGN
+Unformatted:
+constraints = [minimum_trials(103)]
+letter = factor("letter", ["A", "B", "C", "D", "E", "F"])
+def is_1back_lure_yes(letter):
+    return letter[0] == letter[1]
+def is_2back_lure_yes(letter):
+    return letter[0] == letter[2]
+def is_2back_lure_no(letter):
+    return not is_2back_lure_yes(letter)
+def is_target_yes(letter):
+    return letter[0] == letter[3]
+def is_target_no(letter):
+    return not is_target_yes(letter)
+def is_1back_lure_no(letter):
+    return not is_1back_lure_yes(letter)
+target = factor("target", [
+    derived_level("yes", window(is_target_yes, [letter], 4, 1)),
+    derived_level("no", window(is_target_no, [letter], 4, 1))
+])
+def is_n_back_lure_yes(letter):
+    return letter[0] == letter[1] or letter[0] == letter[2]
+one_back_lure = factor("1back lure", [
+    derived_level("yes", window(is_1back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_1back_lure_no, [letter], 3, 1))
+])
+two_back_lure = factor("2back lure", [
+    derived_level("yes", window(is_2back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_2back_lure_no, [letter], 3, 1))
+])
+def is_n_back_lure_no(letter):
+    return not is_n_back_lure_yes(letter)
+n_back_lure = factor("n-back lure", [
+    derived_level("yes", window(is_n_back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_n_back_lure_no, [letter], 3, 1))
+])
+crossing = [target, n_back_lure]
+design = [letter, target, 1back_lure, 2back_lure, n_back_lure]
+block = fully_cross_block(design, crossing, constraints, False)
+experiments = synthesize_trials_non_uniform(block, 1)
+Formatted:
+### REGULAR FACTORS
+letter = factor("letter", ["A", "B", "C", "D", "E", "F"])
+### DERIVED FACTORS
+##
+def is_target_yes(letter):
+    return letter[0] == letter[3]
+def is_target_no(letter):
+    return not is_target_yes(letter)
+target = factor("target", [
+    derived_level("yes", window(is_target_yes, [letter], 4, 1)),
+    derived_level("no", window(is_target_no, [letter], 4, 1))
+])
+##
+def is_1back_lure_yes(letter):
+    return letter[0] == letter[1]
+def is_1back_lure_no(letter):
+    return not is_1back_lure_yes(letter)
+one_back_lure = factor("1back lure", [
+    derived_level("yes", window(is_1back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_1back_lure_no, [letter], 3, 1))
+])
+##
+def is_2back_lure_yes(letter):
+    return letter[0] == letter[2]
+def is_2back_lure_no(letter):
+    return not is_2back_lure_yes(letter)
+two_back_lure = factor("2back lure", [
+    derived_level("yes", window(is_2back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_2back_lure_no, [letter], 3, 1))
+])
+##
+def is_n_back_lure_yes(letter):
+    return letter[0] == letter[1] or letter[0] == letter[2]
+def is_n_back_lure_no(letter):
+    return not is_n_back_lure_yes(letter)
+n_back_lure = factor("n-back lure", [
+    derived_level("yes", window(is_n_back_lure_yes, [letter], 3, 1)),
+    derived_level("no", window(is_n_back_lure_no, [letter], 3, 1))
+])
+### EXPERIMENT
+constraints = [minimum_trials(103)]
+crossing = [target, n_back_lure]
+design = [letter, target, 1back_lure, 2back_lure, n_back_lure]
+block = fully_cross_block(design, crossing, constraints, False)
+experiments = synthesize_trials_non_uniform(block, 1)
+### END OF EXPERIMENT DESIGN
+Unformatted:

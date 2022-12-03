@@ -322,9 +322,7 @@ def text_to_code(to_translate: str, txt_file_name: str = None, py_file_name: str
 
     if py_file_name:
         # add imports
-        _translation = 'from sweetpea.primitives import *\n'
-        _translation += 'from sweetpea.constraints import *\n'
-        _translation += 'from sweetpea import *\n'
+        _translation = 'from sweetpea import *\n'
 
         _translation += translation
         if store_sequence_path:

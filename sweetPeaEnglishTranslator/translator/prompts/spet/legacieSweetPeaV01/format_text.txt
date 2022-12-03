@@ -1,0 +1,123 @@
+Unformatted:
+there are three regular factors: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500. there are two DERIVED FACTORS: congruency and congruency transition. the congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". a task is considered "congruent" if word and color are the same. otherwise it is considered "incongruent". the congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". a task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. otherwise it is considered a "switch". color, word and iti facter was counterbalanced. however, the trial sequence was constructed in a way that no congruent trials were included.
+Formatted:
+### REGULAR FACTORS
+there are three regular factors: color, word and iti. the color can be "red", "green" or "pink". the word can be "red", "neutral" or "blue". the iti is either 300 or 500.
+### DERIVED FACTORS
+there are two derived factors: congruency and congruency transition.
+## congruency
+the congruency factor depends on the color factor and the word factor and has two levels: "congruent" and "incongruent". a task is considered "congruent" if word and color are the same. otherwise it is considered "incongruent".
+## congruency transition
+the congruency transition factor depends on the transition of the congruency factor and has two levels: "switch" and "repetition". a task is considered a "repetition" if the congruency of the previous trial is the same as in the current trial. otherwise it is considered a "switch".
+### EXPERIMENT
+color, word and iti facter was counterbalanced. however, the trial sequence was constructed in a way that no congruent trials were included.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". there are two derived factors: target and lure. the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. the ratio between target and not a target level was 13 to 11. the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure. the is a lure level occured seven times as often as the not a lure level. we counterbalanced the target and lure factors.
+Formatted:
+### REGULAR FACTORS
+there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
+### DERIVED FACTORS
+there are two derived factors: target and lure.
+## target factor
+the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. The ratio between target and not a target level was 13 to 11.
+## lure factor
+the lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back or the letter two trials back, then the trial is a lure. otherwise, the current trial is not a lure. the is a lure level occured seven times as often as the not a lure level.
+### EXPERIMENT
+we counterbalanced the target and lure factors.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F". there are four derived factors: target, one-back lure, two-back lure and n-back lure. the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. the one-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back, then the trial is a one-back lure. otherwise, the current trial is not a one-back lure. the two-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter two trials back, then the trial is a two-back lure. otherwise, the current trial is not a two-back lure. the n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the current trial is either a one-back lure or a two-back lure, then the trial is considered an n-back lure. otherwise, the current trial is not an n-back lure. we counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
+Formatted:
+### REGULAR FACTORS
+there is one regular factor called letter with the levels "A", "B", "C", "D", "E", and "F".
+### DERIVED FACTORS
+there are four derived factors: target, one-back lure, two-back lure and n-back lure.
+## target factor
+the target factor depends on a moving trial window (for the last four trials) defined by the letter factor. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target.
+## one-back lure
+the one-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back, then the trial is a one-back lure. otherwise, the current trial is not a one-back lure.
+## two-back lure
+the two-back lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter two trials back, then the trial is a two-back lure. otherwise, the current trial is not a two-back lure.
+## n-back lure
+the n-back lure factor also depends on a moving trial window (for the last three trials) defined by the letter factor. if the current trial is either a one-back lure or a two-back lure, then the trial is considered an n-back lure. otherwise, the current trial is not an n-back lure.
+### EXPERIMENT
+we counterbalanced the target and the n-back lure factors and generated a minimum of 103 trials.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+we have the regular factors: soa and size. the soa is either 200ms or 700ms. the size is either big or small. as a derived factor we had lubadoo that was large if soa was 200ms and size was small. it was small if soa was 200ms and size was large. otherwize it was undefined. as sescond derived factor was libadii. this was large if lubadoo was small and 200ms otherwise. the large level occured ten times as often as the 200ms level. the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
+Formatted:
+### REGULAR FACTORS
+we have the REGULAR FACTORS: soa and size. the soa is either 200ms or 700ms. the size is either big or small.
+### DERIVED FACTORS
+as a derived factor we had lubadoo. as a sescond derived factor was libasii.
+## lubadoo
+lubadoo was large if soa was 200ms and size was small. it was small if soa was 200ms and size was large. otherwize it was undefined.
+## libasii
+libasii was large if lubadoo was small and 200ms otherwise. the large level occured ten times as often as the 200ms level.
+### EXPERIMENT
+the size and the soa were counterbalanced. however there was no small trial in the lubadoo factor.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+we have the regular factor: kil. the factor kil is either lab or lob. The ratio between the lab and the lob level is 4 to 5. as a derived factor we had kribo that was ribi if kil was not lab. it was small otherwise. the ratio between the level ribi and small was 11 to 21. kil and kribo were counterbalanced. however there was no small trial in the kribo factor.
+Formatted:
+### REGULAR FACTORS
+we have the regular factor: kil. the factor kil is either lab or lob. The ratio between the lab and the lob level is 4 to 5.
+### DERIVED FACTORS
+as a derived factor we had kribo
+## kribo
+kribo that was ribi if kil was not lab. it was small otherwise. the ratio between the level ribi and small was 11 to 21.
+### EXPERIMENT
+kil and kribo were counterbalanced. however there was no small trial in the kribo factor.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+There are the regular factors lar, letter, and task. The lar factor has the levels 125, 132, 139, 146, 160, 167, 174, and 181. The letter factor consists of eight levels: "b", "d", "f", "h", "s", "u", "w", and "y". The task factor consists of three levels: "number task", "letter task", and "free choice task". There is a derived factor called task transition. The task transition factor depends on the transition of the task factor and has five levels: "forced switch", "forced repeat", "free transition", "free repeat", and "forced first". If the task on the current trial is "number task" and the task on the previous trial is "letter task" then the trial is considered a "forced switch". If the task on the current trial is "number task" the trial is considered a "forced repeat". If the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", the trial is considered a "free transition". If the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". If the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "forced first". The ratio between the "forced switch" level and the "forced repeat" level was 3 to 1. The ratio between the "free transition" level and the "free repeat" level was 4 to 4. The ratio between the "forced first" level and the "free repeat" level was 4 to 4. We crossed the letter factor with the number factor. We also counterbalanced the task transition factor individually. All experiment sequences contained at least 256 trials.
+Formatted:
+### REGULAR FACTORS
+there are the regular factors lar and task. the lar factor has the levels 125, 132, 139, 146, 160, 167, 174, and 181. the task factor consists of three levels: "number task", "letter task", and "free choice task".
+### DERIVED FACTORS
+there is a derived factor called task transition.
+## task transition
+the task transition factor depends on the transition of the task factor and has five levels: "forced switch", "forced repeat", "free transition", "free repeat", and "forced first". if the task on the current trial is "number task" and the task on the previous trial is "letter task" then the trial is considered a "forced switch". if the task on the current trial is "number task" the trial is considered a "forced repeat". if the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", the trial is considered a "free transition". if the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". if the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "forced first". the ratio between the "forced switch" level and the "forced repeat" level was 3 to 1. the ratio between the "free transition" level and the "free repeat" level was 4 to 4. the ratio between the "forced first" level and the "free repeat" level was 4 to 4.
+### EXPERIMENT
+ we crossed the letter factor with the number factor. we also counterbalanced the task transition factor individually. all experiment sequences contained at least 256 trials.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+there is one regular factor called lat with the levels "a", "dab", and "jk". there are the derived factors: tt and o-b lure. the tt factor depends on a moving trial window (for the last four trials) defined by the letter factor and has two levels 1 and 0. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. There are three time as many target trials then not target. the o-b lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back, then the trial is a o-b lure. if the letter on the current trial matches the letter two trials back, then it is a o-b lure of second type else it is not a o-b lure. the ratio between o-b lure and o-b lure of second type was five to four. the ratio between o-b lure and not a o-b lure was eight to eleven. we crossed the tt and the o-b lure factors and generated a minimum of 103 trials.
+Formatted:
+### REGULAR FACTORS
+there is one regular factor called lat with the levels "a", "dab", and "jk".
+### DERIVED FACTORS
+there are the derived factors: tt and o-b lure.
+## tt
+the tt factor depends on a moving trial window (for the last four trials) defined by the letter factor and has two levels 1 and 0. if the letter on the current trial matches the letter three trials back, then the trial is a target. conversely, if the letter on the current trial does not match the letter two trials back, then the trial is not a target. There are three time as many target trials then not target..
+## o-b lure
+the o-b lure factor depends on a moving trial window (for the last three trials) defined by the letter factor. if the letter on the current trial matches the letter one trial back, then the trial is a o-b lure. if the letter on the current trial matches the letter two trials back, then it is a o-b lure of second type else it is not a o-b lure. the ratio between o-b lure and o-b lure of second type was five to four. the ratio between o-b lure and not a o-b lure was eight to eleven.
+### EXPERIMENT
+we crossed the tt and the o-b lure factors and generated a minimum of 103 trials.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+There are three regular factors: number, letter, and task. The number factor consists of eight levels: 125, 132, 139, 146, 160, 167, 174, and 181. The letter factor consists of eight levels: "b", "d", "f", "h", "s", "u", "w", and "y". The task factor consists of three levels: "number task", "letter task", and "free choice task". There is another derived factor referred to as task transition. The task transition factor depends on the transition of the task factor and has five levels: "forced switch", "forced repeat", "free transition", "free repeat", and "forced first". If the task on the current trial is "number task" and the task on the previous trial is "letter task" or if the task on the current trial is "letter task" and the task on the previous trial is "number task", then the trial is considered a "forced switch". If the task on the current trial is "number task" and the task on the previous trial is "number task" or if the task on the current trial is "letter task" and the task on the previous trial is "letter task", then the trial is considered a "forced repeat". If the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", then the trial is considered a "free transition". If the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". If the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "forced first". The ratio between the "forced switch" level and the "forced repeat" level was 3 to 1. The ratio between the "free transition" level and the "free repeat" level was 1 to 1. The ratio between the "forced first" level and the "free repeat" level was 4 to 1. We counterbalanced the letter and the number factor individually. We also crossed the task transition factor with the letter and the number factor. All experiment sequences contained at least 256 trials.
+Formatted:
+### REGULAR FACTORS
+there are three regular factors: number, letter, and task. the number factor consists of eight levels: 125, 132, 139, 146, 160, 167, 174, and 181. the letter factor consists of eight levels: "b", "d", "f", "h", "s", "u", "w", and "y". the task factor consists of three levels: "number task", "letter task", and "free choice task".
+### DERIVED FACTORS
+there is another derived factor referred to as task transition.
+## task transition
+the task transition factor depends on the transition of the task factor and has five levels: "forced switch", "forced repeat", "free transition", "free repeat", and "forced first". if the task on the current trial is "number task" and the task on the previous trial is "letter task" or if the task on the current trial is "letter task" and the task on the previous trial is "number task", then the trial is considered a "forced switch". if the task on the current trial is "number task" and the task on the previous trial is "number task" or if the task on the current trial is "letter task" and the task on the previous trial is "letter task", then the trial is considered a "forced repeat". if the task on the current trial is "free choice task" and the task on the previous trial is not "free choice task", then the trial is considered a "free transition". if the task on the current trial is "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "free repeat". if the task on the current trial is not "free choice task" and the task on the previous trial is "free choice task", then the trial is considered a "forced first". the ratio between the "forced switch" level and the "forced repeat" level was 3 to 1. the ratio between the "free transition" level and the "free repeat" level was 1 to 1. the ratio between the "forced first" level and the "free repeat" level was 4 to 1.
+### EXPERIMENT
+we counterbalanced the letter and the number factor individually. we also crossed the task transition factor with the letter and the number factor. all experiment sequences contained at least 256 trials.
+### END OF EXPERIMENT DESIGN
+Unformatted:
+There is one regular factors: tk. It has three levels: "a", "bc", and "def". There is a derived factor called laba duba di. The laba duba di factor depends on the transition of the tk factor and can be the following: "f s", "f r", "f t". If the tk on the current trial is "a" and the tk on the previous trial is "a" then it is "f s". If the tk on the current trial is "bc" and the tk on the previous trial is "bc" then it is  "f r". In all other cases it is "f t". The ratio between the "f s" and the "f r" level was 9 to 1. The ratio between the "f t" and the "f r" level was 3 to 1. We counterbalanced the tk and laba duba di factor individually. All experiment sequences contained at least 256 trials.
+Formatted:
+### REGULAR FACTORS
+There is one regular factors: tk. It has three levels: "a", "bc", and "def".
+### DERIVED FACTORS
+There is a derived factor called laba duba di.
+## laba duba di
+The laba duba di factor depends on the transition of the tk factor and can be the following: "f s", "f r", "f t". If the tk on the current trial is "a" and the tk on the previous trial is "a" then it is "f s". If the tk on the current trial is "bc" and the tk on the previous trial is "bc" then it is  "f r". In all other cases it is "f t". The ratio between the "f s" and the "f r" level was 9 to 1. The ratio between the "f t" and the "f r" level was 3 to 1. We counterbalanced the tk and laba duba di factor individually.
+### EXPERIMENT
+ We counterbalanced the tk and laba duba di factor individually. All experiment sequences contained at least 256 trials.
+### END OF EXPERIMENT DESIGN
+Unformatted:

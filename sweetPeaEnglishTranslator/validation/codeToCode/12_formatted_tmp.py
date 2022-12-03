@@ -1,37 +1,41 @@
 
 ### REGULAR FACTORS
-number_list = [125, 132, 139, 146, 160, 167, 174, 181]
-letter_list = ['b', 'd', 'f', 'h', 's', 'u', 'w', 'y']
-number = Factor("number", number_list)
-letter = Factor("letter", letter_list)
-task = Factor("task", ["number task", "letter task", "free choice task"])
+letter = Factor('letter', ['b', 'f', 'm', 'q', 'k', 'x', 'r', 'h'])
 ### DERIVED FACTORS
 ##
-def is_forced_trial_switch(task):
-    return (task[0] == "number task" and task[1] == "letter task") or \
-           (task[0] == "letter task" and task[1] == "number task")
-def is_forced_trial_repeat(task):
-    return (task[0] == "number task" and task[1] == "number task") or \
-           (task[0] == "letter task" and task[1] == "letter task")
-def is_free_trial_transition(task):
-    return task[0] != "free choice task" and task[1] == "free choice task"
-def is_free_trial_repeat(task):
-    return task[0] == "free choice task" and task[1] == "free choice task"
-def is_not_relevant_transition(task):
-    return not (is_forced_trial_repeat(task) or is_forced_trial_switch(task) or is_free_trial_repeat(
-        task) or is_free_trial_transition(task))
-transit = Factor("task transition", [
-    DerivedLevel("forced switch", transition(is_forced_trial_switch, [task]), 3),
-    DerivedLevel("forced repeat", transition(is_forced_trial_repeat, [task])),
-    DerivedLevel("free transition", transition(is_free_trial_transition, [task]), 4),
-    DerivedLevel("free repeat", transition(is_free_trial_repeat, [task]), 4),
-    DerivedLevel("forced first", transition(is_not_relevant_transition, [task]), 4)
-])
+def is_target(letters):
+    return letters[-2] == letters[0]
+def is_not_target(letters):
+    return not is_target(letters)
+one_t = DerivedLevel(1, DerivationWindow(is_target, [letter], 3, 1), 1)
+two_t = DerivedLevel(2, DerivationWindow(is_not_target, [letter], 3, 1), 5)
+target = Factor('target', [one_t, two_t])
+##
+def is_one_back(letters):
+    return letters[-1] == letters[0]
+def is_not_one_back(letters):
+    return not is_one_back(letters)
+two_o = DerivedLevel(2, DerivationWindow(is_one_back, [letter], 2, 1), 1)
+one_o = DerivedLevel(1, DerivationWindow(is_not_one_back, [letter], 2, 1), 5)
+one_back = Factor('one back', [one_o, two_o])
+##
+def is_control_target(letters):
+    return is_target(letters) and letters[0] != letters[-1]
+def is_experimental_target(letters):
+    return is_target(letters) and letters[0] == letters[-1]
+def is_control_foil(letters):
+    return is_not_target(letters) and letters[0] != letters[-1]
+def is_experimental_foil(letters):
+    return is_not_target(letters) and letters[0] == letters[-1]
+one_one_0 = DerivedLevel('1/1/0', DerivationWindow(is_control_target, [letter], 3, 1), 3)
+one_two_0 = DerivedLevel('1/2/0', DerivationWindow(is_experimental_target, [letter], 3, 1), 1)
+two_one_0 = DerivedLevel('2/1/0', DerivationWindow(is_control_foil, [letter], 3, 1), 17)
+two_two_0 = DerivedLevel('2/2/0', DerivationWindow(is_experimental_foil, [letter], 3, 1), 3)
+condi = Factor('condi', [one_one_0, one_two_0, two_one_0, two_two_0])
 ### EXPERIMENT
-design = [letter, number, task, transit]
-crossing = [[letter], [number], [transit]]
-constraints = [MinimumTrials(256)]
-block = MultiCrossBlock(design, crossing, constraints)
+block = MultiCrossBlock(design=[letter, target, one_back, condi],
+                        crossings=[[letter, target], [one_back], [condi]],
+                        constraints=[MinimumTrials(48)])
 experiment = synthesize_trials(block, 1)
 save_experiments_csv(block, experiment, 'code_1_sequences/seq')
 ### END OF EXPERIMENT DESIGN

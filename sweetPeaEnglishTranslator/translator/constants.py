@@ -2,7 +2,7 @@ import os
 
 _dirname = os.path.dirname(__file__)
 # prompts for code to text
-PATH_TO_REGULAR_PROMPTS_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_regular_factors_code.txt')
+PATH_TO_REGULAR_PROMPTS_CODE = os.path.join(_dirname, 'prompts/spet/regular_code.txt')
 PATH_TO_DERIVED_PROMPTS_CODE = os.path.join(_dirname, 'prompts/spet/derived_code.txt')
 PATH_TO_COUNTERBALANCING_PROMPTS_CODE = os.path.join(_dirname, 'prompts/spet/design_code.txt')
 
@@ -18,7 +18,7 @@ PATH_TRIAL_BLOCK_TEXT_SBET = os.path.join(_dirname, 'prompts/sbet/trial_block_te
 
 ## prompts for format
 PATH_TO_FORMAT_TEXT = os.path.join(_dirname, 'prompts/spet/format_text.txt')
-PATH_TO_FORMAT_CODE = os.path.join(_dirname, 'prompts/gpt3prompt_format_code.txt')
+PATH_TO_FORMAT_CODE = os.path.join(_dirname, 'prompts/spet/format_code.txt')
 
 
 # sbet

@@ -1,112 +1,111 @@
 Text:
-color = factor("color", ["red", "blue"])
-word = factor("word", ["green", "red"])
-iti = factor("iti", [200, 300, 500])
-congruency = factor("congruency", [congruent, incongruent])
+color = Factor("color", ["red", "blue"])
+word = Factor("word", ["green", "red"])
+iti = Factor("iti", [200, 300, 500])
+congruency = Factor("congruency", [congruent, incongruent])
 we counterbalanced the color factor with the word factor. however, the experiment sequences were generated subject to the constraint that no congruent trials were included. all experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-constraints = [minimum_trials(20), exclude(congruency, "congruent")]
+constraints = [MinimumTrials(20), Exclude(congruency, "congruent")]
 crossing = [color, word]
 Text:
-word = factor("word", ["hallo", "yellow", "neutral"])
-color = factor("color", ["abas", "ibas", "ubas", "lolo"])
-task_transition = factor("task transition", [s, r])
-response_transition = factor("response tansition", [s, r])
-we counterbalanced the factors color, word, task, task transition, and response transition. however, the experiment sequences were generated subject to two constraints. first, we allowed for no more than 4 of the same task transitions in a row. second, we allowed for no more than 4 of the same response transitions in a row.
+word = Factor("word", ["hallo", "yellow", "neutral"])
+color = Factor("color", ["abas", "ibas", "ubas", "lolo"])
+task_transition = Factor("task transition", [s, r])
+response_transition = Factor("response tansition", [s, r])
+we counterbalanced the factors color, word, task, task transition, and response transition. however, the experiment sequences were generated subject to two constraints. first, we allowed for no more than 4 of the same task transitions in a row. second, we allowed for no more than 3 of the same response transitions in a row.
 Code:
-constraints = [at_most_k_in_a_row (4, task_transition),at_most_k_in_a_row (4, response_transition)]
+constraints = [AtMostKInARow(4, task_transition), AtMostKInARow(3, response_transition)]
 crossing = [color, word, task, task_transition, response transition]
 Text:
-color = factor("color", ["green", "blue"])
-letter = factor("letter", ["a", "b", "c", "z"])
-word = factor("word", ["green", "blue"])
-target = factor("target", ["yes"])
+color = Factor("color", ["green", "blue"])
+letter = Factor("letter", ["a", "b", "c", "z"])
+word = Factor("word", ["green", "blue"])
+target = Factor("target", ["yes"])
 we counterbalanced the letter factor with the target factor.
 Code:
 constraints = []
 crossing = [letter, target]
 Text:
-word = factor("word", ["yellow", "purple"])
-color = factor("color", ["yellow", "purple"])
-number = factor("number", [3, 7, 5])
-congruency = factor("congruency", [congruent, incongruent])
-number_transition = factor("number transition", [increase, decrease, unchanged])
+word = Factor("word", ["yellow", "purple"])
+color = Factor("color", ["yellow", "purple"])
+number = Factor("number", [3, 7, 5])
+congruency = Factor("congruency", [congruent, incongruent])
+number_transition = Factor("number transition", [increase, decrease, unchanged])
 we counterbalanced the factors number, color, and word. however, the experiment sequences were generated subject to two constraints. first, we excluded all trials in which the number transition was unchanged. second, we allowed for no more than three trials with the same number in a row. all experiment sequences contained at least twelve trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-constraints = [minimum_trials(12), exclude(number_transition, "unchanged"), at_most_k_in_a_row (3, number)]
-crossing = [number, Color, Word]
+constraints = [MinimumTrials(12), Exclude(number_transition, "unchanged"), AtMostKInARow (3, number)]
+crossing = [number, color, word]
 Text:
-shape = factor("shape", [1,"oval", "r"])
-motion = factor("motion", [1, occre, abla, down])
-number = factor("number", [one, two, three])
+shape = Factor("shape", [1,"oval", "r"])
+motion = Factor("motion", [1, occre, abla, down])
+number = Factor("number", [one, two, three])
 we counterbalanced the factors motion, shape, and number. however, we excluded all trials in which the motion was down. all experiment sequences contained at least 100 trials.
 Code:
-constraints = [exclude(motion, "down"), minimum_trials(100)]
+constraints = [Exclude(motion, "down"), MinimumTrials(100)]
 crossing = [motion, shape, number]
 Text:
-labi = factor("labi", ["dibi", "dubi", "dabi", "du"])
-lubi = factor("lubi", ["dibi", "dubi", "a", "b"])
-congruency = factor("congruency", ["c", "i"])
-response_transition = factor("response transition", [asr, zdsa])
+labi = Factor("labi", ["dibi", "dubi", "dabi", "du"])
+lubi = Factor("lubi", ["dibi", "dubi", "a", "b"])
+congruency = Factor("congruency", ["c", "i"])
+response_transition = Factor("response transition", [asr, zdsa])
 we counterbalanced the experiment sequence with respect to the factor congruency. the experiment sequences were generated subject to the constraint that no more than k=7 of the same response transitions could occur in a row.
 Code:
-constraints = [at_most_k_in_a_row (7, response_transition)]
+constraints = [AtMostKInARow (7, response_transition)]
 crossing = [congruency]
 Text:
-re = factor("re", ["color", "word", "location"])
-word = factor("word", ["word", "location"])
-color = factor("color", ["word", congruent])
-location = factor("location", [color, "word"])
-congruency = factor("congruency", ["olor, congruent])
+re = Factor("re", ["color", "word", "location"])
+word = Factor("word", ["word", "location"])
+color = Factor("color", ["word", congruent])
+location = Factor("location", [color, "word"])
+congruency = Factor("congruency", ["olor", congruent])
 we counterbalanced the color factor with the word factor and the location factor. however, the experiment sequences were generated subject to the constraint that no congruent trials were included. all experiment sequences contained at least 20 trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-constraints = [minimum_trials(20), exclude(congruency, "congruent")]
+constraints = [MinimumTrials(20), Exclude(congruency, "congruent")]
 crossing = [color, word, location]
 Text:
-ahp = factor("ahp", [1,"oval", "r"])
-mabu = factor("mabu", [1, occre, abla, down])
-libidu = factor("libidu", [one, two, three])
+ahp = Factor("ahp", [1,"oval", "r"])
+mabu = Factor("mabu", [1, occre, abla, down])
+libidu = Factor("libidu", [one, two, three])
 we counterbalanced the factors ahp, and libidu seperatly and we crossed mubu with ahp. however, we excluded all trials in which libidu was not 1 or 3. all experiment sequences contained at least 37 trials
 Code:
-constraints = [exclude(libidu, "two"), minimum_trials(37)]
+constraints = [Exclude(libidu, "two"), MinimumTrials(37)]
 crossing = [[ahp], [libid], [mubu, ahp]]
 Text:
-lobo = factor("lobo", ["ishi", "ashi"])
-ur = factor("ur", ["a", "b", "c", "z"])
-wibidu = factor("wibidu", ["orbo", "ashi"])
-taratulla = factor("taratulla", ["yes", "japjap"])
+lobo = Factor("lobo", ["ishi", "ashi"])
+ur = Factor("ur", ["a", "b", "c", "z"])
+wibidu = Factor("wibidu", ["orbo", "ashi"])
+taratulla = Factor("taratulla", ["yes", "japjap"])
 We crossed the taratulla factor with the ur and wibidu factor. Individually we counterbalanded the wibidu factor with the lobo factor There was a constraint that at least two wibidu factors of the same level had to follow each other.
 Code:
-constraints = [AtLeasKInARow(2, wibidu)]
+constraints = [AtLeastKInARow(2, wibidu)]
 crossing = [[taratulla, ur, wibidu], [wibidu, lobo]]
 Text:
-wat = factor("wat", [2, 8])
-wubi = factor("wubi", ["ah", "oh"])
-lick = factor("lick", [3, 7, 5])
-carab = factor("carab", [orpho, urda])
-libi_dibi = factor("libi dibi", [in, da, do])
+wat = Factor("wat", [2, 8])
+wubi = Factor("wubi", ["ah", "oh"])
+lick = Factor("lick", [3, 7, 5])
+carab = Factor("carab", [orpho, urda])
+libi_dibi = Factor("libi dibi", [in, da, do])
 we counterbalanced the factors wat and lick seperatly. We also crossed wubi with carab and wat, lick und libi dibi. however, the experiment sequences were generated subject to two constraints. first, we excluded all trials in which libi dibi was in. second, we allowed for no more than three trials with the same lick in a row. all experiment sequences contained at least twelve trials and were sampled uniformly from the space of all counterbalanced sequences.
 Code:
-constraints = [minimum_trials(12), exclude(libi_dibi, "in"), AtMostKInARow (3, lick)]
+constraints = [MinimumTrials(12), Exclude(libi_dibi, "in"), AtMostKInARow (3, lick)]
 crossing = [[wat], [lick], [wubi, carab, wat], [lick, libi]]
 Text:
-rowi = factor("rowi", [2, 4, 8, 12])
-ribi = factor("ribi", [aba, uba, iba, eba])
-rili_dili = factor("rili dili", ["hicks", "hacks"])
-hemhem = factor("hemhem", [robo, bobo, boro])
+rowi = Factor("rowi", [2, 4, 8, 12])
+ribi = Factor("ribi", [aba, uba, iba, eba])
+rili_dili = Factor("rili dili", ["hicks", "hacks"])
+hemhem = Factor("hemhem", [robo, bobo, boro])
 We counterbalanced the rowi factor with the hemhem factor. We also counterbalanced the ribi factor and the hemhem factor seperatly. all experiment sequences contained at least 967 trials.
 Code:
-constraints = [minimum_trials(967)]
+constraints = [MinimumTrials(967)]
 crossing = [[rowi, hemem], [ribi], [hemhem]]
 Text:
-jo_hin = factor("jo hin", [DerivedLevel("jip", within_trial(is_jo_hin_jip, [haol, him])), DerivedLevel("ja", within_trial(is_jo_hin_ja,[haol, him])), DerivedLevel("qwe we", within_trial(is_jo_hin_qwe_we, [haol, him]))])
-labi = factor("labi", [1, 2, 3, 4])
-mano_ci_qu = factor("mano ci qu", ["mano", "ci", "qu"])
-adfs = factor("adfs", [DerivedLevel("fa", transition(is_adfs_fa, [hemhem])), DerivedLevel("fu", transition(is_adfs_fu, [hemhem]))])
+jo_hin = Factor("jo hin", [DerivedLevel("jip", within_trial(is_jo_hin_jip, [haol, him])), DerivedLevel("ja", within_trial(is_jo_hin_ja,[haol, him])), DerivedLevel("qwe we", within_trial(is_jo_hin_qwe_we, [haol, him]))])
+labi = Factor("labi", [1, 2, 3, 4])
+mano_ci_qu = Factor("mano ci qu", ["mano", "ci", "qu"])
+adfs = Factor("adfs", [DerivedLevel("fa", Transition(is_adfs_fa, [hemhem])), DerivedLevel("fu", Transition(is_adfs_fu, [hemhem]))])
 
 all experiment sequences contained at least 73 trials. the experiment crossed the adfs factor with the labi factor and the mano ci qu factor. the experiment also counterbalanced the labi factor and the jo hin factor individually.
 Code:
-constraints = [minimum_trials(73)]
+constraints = [MinimumTrials(73)]
 crossing = [[adfs, labi, mano_ci_qu], [labi], [jo_hin]]
 Text:
-
