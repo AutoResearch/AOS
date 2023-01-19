@@ -1,4 +1,3 @@
-from __future__ import annotations
 from sweetPeaEnglishTranslator.translator import store_prompts
 from sweetPeaEnglishTranslator.translator import extract
 from sweetPeaEnglishTranslator.gpt3 import gpt3

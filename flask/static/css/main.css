@@ -322,5 +322,55 @@ textarea {
     padding-top: 0;
 }
 
+.formTextInput {
+    display: block;
+    border-radius: 10px;
+    font-size: 18pt;
+    margin: 3vh auto;
+    text-align: center;
+    padding: 1vh 2vw;
+}
+
+.formSubmitButton {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    outline: 2px solid #fffe;
+    border: none;
+    border-radius: 10px;
+    white-space: normal;
+    margin: 1.4vw auto;
+    padding: .5vw;
+    width: 8.5vw;
+    background: #d6a;
+    font-size: 14pt;
+    color: #fffe;
+    text-shadow: 0 0 2pt #000f;
+}
+
+.formSubmitButton:hover {
+    outline: 2px solid #d6a;
+    background: #111;
+    color: #d6a;
+    text-shadow: 0 0 2pt #fff2;
+}
+
+.centerWrapper {
+    position: absolute;
+    left: 50vw;
+    transform: translate(-50%);
+}
+
+.loginLink {
+    display: block;
+    text-align: center;
+    margin: 1vh auto;
+}
+
+.loginAlert {
+    display: block;
+    text-align: center;
+    margin: 1vh auto;
+}
 
 

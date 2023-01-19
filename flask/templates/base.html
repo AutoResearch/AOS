@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     {% if title %}
-    <title>{{ title }} - Autobol</title>
+        <title>{{ title }} - Autobol</title>
     {% else %}
-    <title>Autoperimenter</title>
+        <title>Autoperimenter</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
@@ -18,13 +18,21 @@
             <a href="/sweetPea"
                class="nav_text {% if title == 'Sweet' %}current{% else %}notcurrent{% endif %}">Sweet</a>
             <a href="/sourPea" class="nav_text {% if title == 'Sour' %}current{% else %}notcurrent{% endif %}">Sour</a>
-            <a href="/jsPsych" class="nav_text {% if title == 'Psych' %}current{% else %}notcurrent{% endif %}">Psych</a>
+            <a href="/jsPsych"
+               class="nav_text {% if title == 'Psych' %}current{% else %}notcurrent{% endif %}">Psych</a>
         </div>
         <div class="float_right">
             <a href="/resources"
                class="nav_text {% if title == 'Resources' %}current{% else %}notcurrent{% endif %}">Resources</a>
             <a href="/team" class="nav_text {% if title == 'Team' %}current{% else %}notcurrent{% endif %}">Team</a>
-            <a href="/index" class="nav_img {% if title == 'About' %}img_current{% else %}img_notcurrent{% endif %}"></a>
+            <a href="/login" class="nav_text {% if title == 'Login' %}current{% else %}notcurrent{% endif %}">Log In</a>
+            <a href="/logout" class="nav_text {% if title == 'Logout' %}current{% else %}notcurrent{% endif %}">Log
+                Out</a>
+            <a href="/signup" class="nav_text {% if title == 'Signup' %}current{% else %}notcurrent{% endif %}">Sign
+                Up</a>
+            <a href="/index"
+               class="nav_img {% if title == 'About' %}img_current{% else %}img_notcurrent{% endif %}"></a>
+            {{ user.username }}
         </div>
     </div>
 

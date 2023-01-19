@@ -14,6 +14,8 @@ def extract_segment(text: str, reg_fac_line: str) -> str:
     Returns:
         A string containing the SweetPea code for a given section
     """
+    if not text:
+        return ""
     extracted_code = ""
     lines = text.splitlines()
     i = 0  # initially holds first line of file
@@ -25,7 +27,7 @@ def extract_segment(text: str, reg_fac_line: str) -> str:
             extracted_code += f'{lines[i]}\n'
             i += 1
     if not extracted_code:
-        raise Exception("Error in extract_segment: No segment found")
+       return ""
     return extracted_code
 
 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="centerWrapper">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.username(class='formTextInput') }}
+        {{ form.password(class='formTextInput') }}
+        {{ form.submit(class='formSubmitButton') }}
+    </form>
+    {% if myError %}
+        <div class="alert alert-error loginAlert">
+            The {{ myError }} is not valid.
+        </div>
+    {% endif %}
+    <a href="/signup" class="loginLink">Not yet signed up? Sign Up</a>
+    </div>
+{% endblock %}
