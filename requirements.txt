@@ -1,6 +1,14 @@
 wtforms
 Flask
 flask_wtf
+flask-sqlalchemy
+flask-login
+flask-bcrypt
+Flask-Mail
+selenium
+Pillow
+opencv-python
+email_validator
 quote
 appdirs==1.4.4
 ascii-graph==1.5.1

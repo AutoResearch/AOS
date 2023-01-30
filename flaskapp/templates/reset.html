@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<div class="centerWrapper">
+  <form method="POST" action="">
+    {{ form.hidden_tag() }} {{ form.password(class='formTextInput') }} {{
+    form.submit(class='formSubmitButton') }}
+  </form>
+  {% if form.errors %} {% for field in form.errors %} {% for error in
+  form.errors[field] %}
+  <div class="alert alert-error loginAlert">{{ error }}</div>
+  {% endfor %} {% endfor %} {% endif %}
+</div>
+{% endblock %}

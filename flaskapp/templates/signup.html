@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %}
+<div class="centerWrapper">
+  <p>
+    You will be sent an email to verify your account. Please be sure to check
+    your inbox and spam folders.
+  </p>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }} {{ form.email(class='formTextInput')}} {{
+    form.username(class='formTextInput') }} {{
+    form.password(class='formTextInput') }} {{ form.key(class='formTextInput')
+    }} {{ form.submit(class='formSubmitButton') }}
+  </form>
+  {% if form.errors %} {% for field in form.errors %} {% for error in
+  form.errors[field] %}
+  <div class="alert alert-error loginAlert">{{ error }}</div>
+  {% endfor %} {% endfor %} {% endif %}
+  <a href="/login" class="loginLink">Do you already have a account? Log In</a>
+</div>
+{% endblock %}
